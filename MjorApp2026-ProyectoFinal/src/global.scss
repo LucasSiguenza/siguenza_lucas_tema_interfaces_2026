@@ -1,0 +1,671 @@
+@use 'src/theme/variables.scss' as *;
+@use '@angular/material' as mat;
+
+/* =========================
+   IONIC BASE
+========================= */
+
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/flex-utils.css";
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* =========================
+  COLORES
+========================= */
+/* =========================
+  PALETA
+========================= */
+
+$bordo: #7A0F0F;
+$dorado: #D4A32F;
+$verde: #28a745;
+$verde-hover: #218838;
+$azul: #0D47A1;
+$givry: #F7E7B6;
+
+/* =========================
+  MAPA DE COLORES
+========================= */
+
+$colores: (
+  bordo: $bordo,
+  dorado: $dorado,
+  verde: $verde,
+  azul: $azul,
+  givry: $givry
+);
+
+/* =========================
+  CLASES AUTOMÁTICAS
+========================= */
+
+@each $nombre, $color in $colores {
+
+  .fondo-#{$nombre} {
+    background-color: $color;
+  }
+
+  .ion-fondo-#{$nombre} {
+    --background: #{$color};
+  }
+
+  .texto-#{$nombre} {
+    color: $color;
+  }
+
+  .borde-#{$nombre} {
+    border: 2px solid $color;
+  }
+
+  .ion-color-#{$nombre} {
+    --color: #{$color};
+  }
+}
+
+.texto-claro {
+  color: var(--app-texto);
+  font-weight: 500;
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.texto-oscuro {
+  color: var(--app-principal);
+  font-weight: 800;
+}
+
+/* =========================
+   MATERIAL THEME
+========================= */
+
+html {
+  @include mat.theme((
+    color: (
+      primary: mat.$rose-palette,
+      tertiary: mat.$red-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+body {
+  color-scheme: light;
+  background-color: var(--app-fondo);
+  color: var(--app-texto);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  font-family: var(--app-font-family);
+  font-size: var(--app-font-size);
+}
+
+/* =========================
+   MIXINS
+========================= */
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin btn-base {
+  --color: white;
+  --border-radius: 12px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* =========================
+   LAYOUT BASE
+========================= */
+
+html,
+body {
+  height: 100%;
+}
+
+ion-content {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+
+  --background: var(--app-fondo);
+
+  background-color: var(--app-fondo);
+  color: var(--app-texto);
+
+  font-family: var(--app-font-family);
+  font-size: var(--app-font-size);
+}
+
+.elementos-centrados {
+  @include flex-center;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+.custom-loading {
+  --background: rgba(255,255,255,.15) !important;
+  backdrop-filter: blur(12px);
+
+  .loading-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30vw;
+    height: 20vh;
+    background: url("assets/mjor-splash.png") no-repeat center / contain;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* =========================
+   CONTENEDORES
+========================= */
+
+.logo-container,
+.elementos-centrados,
+.btn-registrar {
+  @include flex-center;
+}
+
+.elementos-centrados2 {
+  @include flex-center;
+  flex-direction: column;
+}
+
+.container,
+.swipper-container {
+  background-color: var(--app-fondo);
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  color: var(--app-texto);
+  margin-top: 0.5rem;
+  @include flex-center;
+}
+
+#acceso-rapido {
+  @include flex-center;
+  flex-direction: column;
+  width: 100%;
+  height: 95%;
+}
+
+.logo-img {
+  width: 50vw;
+  max-width: 500px;
+  height: auto;
+}
+
+.super-container {
+  @include flex-center;
+  flex-direction: column;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 100;
+  background-color: rgba(247,246,246,.9);
+  overflow-y: auto;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+ion-fab-button {
+  --background: var(--app-principal);
+}
+
+ion-button {
+  margin-top: 16px;
+  font-weight: bold;
+
+  border-radius: 8px;
+
+  &:hover,
+  &:active {
+    transform: scale(.98);
+    transition: transform .2s ease;
+  }
+}
+
+ion-button.btn-verde,
+.btn-verde {
+  @include btn-base;
+  --background: $verde;
+  --background-hover: $verde-hover;
+}
+
+.btn-azul {
+  @include btn-base;
+  --background: $azul;
+}
+
+.btn-naranja {
+  @include btn-base;
+  --background: #D4A32F;
+  color: black;
+}
+
+.btn-rojo {
+  @include btn-base;
+  --background: #7A0F0F;
+  color: white;
+}
+
+/* =========================
+   CARD
+========================= */
+
+ion-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  background: var(--app-fondo-secundario);
+  color: var(--app-texto);
+}
+
+ion-card-content {
+  width: 80%;
+  padding: 16px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  --background: var(--app-principal);
+  background-color: var(--app-principal);
+
+  color: var(--app-texto);
+}
+/* ====================
+  ALERT PERSONALIZADO
+ ====================== */
+
+.alert-mjor {
+
+  --background: var(--app-fondo-secundario);
+  --backdrop-opacity: 0.7;
+
+  box-shadow: 0 0.4rem 1.2rem rgba(0,0,0,0.3);
+
+  .alert-wrapper {
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 3px solid var(--app-principal);
+    box-shadow: inset 0 0 0 1px var(--app-texto);
+  }
+
+  .alert-head {
+
+    background: var(--app-principal);
+    color: var(--app-texto-contraste);
+
+    margin-top: 1rem;
+
+    width: 60vw;
+    max-width: 200px;
+
+    border-radius: 1rem 1rem 0 0;
+
+    padding: 0.9rem 0;
+
+    text-align: center;
+    font-weight: 700;
+    font-size: 1rem;
+
+    border: 2px solid var(--app-texto);
+  }
+
+  .alert-message {
+
+    background: var(--app-principal);
+    color: var(--app-texto-contraste);
+
+    width: 60vw;
+    max-width: 200px;
+    height: 40vh;
+    max-height: 150px;
+
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border-radius: 0 0 1rem 1rem;
+
+    padding: 0.8rem 1rem;
+
+    text-align: center;
+    font-size: 1.1rem;
+
+    margin: 0;
+
+    border-bottom: 2px solid var(--app-texto);
+    border-left: 2px solid var(--app-texto);
+    border-right: 2px solid var(--app-texto);
+
+    box-shadow: none;
+  }
+
+  .alert-button-group {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  .alert-button {
+    border: 2px solid var(--app-texto);
+
+    font-weight: 600;
+    font-size: 0.9rem;
+
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    transition: transform .15s ease, opacity .15s ease;
+  }
+
+  .alert-button-role-confirm {
+    color: var(--app-texto-contraste);
+    background: var(--app-principal);
+  }
+
+  .alert-button-role-cancel {
+    color: var(--app-principal);
+    background: var(--app-fondo);
+    border: 1px solid var(--app-principal);
+  }
+
+  .alert-button:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+
+}
+
+/* =========================
+         MODALS
+========================= */
+
+.gm-modal {
+
+  --width: min(92vw, 500px);
+
+  --height: auto;
+  --max-height: 90vh;
+
+  --border-radius: 20px;
+  --backdrop-opacity: 0.45;
+
+  padding: env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+
+  &::part(content) {
+
+    --background: var(--app-principal);
+
+    border-radius: 18px;
+    border: 2px solid color-mix(in srgb, var(--app-secundario) 25%, transparent);
+
+    box-shadow:
+      0 20px 40px rgba(0,0,0,0.18),
+      0 6px 14px rgba(0,0,0,0.12);
+
+    position: relative;
+
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+  }
+
+  &::part(content) > * {
+
+    --background: var(--app-principal);
+
+    border-radius: 18px;
+    border: 2px solid color-mix(in srgb, var(--app-secundario) 25%, transparent);
+
+    box-shadow:
+      0 20px 40px rgba(0,0,0,0.18),
+      0 6px 14px rgba(0,0,0,0.12);
+
+    position: relative;
+
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+  }
+
+  &::part(content)::before {
+
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background: linear-gradient(
+      90deg,
+      var(--app-principal),
+      var(--app-secundario),
+      var(--app-fondo-secundario)
+    );
+  }
+}
+
+/* =========================
+       SIZES
+========================= */
+
+.gm-modal-sm {
+  --width: min(92vw, 320px);
+}
+
+.gm-modal-md {
+  --width: min(92vw, 500px);
+}
+
+.gm-modal-lg {
+  --width: min(92vw, 800px);
+}
+
+.gm-modal-full {
+
+  --width: fit-content;
+
+  --height: auto;
+
+  --max-width: min(92vw, 900px);
+  --max-height: 100vh;
+
+}
+
+.map-modal {
+
+  --width: min(95vw, 900px);
+  --height: 85vh;
+
+  &::part(content) {
+    overflow: hidden !important;
+  }
+
+}
+
+.map-modal::part(content) {
+  display: flex;
+  flex-direction: column;
+}
+
+.map-modal::part(content) > * {
+  flex: 1;
+  min-height: 0;
+}
+
+/* =========================
+     AJUSTE PARA WEB
+========================= */
+
+@media (min-width: 768px) {
+
+  .gm-modal {
+
+    --max-height: 85vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+}
+
+/* ================== Loader Custom ================== */
+
+.custom-loading {
+  --background: rgba(34, 49, 51, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.custom-loading .loading-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  width: 25vh;
+  height: 25vh;
+  border-radius: 50%;
+}
+
+.custom-loading .loading-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 200, 87, 0.15),
+    rgba(255, 107, 61, 0.12)
+  );
+
+  border: 3px solid rgba(255, 200, 87, 0.95);
+
+  box-shadow:
+    0 0 14px rgba(255, 200, 87, 0.9),
+    0 0 28px rgba(255, 200, 87, 0.7),
+    0 0 45px rgba(255, 107, 61, 0.65),
+    inset 0 0 14px rgba(255, 255, 255, 0.35);
+
+  animation: neon-spin 0.75s linear infinite;
+  z-index: 0;
+}
+
+.custom-loading .loading-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 18%;
+
+  background: url("assets/mjor-splash.png")
+    no-repeat center / contain;
+
+  border-radius: 50%;
+  scale: 1.45;
+
+  filter:
+    drop-shadow(0 0 6px rgba(255, 200, 87, 0.8))
+    drop-shadow(0 0 14px rgba(255, 107, 61, 0.6));
+
+  z-index: 2;
+  animation: rotation 0.6s linear infinite;
+}
+
+@keyframes neon-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotation {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
+.custom-loading .loading-wrapper .loading-message {
+  position: absolute;
+  top: calc(50% + 20vh);
+  left: 50%;
+  transform: translateX(-50%);
+
+  color: var(--app-secundario);
+
+  font-weight: 600;
+  font-size: 1rem;
+
+  text-align: center;
+  z-index: 3;
+}
+
+.pdf-hidden {
+
+  position: fixed;
+
+  left: -99999px;
+  top: 0;
+
+  opacity: 0;
+
+  pointer-events: none;
+}

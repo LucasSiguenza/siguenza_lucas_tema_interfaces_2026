@@ -1,0 +1,63 @@
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-title>Complete los datos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content">
+  <div class="main-container">
+    <form [formGroup]="form" (ngSubmit)="confirm()">
+      <ion-card class="reserva-card">
+        <ion-card-content>
+          <ion-list lines="none">
+            <!-- CANTIDAD DE COMENSALES -->
+            <h2 class="ion-text-center">
+              Cantidad de comensales
+            </h2>
+            <ion-item class="input-field-mjor">
+              <app-input-mjor
+                placeholder="Ingrese cantidad de comenzales"
+                tipo="number"
+                control="cantidad"
+                [form]="form"
+                [maxLength]="2"
+                mensajeValidacion="No puede haber más de 20 integrantes por mesa"  
+              >
+              </app-input-mjor>
+            </ion-item>
+
+            <!-- TIPO DE MESA -->
+            <h2 class="ion-text-center">
+              Tipo
+            </h2>
+            <ion-item class="campo" lines="none">
+              <ion-radio-group formControlName="tipo">
+                <ion-item class="radio-item" lines="none">
+                  <ion-radio slot="start" value="standar"></ion-radio>
+                  <ion-label>Estándar</ion-label>
+                </ion-item>
+                <ion-item class="radio-item" lines="none">
+                  <ion-radio slot="start" value="handicap"></ion-radio>
+                  <ion-label>Movilidad Reducida</ion-label>
+                </ion-item>
+                <ion-item class="radio-item" lines="none">
+                  <ion-radio slot="start" value="vip"></ion-radio>
+                  <ion-label>VIP</ion-label>
+                </ion-item>
+              </ion-radio-group>
+            </ion-item>
+          </ion-list>
+
+          <!-- BOTONES -->
+          <div class="actions">
+            <ion-button fill="outline" color="danger" expand="block" (click)="cancel()">Cancelar</ion-button>
+            <ion-button type="submit" expand="block" [disabled]="form.invalid">Confirmar</ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </form>
+  </div>
+</ion-content>

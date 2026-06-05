@@ -1,0 +1,57 @@
+<div class="container flex-col">
+  <ion-card class="flex-col">
+    @if(this.perfilUsuario() !== 'mozo'){
+      <ion-title class="ion-text-center texto-oscuro">{{this.pedido().numeroMesa !== 'A domicilio'
+      ?
+      ` Mesa N° ${this.pedido().numeroMesa}`
+      : `${pedido().direccion_cliente}`}}</ion-title>
+    }
+    <ion-text class="ion-text-center texto-oscuro">
+      {{this.pedido().es_delivery ? "Solicitado:" : 'Llegada:'}} 
+      {{this.pedido().created_at|formatoFecha}}
+    </ion-text>
+        <!-- Botón de cerrar modal -->
+    @if(this.perfilUsuario() ==='cliente' && this.pedido().estado !== 'listo para pagar'){
+      <button class="fav-button cerrar-modal" (click)="cerrarModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    } 
+    <ion-card-content>
+    @if(this.pedido().estado !== 'espera confirmación de pago'){
+        <app-lista-detalle-pedido 
+        [pedido]="this.pedido()"
+        [perfil]="(this.perfilUsuario)()"
+        ></app-lista-detalle-pedido>
+        <br>
+      }
+      @if(this.perfilUsuario() !== 'mozo' && this.pedido().estado !== 'en camino' 
+      && this.pedido().estado !== 'listo para pagar' && this.pedido().estado !== 'espera confirmación de pago'){
+        <div class="flex-col">
+          <ion-title class="ion-text-center texto-claro" >Estado pedido:</ion-title> 
+          <ion-text class="ion-text-center texto-claro">
+            <strong>{{this.pedido().estado | titlecase}}</strong>
+          </ion-text>
+        </div>
+      }
+      @if(this.pedido().estado === 'en camino'){
+        <div class="flex-col">
+          <ion-text class="ion-text-center texto-claro-invertido">¿Tu pedido ya llego? <br>¡Confírmalo con el botón de abajo!</ion-text>
+        </div>
+      }
+      @if(this.pedido().estado === 'listo para pagar' &&
+       perfilUsuario() === 'cliente'){
+         
+         <div class="flex-col texto">
+
+           <ion-text class="ion-text-center texto-claro-invertido">
+            A pagar:<br>
+            Propina ─ {{ this.propina() !== 0 ? (this.propina()! * 100) + '%'  : 'Ninguna' }}<br>
+            Descuento ─ {{ this.descuento() !== 1 ? descuentoFormateado() + '%'  : 'Ninguno' }}
+            <strong style="font-size: 2rem;">{{this.total() | currency}}</strong></ion-text>
+         </div>
+      }
+        
+    </ion-card-content>
+    
+  </ion-card>
+</div>

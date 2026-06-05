@@ -1,0 +1,33 @@
+.preview-card {
+
+  color: var(--ion-text-color);
+
+  ion-card-title,
+  ion-card-content,
+  ion-label {
+    color: var(--ion-text-color);
+  }
+
+}
+.preview-card ion-input {
+
+  --color: var(--ion-text-color);
+
+}
+.preview-card ion-button {
+
+  --color: var(--ion-text-color);
+
+}
+.fila-sonidos {
+  justify-content: center;
+}
+
+ion-button{
+    --color: var(--ion-text-color);
+
+}
+
+.confirmacion-btn{
+  margin-bottom: 5rem;
+}

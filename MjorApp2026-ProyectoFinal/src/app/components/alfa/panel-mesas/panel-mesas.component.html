@@ -1,0 +1,111 @@
+<!----------------Botón de añadir---------------->
+<div class="wrapper" slot="end">
+  <ion-buttons slot="end">
+     @if(usrSvc.usrActual()?.perfil === 'dueño' || usrSvc.usrActual()?.perfil === 'supervisor'){
+    <ion-button  class="btn-verde ion-justify-content-end" (click)="abrirFormularioNuevo()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
+  }
+    <ion-button  class="btn-azul ion-justify-content-end"   (click)="prevPage()" [disabled]="page() === 1">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <span class="texto-blanco">{{ page() }} de {{ totalPages() }}</span>
+    <ion-button  class="btn-azul ion-justify-content-end"  (click)="nextPage()" [disabled]="page() === totalPages()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</div>
+<!----------Cards---------->
+@for (item of paginatedItems; track item.id) {
+  <div class="cards-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="texto-negro">Mesa N°{{ item.numero }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <!-- Foto de ejemplo -->
+
+        <div class="card-foto">
+          <img [src]="item?.foto" alt="Foto de {{item?.numero}}">
+        </div>
+        <!-- Cantidad de comenzales-->
+         <div class="card-estado">
+          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              Cantidad de comenzales: <strong>{{item.cantidad_comensales}}</strong>
+          </ion-text>
+        </div>
+        <!-- Fecha de creación -->
+        <div class="card-estado">
+          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              Fecha de creación:
+          </ion-text>
+        </div>
+        <div class="card-estado">
+          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              <strong>{{item?.created_at | formatoFecha}}</strong>
+          </ion-text>
+        </div>
+
+        <!-- Tipo de mesa -->
+
+        <div class="card-estado">
+          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              Tipo de mesa: <strong>{{item.tipo | formatoTipoMesa}}</strong>
+          </ion-text>
+        </div>
+        <!-- Estado -->
+
+        @if(item.usuario_asignado != "disponible"){
+        <div class="card-estado ion-text-center ion-text-capitalize texto-blanco">Estado: <strong> Ocupada </strong></div>
+        <div class="card-estado ion-text-center ion-text-capitalize texto-blanco">por {{item.usuario_asignado | titlecase}}</div>
+        } @else {
+        <div class="card-estado ion-text-center ion-text-capitalize texto-blanco">Estado: <strong>Disponible</strong></div>
+        }
+
+        <!-- Botones -->
+        <div class="card-buttons">
+
+          <div>
+            @if(usrSvc.usrActual()?.perfil === 'dueño' || usrSvc.usrActual()?.perfil === 'supervisor'){
+              <ion-buttons>
+                <ion-button color="warning" fill="solid" size="small" (click)="abrirFormularioEdicion(item)">
+                  <ion-icon slot="start" name="build-outline"></ion-icon>
+                Editar
+              </ion-button>
+
+            <ion-button shape="round" fill="solid" color="danger" expand="block" (click)="eliminarMesa(item)"> 
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Eliminar
+            </ion-button>
+              </ion-buttons>
+          }
+          @if(mesaSvc.isModal()){
+          <ion-button color="warning" expand="full" fill="solid" size="small" [disabled]="item.usuario_asignado != 'disponible' " (click)="asignarUsuario(item)">
+            <ion-icon slot="start" name="person-add-outline"></ion-icon>
+            Asignar 
+          </ion-button>
+        }
+        
+          @if(item.usuario_asignado !== 'disponible'){
+          <ion-button color="warning" expand="full" fill="solid" size="small" (click)="liberarMesa(item)">
+            <ion-icon slot="start" name="person-add-outline"></ion-icon>
+            Desocupar 
+          </ion-button>
+        }
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+}
+
+@if(mesaSvc.isModal()){
+  <!-- //! Acá está el footer -->
+  <ion-footer>
+    <ion-toolbar>
+        <ion-button color="danger" expand="full" (click)="cancel()">Cancelar</ion-button>
+    </ion-toolbar>
+  </ion-footer>
+
+}

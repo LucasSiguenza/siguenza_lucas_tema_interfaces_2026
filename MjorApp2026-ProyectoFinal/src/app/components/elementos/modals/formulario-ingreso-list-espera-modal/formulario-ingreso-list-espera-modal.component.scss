@@ -1,0 +1,225 @@
+@use 'src/theme/variables.scss' as *;
+
+/* =========================
+        HEADER
+========================= */
+
+.header {
+
+  ion-toolbar {
+
+    --background: #{$bordo};
+    --color: #{$givry};
+
+    ion-title {
+      font-weight: 600;
+      letter-spacing: .3px;
+    }
+
+    ion-button {
+      --color: #{$dorado};
+      font-weight: 500;
+    }
+
+  }
+
+}
+
+
+/* =========================
+        CONTENT
+========================= */
+
+.content {
+
+  --background: #{$dorado};
+
+  --padding-top: 0.75rem;
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  --padding-bottom: 1rem;
+
+  &::part(scroll) {
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+.main-container {
+
+  width: 100%;
+  max-width: 520px;
+
+  margin-inline: auto;
+
+}
+
+
+/* =========================
+          CARD
+========================= */
+
+.reserva-card {
+
+  background: transparent;
+
+  border-radius: 16px;
+
+  border: 1px solid rgba($dorado, .25);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,.18),
+    0 4px 10px rgba(0,0,0,.12);
+
+  ion-card-content {
+    padding: 1.25rem;
+  }
+
+}
+
+
+/* =========================
+          LIST
+========================= */
+
+ion-list {
+
+  background: none;
+
+  --background: transparent !important;
+
+  box-shadow: none !important;
+
+  border: none !important;
+
+  --ion-item-background: transparent !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+}
+
+
+/* =========================
+         TITULOS
+========================= */
+
+h2 {
+
+  color: $givry;
+
+  font-weight: 600;
+
+  margin-top: 1rem;
+  margin-bottom: .4rem;
+
+  font-size: 1rem;
+
+}
+
+
+/* =========================
+        INPUT FIELD
+========================= */
+
+.input-field-mjor {
+
+  --background: rgba($givry, .08);
+
+  border-radius: 12px;
+
+  margin-bottom: .75rem;
+
+  padding-inline: .25rem;
+
+}
+
+
+/* =========================
+        RADIO GROUP
+========================= */
+
+.radio-item {
+
+  --background: rgba($givry, .05);
+
+  border-radius: 10px;
+
+  margin-top: .35rem;
+
+  ion-label {
+    color: $givry;
+  }
+
+  ion-radio {
+
+    --color: #{$dorado};
+    --color-checked: #{$dorado};
+
+  }
+
+}
+
+
+/* =========================
+        ACTION BUTTONS
+========================= */
+
+.actions {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: .65rem;
+
+  margin-top: 1.4rem;
+
+}
+
+
+/* =========================
+        CONFIRM BUTTON
+========================= */
+
+.actions ion-button[type="submit"] {
+
+  --background: #{$dorado};
+  --color: #{$bordo};
+
+  font-weight: 600;
+
+  border-radius: 12px;
+
+}
+
+
+/* =========================
+        CANCEL BUTTON
+========================= */
+
+.actions ion-button:not([type="submit"]) {
+
+  --background: #c23b3b;
+
+  --color: white;
+
+  font-weight: 600;
+
+  border-radius: 12px;
+
+}
+
+
+/* =========================
+        RESPONSIVE
+========================= */
+
+@media (min-width: 768px) {
+
+  .main-container {
+    max-width: 560px;
+  }
+
+}

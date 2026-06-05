@@ -1,0 +1,237 @@
+/* Contenedor de todas las cards */
+.cards-container {
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(auto-fill, minmax(55vmin, 1fr));
+  gap: 2vmin;
+  padding: 1vmin;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Botones superiores (los dejamos exactamente como pediste) */
+ion-button.btn-azul{
+  --background:#0066ffab;
+  --color:#fff;
+  --border-radius:50%;
+
+  width:2.2rem;
+  height:2.2rem;
+}
+
+ion-button.btn-verde{
+  --background:#2fff00b0;
+  --color:#fff;
+  --border-radius:50%;
+
+  width:2.5rem;
+  height:2.5rem;
+}
+ion-button.btn-azul ion-icon{
+  font-size:1.4rem;
+}
+ion-button.btn-verde ion-icon{
+  font-size:1.4rem;
+}
+/* =========================
+   CARDS
+========================= */
+
+ion-card {
+  border-radius: 2vh;
+  border: 0.8vh solid #D4A32F;
+  color: white;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover{
+    transform: translateY(-0.5vh);
+    box-shadow: 0 1vh 2vh rgba(0,0,0,0.4);
+  }
+}
+
+/* =========================
+   FOTO
+========================= */
+
+.card-foto{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:2vmin;
+  border-radius:50vw;
+  overflow:hidden;
+  background-color:#7a0f0f;
+}
+
+.card-foto img{
+  margin-top:.5rem;
+  max-width:35vmin;
+  max-height:35vmin;
+  border-radius:50vmin;
+}
+
+/* =========================
+   TEXTOS
+========================= */
+
+.card-estado{
+  margin-bottom:1.2vmin;
+  font-weight:bold;
+  color:#F7E7B6;
+  text-align:center;
+  font-size:4.3vmin;
+}
+
+/* =========================
+   BOTONES DE CARD
+========================= */
+
+.card-buttons{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:2vmin;
+  width:95%;
+  margin:auto;
+  margin-top:1vmin;
+}
+
+/* Botones editar / asignar */
+
+.card-buttons ion-button{
+  flex:1 1 46%;
+  min-width:28vw;
+  min-height:5.5vh;
+  font-size:3.2vmin;
+  --border-radius:1.3vh;
+  padding:0;
+  white-space:nowrap;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* Iconos dentro de botones */
+
+.card-buttons ion-button ion-icon{
+  font-size:4vmin;
+}
+
+/* =========================
+   BOTON ELIMINAR
+========================= */
+
+.card-buttons-eliminar{
+  width:95%;
+  display:flex;
+  justify-content:center;
+  margin:1.5vh auto 0 auto;
+}
+
+.card-buttons-eliminar ion-button{
+  width:100%;
+  min-height:6vh;
+  font-size:3.4vmin;
+  --border-radius:1.3vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* =========================
+   BOTONES GENERALES
+========================= */
+
+ion-button{
+  --background:#2f2f2f;
+  --color:#fff !important;
+  border-radius:1vh;
+  font-size:3.5vmin;
+
+  transition:transform .2s ease, box-shadow .2s ease;
+
+  &:hover{
+    transform:scale(1.05);
+    box-shadow:0 .8vh 1.2vh rgba(0,0,0,.4);
+  }
+}
+
+ion-button ion-icon{
+  font-size:4vmin;
+}
+
+/* =========================
+   PAGINACION
+========================= */
+
+.pagination{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:3vmin;
+  margin:2vmin 0;
+}
+
+/* =========================
+   CONTENEDOR SUPERIOR
+========================= */
+
+ion-buttons{
+  height:8vh;
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  margin:0 2vmin;
+}
+
+.wrapper{
+  padding:0;
+}
+
+/* =========================
+   CARD MENSAJE VACIO
+========================= */
+
+.card-mensaje{
+  color:white;
+  border:1.5vmin solid #D4A32F;
+  border-radius:3vmin;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.mensaje-foto{
+  width:25vmin;
+  height:25vmin;
+  border-radius:50%;
+  background-color:#2E7D32;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto 2vmin auto;
+}
+
+.mensaje-foto ion-icon{
+  font-size:12vmin;
+  color:white;
+}
+
+.mensaje-texto h2{
+  font-size:5vmin;
+  margin-bottom:1vmin;
+}
+
+.mensaje-texto p{
+  font-size:3.5vmin;
+  color:#ddd;
+}
+
+/* sombra leve para títulos */
+
+.texto-negro{
+  text-shadow:0 0 1rem #7a0f0f;
+}

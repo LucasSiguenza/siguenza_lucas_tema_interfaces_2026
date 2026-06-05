@@ -1,0 +1,66 @@
+@use 'src/theme/variables.scss' as *;
+
+.lista-detalles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item-detalle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: $bordo;
+  background: $givry;
+
+  padding: 12px 16px;
+  border-radius: 10px;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cantidad {
+  font-size: .9rem;
+  opacity: .9;
+}
+
+.estado {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.btn-check {
+  --background: $givry;
+  --color: white;
+  --border-radius: 10rem;
+
+  width: 3.5rem;
+  height: 3.5rem;
+
+  ion-icon{
+    --color: $bordo;
+    color: $bordo;
+    font-size: 10rem;
+  }
+}
+
+.paginacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 10px;
+
+  color: $givry;
+}

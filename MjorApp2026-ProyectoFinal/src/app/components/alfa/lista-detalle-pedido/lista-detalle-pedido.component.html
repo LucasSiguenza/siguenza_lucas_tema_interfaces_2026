@@ -1,0 +1,73 @@
+<div class="lista-detalles">
+
+  @for (detalle of paginatedItems; track detalle.id) {
+
+    <div class="item-detalle">
+
+      <div class="info">
+        <span class="nombre">
+          {{ detalle.nombreProducto | titlecase}}
+        </span>
+
+        <span class="cantidad">
+          x{{ detalle.cantidad }}
+        </span>
+        @if(perfil() === 'cliente' && pedido().estado === 'listo para pagar'){
+          <span class="cantidad">
+            {{ detalle.precio | currency }}c/u
+          </span>
+          
+        }
+      </div>
+
+
+      @if (perfil() === 'cliente' || perfil() === 'mozo') {
+
+        @if(detalle.estado_producto !== 'completado' && pedido().estado !== 'listo para pagar' ){
+          <span class="estado">
+            {{ detalle.estado_producto | titlecase }}
+          </span>
+        } 
+      
+
+      } @else if (perfil() === 'cocinero' || perfil() === 'bartender' && detalle.estado_producto === 'en proceso') {
+
+        <ion-button class="btn-check" fill="solid"(click)="completarDetalle(detalle)">
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </ion-button>
+
+      }
+
+    </div>
+
+  }
+
+  @if(this.pedido().detalles!.length > 3){
+  <div class="paginacion">
+
+    <ion-button
+      size="small"
+      color="warning"
+      (click)="prevPage()"
+      [disabled]="page() === 1"
+      >
+      Anterior
+    </ion-button>
+
+    <span>
+      {{page()}} / {{totalPages()}}
+    </span>
+
+    <ion-button
+      size="small"
+      color="warning"
+      (click)="nextPage()"
+      [disabled]="page() === totalPages()"
+    >
+    Siguiente
+    </ion-button>
+  </div>
+  }
+
+
+</div>

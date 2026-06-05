@@ -1,0 +1,224 @@
+<app-header></app-header>
+
+<ion-content>
+  <form [formGroup]="encuestaForm" (ngSubmit)="enviarEncuesta()">
+    <swiper-container
+      class="encuesta-swiper"
+      navigation="true"
+      pagination="true"
+      slides-per-view="1"
+      centered-slides="true"
+      space-between="20"
+    >
+      <!-- Slide 1: Comida con Estrellas -->
+      <swiper-slide>
+        <div class="slide-content">
+          <ion-card>
+            <ion-card-title>Calificá la comida</ion-card-title>
+            <div class="pregunta-container estrellas-container">
+              <div class="estrellas">
+                @for (estrella of getEstrellas('comida'); track estrella) {
+                <ion-icon
+                  [name]="
+                    isEstrellaMarcada('comida', estrella)
+                      ? 'star'
+                      : 'star-outline'
+                  "
+                  (click)="setRating('comida', estrella)"
+                  [class.activa]="isEstrellaMarcada('comida', estrella)"
+                ></ion-icon>
+                }
+              </div>
+              <div class="valor-actual">
+                {{ encuestaForm.get("comida")?.value }} de 5 estrellas
+              </div>
+            </div>
+          </ion-card>
+        </div>
+      </swiper-slide>
+
+      <!-- Slide 2: Bebida con Radio Buttons -->
+      <swiper-slide>
+        <div class="slide-content">
+          <ion-card>
+            <ion-card-title>Calificá la bebida</ion-card-title>
+            <div class="pregunta-container radio-container">
+              <ion-radio-group formControlName="bebida">
+                <ion-item lines="none">
+                  
+                  <ion-radio slot="start" value="5" labelPlacement="end">
+                    <ion-label>⭐ Excelente</ion-label>
+                  </ion-radio>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-radio slot="start" value="4" labelPlacement="end">
+                    <ion-label>😊 Muy buena</ion-label>
+                  </ion-radio>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-radio slot="start" value="3" labelPlacement="end">
+                    <ion-label>😐 Buena</ion-label>
+                  </ion-radio>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-radio slot="start" value="2" labelPlacement="end">
+                    <ion-label>😕 Regular</ion-label>
+                  </ion-radio>
+                </ion-item>
+                <ion-item lines="none">
+                  <ion-radio slot="start" value="1" labelPlacement="end">
+                    <ion-label>😞 Mala</ion-label>
+                  </ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </div>
+          </ion-card>
+        </div>
+      </swiper-slide>
+
+      <!-- Slide 3: Postre -->
+      <swiper-slide>
+        <div class="slide-content">
+          <ion-card>
+            <ion-card-title>¿Probaste algún postre?</ion-card-title>
+            <div class="pregunta-container toggle-container">
+              <ion-item lines="none">
+                <ion-label>{{
+                  encuestaForm.get("postre")?.value ? "Sí" : "No"
+                }}</ion-label>
+                <ion-toggle
+                  formControlName="postre"
+                  color="success"
+                ></ion-toggle>
+              </ion-item>
+            </div>
+          </ion-card>
+        </div>
+      </swiper-slide>
+
+      <!-- Slide 4: Precio-Calidad con Botones Numéricos -->
+      <swiper-slide>
+        <div class="slide-content">
+          <ion-card>
+            <ion-card-title>Relación precio-calidad</ion-card-title>
+            <div class="pregunta-container botones-container">
+              <div class="botones-numericos">
+                @for (num of [1, 2, 3, 4, 5]; track num) {
+                <button
+                  type="button"
+                  class="boton-numero"
+                  [class.seleccionado]="
+                    encuestaForm.get('precioCalidad')?.value === num
+                  "
+                  (click)="setRating('precioCalidad', num)"
+                >
+                  {{ num }}
+                </button>
+                }
+              </div>
+              <div class="etiquetas-botones">
+                <span>Mala</span>
+                <span>Excelente</span>
+              </div>
+              <div class="valor-actual">
+                @switch (encuestaForm.get('precioCalidad')?.value) { @case (1) {
+                Mala relación } @case (2) { Regular } @case (3) { Aceptable } @case (4) { Buena } @case (5) { Excelente } }
+              </div>
+            </div>
+          </ion-card>
+        </div>
+      </swiper-slide>
+
+      <!-- Slide 5: Atención con Slider -->
+      <swiper-slide>
+        <div class="slide-content">
+          <ion-card>
+            <ion-card-title>Atención al cliente</ion-card-title>
+            <div class="pregunta-container">
+              <ion-range
+                formControlName="atencion"
+                min="1"
+                max="5"
+                step="1"
+                snaps="true"
+                color="warning"
+                [pin]="true"
+              >
+                <ion-label slot="start">😞</ion-label>
+                <ion-label slot="end">😍</ion-label>
+              </ion-range>
+              <div class="valor-actual atencion-valor">
+                @switch (encuestaForm.get('atencion')?.value) { @case (1) { Muy
+                mala 😞 } @case (2) { Regular 😕 } @case (3) { Buena 😐 } @case
+                (4) { Muy buena 😊 } @case (5) { Excelente 😍 } }
+              </div>
+            </div>
+          </ion-card>
+        </div>
+      </swiper-slide>
+
+      <!-- Slide 6: Recomendación -->
+      <swiper-slide>
+        <div class="slide-content">
+          <ion-card>
+            <ion-card-title>¿Nos recomendarías?</ion-card-title>
+            <div class="pregunta-container recomendacion-container">
+              <ion-button
+                expand="block"
+                class="boton-recomendacion"
+                [class.seleccionado]="encuestaForm.get('probabilidadRecomendar')?.value === 'si'"
+                (click)="encuestaForm.get('probabilidadRecomendar')?.setValue('si')"
+              >
+                Sí
+              </ion-button>
+              <ion-button
+                expand="block"
+                class="boton-recomendacion"
+                [class.seleccionado]="encuestaForm.get('probabilidadRecomendar')?.value === 'tal_vez'"
+                (click)="encuestaForm.get('probabilidadRecomendar')?.setValue('tal_vez')"
+              >
+                Tal vez
+              </ion-button>
+              <ion-button
+                expand="block"
+                class="boton-recomendacion"
+                [class.seleccionado]="encuestaForm.get('probabilidadRecomendar')?.value === 'no'"
+                (click)="encuestaForm.get('probabilidadRecomendar')?.setValue('no')"
+              >
+                No
+              </ion-button>
+            </div>
+          </ion-card>
+        </div>
+      </swiper-slide>
+
+      <!-- Slide 7: Comentario y Envío -->
+      <swiper-slide>
+        <div class="slide-content">
+          <ion-card>
+            <ion-card-title>Comentario adicional</ion-card-title>
+            <div class="pregunta-container">
+              <ion-item lines="none">
+                <ion-textarea
+                  formControlName="comentario"
+                  placeholder="Dejanos tu opinión (opcional)"
+                  rows="6"
+                  auto-grow="true"
+                ></ion-textarea>
+              </ion-item>
+              <ion-button
+                expand="block"
+                type="submit"
+                [disabled]="encuestaForm.invalid"
+                class="submit-button"
+                size="large"
+              >
+                Enviar Encuesta
+              </ion-button>
+            </div>
+          </ion-card>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </form>
+</ion-content>

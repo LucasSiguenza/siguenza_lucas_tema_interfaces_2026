@@ -1,0 +1,80 @@
+/* Contenedor principal */
+ion-content {
+  --background: #7A0F0F !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 0% !important;
+}
+
+/* Card */
+ion-card {
+  width: 100% !important;
+  margin: 2vh auto !important;
+  border-radius: 3vh !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Card Content */
+ion-card-content {
+  width: 90% !important;
+  margin: 2, 0 auto !important;
+  padding: 2vh 4vw !important;
+  border-radius: 3vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  box-sizing: border-box;
+}
+
+
+/* Botones centrados */
+ion-button {
+  width: 100%;
+  margin-top: 2vh !important;
+  border-radius: 2vh !important;
+  font-size: 2.2vh !important;
+  --padding-top: 1.5vh !important;
+  --padding-bottom: 1.5vh !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+} .siguiente{
+  background-color: #F7E7B6;
+}
+
+/* Imagen preview */
+.ion-text-center img {
+  width: 35vw !important;
+  height: 35vw !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  margin: 0 auto !important;
+  display: inline-flexbox !important;
+}
+
+.transparent {
+  --background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  --border-style: none !important;
+  /* fuerza sin línea */
+  --border-width: 0px !important;
+  --highlight-height: 0px !important;
+  --highlight-color-focused: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+ion-item.transparent ion-button {
+  width: 100% !important;
+  height: 100% !important;
+  /* ocupa todo el ancho del ion-item */
+  display: block !important;
+  /* asegura que no quede inline */
+  margin: 0 !important;
+  /* elimina margenes extra */
+}

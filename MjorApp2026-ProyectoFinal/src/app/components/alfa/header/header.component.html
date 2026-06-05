@@ -1,0 +1,22 @@
+<ion-header  [translucent]="true">
+  <ion-toolbar class="app-toolbar">
+    <ion-buttons slot="end">
+      <ion-button
+      type="button"
+      (click)="this.volver()">
+        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button type="button"  (click)="this.salirDeLaApp()">
+        <ion-icon name="close-circle-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button button fill="outline" color="danger" (click)="cerrarSesion()">
+        <ion-label>
+          <ion-icon name="log-out-outline"></ion-icon>
+        </ion-label>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>

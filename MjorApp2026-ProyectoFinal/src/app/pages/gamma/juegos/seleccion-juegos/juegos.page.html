@@ -1,0 +1,21 @@
+<ion-content class="ion-padding">
+  <app-header></app-header>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let juego of juegos">
+        <ion-card button (click)="irA(juego.ruta)">
+          <ion-card-header>
+            <ion-card-title class="ion-text-center texto-oscuro">{{ juego.titulo }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text class="ion-text-center texto-claro">
+              {{ juego.descripcion }}
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button expand="block" (click)="this.irA('/cliente')">Volver al inicio</ion-button>
+</ion-content>

@@ -1,0 +1,149 @@
+<div class="container">
+  @if (this.flagExito) {
+  <div class="super-container">
+    <div id="ventana-exito">
+      <h1>¡Registro exitoso!</h1>
+      <ion-button type="button" (click)="this.goBack()"> Finalizar </ion-button>
+    </div>
+  </div>
+  } @if (this.loading) {
+  <div class="super-container">
+    <div #dataToExport id="qrcode1" class="qrcodeImage">
+      <qrcode
+        [qrdata]="qrData"
+        [allowEmptyString]="true"
+        [cssClass]="'center'"
+        [colorDark]="'#d4a32f'"
+        [colorLight]="'#7a0f0f'"
+        [elementType]="'canvas'"
+        [errorCorrectionLevel]="'M'"
+        [imageSrc]="'assets/mjor-splash.png'"
+        [imageHeight]="75"
+        [imageWidth]="75"
+        [margin]="4"
+        [scale]="1"
+        [width]="300"
+      ></qrcode>
+    </div>
+
+    <mat-spinner mode="indeterminate"></mat-spinner>
+  </div>
+  }
+
+  <ion-card class="card-full">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center" style="color:black">Nueva Mesa</ion-card-title>
+    </ion-card-header>
+    <ion-card-content><br>
+      <form [formGroup]="altaForm" class="auth-form" (ngSubmit)="submit()">
+        @if (altaForm.controls.numero.errors &&
+        altaForm.controls.numero.touched) {
+        <div class="validators">
+          @if (altaForm.controls['numero'].hasError('required')) {
+          <div>El número de mesa es obligatorio.</div>
+          } @if (altaForm.controls['numero'].hasError('pattern')) {
+          <div>Solo se permiten números enteros.</div>
+          } @if (altaForm.controls['numero'].hasError('min')) {
+          <div>El número debe ser al menos 1.</div>
+          } @if (altaForm.controls['numero'].hasError('max')) {
+          <div>El número máximo es 50.</div>
+          }
+        </div>
+        }
+        <div class="input-field-mjor">
+          <app-input-mjor
+              placeholder="Ingrese el número de mesa"
+              [form]="altaForm"
+              control="numero"
+              tipo="number"
+          ></app-input-mjor>
+        </div>
+
+        @if (altaForm.controls.cantidadComensales.errors &&
+        altaForm.controls.cantidadComensales.touched) {
+        <div class="validators">
+          @if (altaForm.controls['cantidadComensales'].hasError('required')) {
+          <div>La cantidad de comensales es obligatoria.</div>
+          } @if (altaForm.controls['cantidadComensales'].hasError('pattern')) {
+          <div>Solo se permiten números enteros.</div>
+          } @if (altaForm.controls['cantidadComensales'].hasError('min')) {
+          <div>Debe haber al menos 1 comensal.</div>
+          } @if (altaForm.controls['cantidadComensales'].hasError('max')) {
+          <div>Máximo 20 comensales por mesa.</div>
+          }
+        </div>
+        }
+        <div class="input-field-mjor">
+          <app-input-mjor
+              placeholder="Ingrese el límite de comenzales"
+              [form]="altaForm"
+              tipo="number"
+              control="cantidadComensales"
+          ></app-input-mjor>
+        </div>
+
+        @if (altaForm.controls.tipo.errors && altaForm.controls.tipo.touched) {
+        <div class="validators">
+          @if (altaForm.controls['tipo'].hasError('required')) {
+          <div>El tipo de mesa es requerido.</div>
+          }
+        </div>
+        }
+        <div class="input-field-mjor">
+          <div class="ion-margin-top accordion-wrapper">
+            <ion-item class="input-field-mjor">
+              <ion-accordion-group #accordion2>
+                <ion-accordion class="z" value="tipos" expand_more="fullscreen">
+                  <ion-item class="z" slot="header">
+                    <ion-label class="ion-text-capitalize"
+                      >Tipo: {{ tipoSelect() }}</ion-label
+                    >
+                  </ion-item>
+                  <div class="ion-padding" slot="content">
+                    <ion-button fill="clear" class="a" expand="full" (click)="seleccionarTipo('vip')">VIP</ion-button>
+                  </div>
+                  <div class="ion-padding" slot="content">
+                    <ion-button
+                      fill="clear"
+                      class="a"
+                      expand="full"
+                      (click)="seleccionarTipo('standar')"
+                      >Estándar</ion-button
+                    >
+                  </div>
+                  <div class="ion-padding" slot="content">
+                    <ion-button
+                      fill="clear"
+                      class="a"
+                      expand="full"
+                      (click)="seleccionarTipo('handicap')"
+                      >Movilidad Reducida</ion-button
+                    >
+                  </div>
+                </ion-accordion>
+              </ion-accordion-group>
+            </ion-item>
+          </div>
+        </div>
+
+        <div class="elementos-centrados container-foto">
+          <img [src]="photo" class="foto" (click)="this.sacarFoto()" />
+        </div>
+
+        <div class="btn-registrar">
+          <ion-button (click)="this.goBack()" class="btn-submit" color="danger"
+            >Cancelar</ion-button
+          >
+
+          <ion-button
+            [disabled]="!this.altaForm.valid"
+            (click)="this.submit()"
+            color="warning"
+            class="btn-submit"
+            >Registrar</ion-button
+          >
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</div>

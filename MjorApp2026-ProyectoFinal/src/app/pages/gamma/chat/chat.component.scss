@@ -1,0 +1,106 @@
+@use 'src/theme/variables.scss' as *;
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sala {
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.mensajes {
+  flex: 1;
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+
+  gap: 0.6rem;
+
+  padding: 1rem;
+}
+
+.message-left,
+.message-right {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 80%;
+
+  border-radius: 1rem;
+
+  padding: 0.8rem;
+
+  word-break: break-word;
+}
+
+.message-left {
+  background-color: $dorado;
+  align-self: flex-start;
+}
+
+.message-right {
+  background-color: #21a0a0;
+  align-self: flex-end;
+
+  text-align: right;
+}
+
+.message-left h3,
+.message-left h6,
+.message-right h6 {
+  margin: 0;
+}
+
+.message-left p,
+.message-right p {
+  margin: 0.4rem 0 0;
+}
+
+#chat-input-zone {
+  position: sticky;
+  bottom: 0;
+
+  display: flex;
+  gap: 0.5rem;
+
+  padding: 0.7rem;
+
+  background-color: rgba(0, 0, 0, 0.15);
+
+  backdrop-filter: blur(8px);
+}
+
+.textarea {
+  flex: 1;
+
+  min-height: 3rem;
+  max-height: 8rem;
+
+  resize: none;
+
+  border: none;
+  border-radius: 1rem;
+
+  padding: 0.8rem;
+
+  font-size: 1rem;
+
+  color: black;
+
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+ion-button {
+  --background: #0F7A7A;
+
+  align-self: flex-end;
+}

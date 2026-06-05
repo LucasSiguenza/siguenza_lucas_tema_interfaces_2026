@@ -1,0 +1,33 @@
+@use 'src/theme/variables.scss' as *;
+
+.container2
+{
+    display: flex;
+    align-items: center;
+    align-content: start;
+    height: 100%;
+    flex-direction: column;
+}
+
+ion-datetime {
+    color: black;
+    --background: #{$dorado};
+    border-radius: 16px;
+}
+
+.texto-negro
+{
+    color: black;
+}
+
+ion-datetime::part(month-year-button) {
+    color: black;
+}
+
+ion-datetime::part(previous-button) {
+  color: rgb(0, 0, 0);
+}
+
+ion-datetime::part(next-button) {
+  color: black;
+}

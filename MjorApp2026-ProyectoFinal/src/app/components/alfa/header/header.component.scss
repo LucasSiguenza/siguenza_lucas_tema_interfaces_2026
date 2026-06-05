@@ -1,0 +1,28 @@
+@use 'src/theme/variables.scss' as *;
+/* ========================
+   Header / Toolbar
+   ======================== */
+.app-toolbar {
+  --background: #F7E7B6;
+  --border-color: #7A0F0F;
+  --color: #7A0F0F;
+  min-height: 56px; /* estándar Android */
+}
+
+ion-buttons {
+  display: flex;
+  margin-right: 2rem;
+  align-items: center;
+
+  ion-button{
+    border-radius: 100rem;
+    --border-radius: 100rem
+  }:host{
+    border-radius: 100rem;
+    --border-radius: 100rem
+  }
+  ion-icon{
+    font-size: 2rem;
+  }
+  
+}

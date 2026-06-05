@@ -1,0 +1,256 @@
+*{
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+.hoja{
+
+  width:min(100%, 900px);
+
+  min-height:auto;
+
+  background:white;
+  color:#000;
+
+  padding:10px;
+
+  font-size:13px;
+
+  margin-inline:auto;
+
+  overflow:hidden;
+}
+
+.wrapper{
+  border:1.5px solid #333;
+  padding:5px;
+}
+
+.sin-borde-bottom{
+  border-bottom:0;
+}
+
+.sin-borde-right{
+  border-right:0;
+}
+
+.flex{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.inline-block{
+  display:inline-block;
+}
+
+.w30{
+  width:30%;
+}
+
+.space-around{
+  justify-content:space-around;
+}
+
+.space-between{
+  justify-content:space-between;
+}
+
+.text-left{
+  text-align:left;
+}
+
+.text-center{
+  text-align:center;
+}
+
+.text-right{
+  text-align:right;
+}
+
+.bold{
+  font-weight:bold;
+}
+
+.italic{
+  font-style:italic;
+}
+
+.no-margin{
+  margin:0;
+}
+
+.text-20{
+  font-size:20px;
+}
+
+/* =========================
+   CABECERA FACTURA
+========================= */
+
+.cabecera-factura{
+
+  display:flex;
+  align-items:stretch;
+}
+
+.bloque-empresa{
+
+  width:45%;
+
+  border-right:0;
+}
+
+.bloque-categoria{
+
+  width:90px;
+
+  display:flex;
+  flex-direction:column;
+
+  justify-content:center;
+  align-items:center;
+
+  flex-shrink:0;
+
+  background:white;
+}
+
+.bloque-factura{
+
+  width:calc(55% - 90px);
+}
+
+/* ========================= */
+
+.titulo-empresa,
+.titulo-factura{
+
+  font-size:24px;
+  margin-bottom:3px;
+
+  width:100%;
+
+  text-align:center;
+}
+
+.logo{
+
+  max-width:90px;
+  margin-inline:auto;
+}
+
+.texto-empresa,
+.texto-factura{
+
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:0;
+}
+
+.letra-factura{
+  font-size:36px;
+}
+
+.periodo{
+  margin-top:1px;
+}
+
+.datos-cliente{
+
+  margin-top:2px;
+  font-size:12px;
+}
+
+.fila-cliente{
+  margin-bottom:10px;
+}
+
+table{
+
+  width:100%;
+  border-collapse:collapse;
+  margin-top:5px;
+}
+
+th{
+
+  border:1px solid #000;
+  background:#ccc;
+
+  padding:5px;
+}
+
+td{
+  padding:5px;
+  font-size:11px;
+}
+
+.footer{
+  margin-top:40px;
+}
+
+.tributos{
+  width:55%;
+}
+
+.totales{
+
+  width:40%;
+
+  display:flex;
+  flex-wrap:wrap;
+
+  align-content:flex-start;
+}
+
+.etiqueta-total{
+  width:60%;
+}
+
+.total-final{
+  font-size:15px;
+}
+
+.footer-afip{
+
+  margin-top:20px;
+
+  align-items:flex-end;
+  justify-content:space-between;
+}
+
+.afip-info{
+  width:45%;
+}
+
+.logo-afip{
+  max-width:130px;
+}
+
+.texto-afip{
+  font-size:9px;
+}
+
+.cae-box{
+
+  width:35%;
+
+  align-self:center;
+}
+
+.mitad{
+  width:50%;
+}
+
+.padding-left{
+  padding-left:10px;
+}
+
+.pagina-box{
+
+  width:20%;
+
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+}

@@ -1,0 +1,162 @@
+@use 'src/theme/variables.scss' as *;
+
+/* CONTENEDOR DEL PAGINADOR */
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+/* BOTONES DE PAGINACIÓN */
+ion-button.btn-azul{
+  margin-top: 0.2rem;
+  --background:#0066ffab;
+  --color:#fff;
+  --border-radius:50%;
+
+  width:2.2rem;
+  height:2.2rem;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+ion-button.btn-azul:hover{
+  transform: translateY(-1px);
+  box-shadow:0 4px 10px rgba(0,0,0,0.15);
+}
+
+.texto-blanco {
+  color: $givry;
+  font-weight: 500;
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+}
+.texto-negro{
+  color: $bordo;
+  font-weight: 800;
+  text-shadow: 2px #F6E3B4 solid ;
+}
+
+
+/* GRID DE CARDS */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  padding: 8px 4px 16px 4px;
+}
+
+/* TARJETAS */
+ion-card {
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+ion-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+/* TITULO */
+ion-card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+/* FOTO */
+.card-foto {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.card-foto img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(0,0,0,0.06);
+}
+
+/* ESTADO / TEXTO */
+.card-estado {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 4px 0;
+}
+
+.card-estado ion-text {
+  font-size: 0.9rem;
+}
+
+ion-badge {
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+/* BOTONES */
+.card-buttons {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card-buttons ion-button {
+  flex: 1;
+  font-weight: 500;
+  --border-radius: 10px;
+}
+
+/* CARD MENSAJE (cuando no hay datos) */
+/* CARD MENSAJE (cuando no hay datos) */
+.card-mensaje {
+  grid-column: 1 / -1;
+  text-align: center;
+  background: $dorado;
+  box-shadow: none;
+}
+
+/* CONTENEDOR DEL ICONO */
+.mensaje-foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 20px;
+}
+
+/* CÍRCULO VERDE */
+.mensaje-foto ion-icon {
+  font-size: 10vh;
+  color: white;
+  background: #2ecc71;
+  border-radius: 50%;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* TEXTO */
+.mensaje-foto ion-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: #F6E3B4; /* Givry */
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+ion-card-title{
+  font-size: 2rem;
+}

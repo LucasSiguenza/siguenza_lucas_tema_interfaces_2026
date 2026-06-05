@@ -1,0 +1,113 @@
+/* CONTENEDOR PRINCIPAL */
+.form-group {
+  position: relative;
+}
+
+.contador {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.6rem;
+  font-size: 0.75rem;
+  color: #F7E7B6;
+  opacity: 0.6;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+  border-radius: 2vh;
+  border: 0.2vh solid #D4A32F;
+  background-color: #7a0f0f;
+
+  margin-bottom: 2vh;
+  padding-top: 1.6vh;
+  padding-bottom: 0.8vh;
+}
+
+/* INPUT */
+ion-input {
+  width: 100%;
+  box-sizing: border-box;
+
+  --padding-start: clamp(0.8rem, 2vw, 1.2rem);
+  --padding-end: clamp(0.8rem, 2vw, 1.2rem);
+  --padding-top: 0.6rem;
+  --padding-bottom: 0.6rem;
+
+  --color: white;
+  --placeholder-color: white;
+
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+
+  position: relative;
+}
+
+/* LABEL BASE (placeholder visual) */
+.form-label {
+  position: absolute;
+  left: clamp(0.8rem, 2vw, 1.2rem);
+  top: 80%;
+  transform: translateY(-120%);
+
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  color: white;
+
+  pointer-events: none;
+  transition: 0.65s ease;
+}
+
+/* CUANDO EL INPUT ESTÁ EN FOCO */
+.form-group:focus-within .form-label {
+  font-size: clamp(0.6rem, 0.6vw, 0.6rem);
+}
+
+/* CUANDO YA FUE TOCADO (validators aparecen) */
+.form-group:has(.validators) .form-label {
+  top: calc(10% + 1.8rem);
+  transform: translateY(0);
+  font-size: clamp(0.65rem, 0.8vw, 0.75rem);
+}
+
+/* VALIDADORES */
+.validators {
+  color: #D4A32F;
+
+  font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+  font-weight: bold;
+  text-align: center;
+
+  background-color: rgba(0,0,0,0.15);
+  border-radius: 1vh;
+
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.8rem;
+}
+
+/* LÍNEA DEL INPUT */
+ion-input::after {
+  content: '';
+  position: absolute;
+
+  left: clamp(0.8rem, 2vw, 1.2rem);
+  right: clamp(0.8rem, 2vw, 1.2rem);
+  bottom: 0.15rem;
+
+  height: 0.15vh;
+  background-color: #F7E7B6;
+
+  border-radius: 1vh;
+  opacity: 0.7;
+
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.form-group:focus-within ion-input::after {
+  opacity: 0;
+}
+
+/* última regla del archivo */
+.form-group ion-input.ion-touched + .form-label:not(:has(+ .validators)) {
+  opacity: 0;
+  transform: translateY(-120%) scale(0.95);
+}

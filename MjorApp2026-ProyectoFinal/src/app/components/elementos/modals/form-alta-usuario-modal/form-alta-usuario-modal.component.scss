@@ -1,0 +1,294 @@
+@use 'src/theme/variables.scss' as *;
+@use "sass:color";
+
+/* --- Variables --- */
+$bordo: #7A0F0F;
+$dorado: #D4A32F;
+$blanco: #fff;
+$negro: #000;
+
+/* --- Base --- */
+
+ion-content {
+  --background: #{$bordo};
+  background: $bordo;
+}
+
+/* --- Logo --- */
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin: 5px 0;
+
+  .logo-img {
+    width: 160px;
+  }
+}
+
+/* --- Card principal --- */
+
+.card-alta {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 8px;
+
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba($negro, .15);
+
+  --background: #{$dorado};
+
+  animation: fadeInUp .6s ease-out .1s;
+
+  ion-card-header {
+    text-align: center;
+  }
+
+  .titulo-alta {
+    display: inline-block;
+    padding: 2px 6px;
+
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    color: $negro;
+    background: $dorado;
+
+    border-radius: 4px;
+    text-shadow: 0 0 2px $blanco;
+  }
+
+  .paso-texto {
+    margin-top: 2px;
+
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    color: $negro;
+    opacity: .8;
+  }
+
+  .contenido-alta {
+    width: 95%;
+    margin: 0 auto;
+    padding: 12px;
+
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    --background: #{$bordo};
+  }
+}
+
+/* --- Inputs --- */
+
+.item-alta {
+  margin-bottom: 8px;
+  padding: 0;
+
+  border-radius: 20px;
+
+  align-items: flex-start;
+  overflow: visible;
+
+  --background: transparent;
+  background: transparent;
+  --min-height: 70px;
+
+  --inner-border-width: 0;
+  --inner-box-shadow: none;
+  --border-width: 0;
+  --highlight-height: 0;
+}
+
+/* --- Botones --- */
+
+.btn-alta,
+.btn-foto {
+  font-weight: bold;
+  border-radius: 8px;
+}
+
+.btn-alta {
+  margin-top: 10px;
+
+  height: 45px;
+  font-size: 1rem;
+
+  --background: #{$bordo};
+  --color: #{$blanco};
+}
+
+.btn-foto {
+  height: 40px;
+  border-width: 2px;
+
+  --background: transparent;
+  --border-color: #{$bordo};
+  --color: #{$bordo};
+}
+
+.cancelar {
+  color: $blanco;
+}
+
+/* --- Fotos --- */
+
+.foto-preview,
+.placeholder-foto {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.foto-preview {
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 4px solid rgba($negro, .2);
+}
+
+.placeholder-foto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 10px;
+
+  background: rgba($negro, .1);
+  color: $negro;
+}
+
+/* --- Mensajes --- */
+
+.mensaje-texto {
+  margin: 8px 0;
+  padding: 6px;
+
+  font-size: .9rem;
+  font-weight: bold;
+  text-align: center;
+
+  color: $negro;
+  border-radius: 6px;
+
+  &.error {
+    background: rgba(255,0,0,.1);
+    color: #cc0000;
+    border: 1px solid #ff0000;
+  }
+
+  &.ok {
+    background: rgba(0,255,0,.1);
+    color: #006600;
+    border: 1px solid #00ff00;
+  }
+}
+
+/* --- Acordeón --- */
+
+ion-accordion-group,
+ion-accordion.acordeon-alta {
+  border-radius: 8px;
+  background: $bordo;
+  --background: #{$bordo};
+}
+
+ion-accordion.acordeon-alta ion-item[slot="header"] {
+  --background: #{$bordo};
+  --color: #{$blanco};
+  --inner-padding-end: 0;
+}
+
+.contenido-acordeon {
+  padding: 0 !important;
+  background: $bordo !important;
+
+  ion-list {
+    padding: 0;
+    background: $bordo !important;
+  }
+
+  ion-item {
+    --background: #{$bordo};
+    --color: #{$blanco};
+    --border-color: rgba(255,255,255,.2);
+
+    &::part(native) {
+      background: $bordo;
+    }
+  }
+}
+
+/* --- Botones navegación --- */
+
+.botones-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3vw;
+  width: 100%;
+}
+
+.btn-nav {
+  flex: 1;
+  height: 50px;
+  font-size: 1.2rem;
+  border-radius: 14px;
+}
+
+/* --- Responsive --- */
+
+@media (max-width: 360px) {
+
+  .card-alta {
+    padding: 8px;
+  }
+
+  .titulo-alta {
+    font-size: 1.1rem;
+  }
+
+  .foto-preview {
+    width: 100px;
+    height: 100px;
+  }
+
+  .btn-nav {
+    height: 42px;
+    font-size: 1rem;
+  }
+
+}
+
+.btn-volver-flotante {
+
+  position: absolute;
+
+  top: 3vh;
+  left: 2vw;
+
+  width: 46px;
+  height: 46px;
+
+  --background: #{$givry};
+  --color: #{$dorado};
+
+  border-radius: 500vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 0.25rem 0.6rem rgba(0,0,0,0.25);
+
+  z-index: 10;
+
+  ion-icon {
+    font-size: 1.4rem;
+    color: $dorado;
+  }
+}

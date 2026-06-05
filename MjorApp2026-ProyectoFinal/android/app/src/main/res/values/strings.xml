@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MjorApp</string>
+    <string name="title_activity_main">MjorApp</string>
+    <string name="package_name">com.mjorteam.mjorapp</string>
+    <string name="custom_url_scheme">com.mjorteam.mjorapp</string>
+</resources>

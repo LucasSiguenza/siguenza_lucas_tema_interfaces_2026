@@ -1,0 +1,136 @@
+@use 'src/theme/variables.scss' as *;
+
+/* =========================
+   CONTENEDOR GENERAL
+========================= */
+
+.detalles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 3vmin;
+  padding: 2vmin;
+}
+
+
+/* =========================
+   FOTO DEL USUARIO
+========================= */
+
+.detalle-foto {
+  width: 50vmin;
+  height: 50vmin;
+  object-fit: cover;
+
+  border-radius: 50vmin;
+  border: 1vmin solid #D4A32F;
+
+  background-color: #7a0f0f;
+
+  box-shadow: 0 1vh 2vh rgba(0,0,0,0.35);
+
+  margin-top: 1vh;
+}
+
+
+/* =========================
+   LISTA DE DATOS
+========================= */
+
+.detalles-container ion-list {
+  width: 95%;
+  background: $givry;
+  border-radius: 2vw;
+
+  text-align: left;
+  padding-left: 2rem;
+}
+
+
+/* =========================
+   ITEMS
+========================= */
+
+.detalles-container ion-item {
+  --background: transparent;
+  --color: white;
+
+  font-size: 1rem;
+
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+
+  border-bottom: 0.15rem solid rgba(212,163,47,0.25);
+}
+
+
+/* =========================
+   LABELS
+========================= */
+
+.detalles-container ion-label {
+  color: $bordo;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+/* =========================
+   NOMBRE PRINCIPAL
+========================= */
+
+.detalles-container ion-item h2 {
+  font-size: 1.8rem;
+  color: white;
+
+  text-shadow: 0px 0px 1rem #7a0f0f;
+
+  margin-bottom: 1vmin;
+}
+
+
+/* =========================
+   TEXTO DE DATOS
+========================= */
+
+.detalles-container strong {
+  color: $dorado;
+  font-weight: bold;
+  font-size: 1em;
+
+  margin-right: 0.5rem;
+}
+
+
+/* =========================
+   HEADER DEL MODAL
+========================= */
+
+ion-toolbar {
+  --background: #D4A32F;
+  --color: $givry;
+
+  text-shadow: 0px 0px 1rem #7a0f0f;
+}
+
+ion-title {
+  font-size: 0.685rem;
+}
+
+
+/* =========================
+   BOTÓN CERRAR
+========================= */
+
+ion-header ion-button {
+  --background: $bordo;
+  background-color: $bordo;
+
+  color: $givry;
+
+  text-shadow: 0px 0px 1rem #7a0f0f;
+
+  font-size: 1rem;
+}

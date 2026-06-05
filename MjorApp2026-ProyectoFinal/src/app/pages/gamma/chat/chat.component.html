@@ -1,0 +1,74 @@
+<ion-content class="fondo-bordo">
+  <app-header></app-header>
+
+  <div class="sala ion-text-center texto-claro">
+    <h1>
+      {{
+        this.chatService.chatID().length >= 2
+          ? 
+          'Envío'
+          : 
+          `Mesa N°${chatService.chatID()}`
+      }}
+    </h1>
+  </div>
+
+  <div class="chat-container">
+
+    <div class="mensajes">
+
+      @for (item of this.chatService.allMessages; track item.id)
+      {
+        @if (item.users.uid == this.User.usrActual()?.uid)
+        {
+          <div class="message-right texto-givry">
+
+            <h6>
+              {{item.created_at | date:'dd/MM/yyyy HH:mm':'-0300'}}
+            </h6>
+
+            <p>
+              {{item.content}}
+            </p>
+
+          </div>
+        }
+        @else
+        {
+          <div class="message-left texto-bordo">
+
+            <h3>
+              {{item.users.nombre}}
+            </h3>
+
+            <h6>
+              {{item.created_at | date:'dd/MM/yyyy HH:mm':'-0300'}}
+            </h6>
+
+            <p>
+              {{item.content}}
+            </p>
+
+          </div>
+        }
+      }
+
+    </div>
+
+    <div id="chat-input-zone">
+
+      <textarea
+        [(ngModel)]="this.newMessage"
+        class="textarea"
+        placeholder="Escribe un mensaje"
+        spellcheck="false"
+      ></textarea>
+
+      <ion-button (click)="this.sendMessage()">
+        Enviar
+      </ion-button>
+
+    </div>
+
+  </div>
+</ion-content>

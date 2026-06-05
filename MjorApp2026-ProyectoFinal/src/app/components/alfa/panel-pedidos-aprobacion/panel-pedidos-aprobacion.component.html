@@ -1,0 +1,101 @@
+<div class="wrapper" slot="end">
+  <ion-buttons slot="end">
+    <ion-button class="btn-azul ion-justify-content-end" (click)="prevPage()" [disabled]="page() === 1">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <span class="texto-blanco">{{ page() }} de {{ totalPages() }}</span>
+    <ion-button class="btn-azul ion-justify-content-end" (click)="nextPage()" [disabled]="page() === totalPages()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</div>
+
+@if (paginatedItems.length != 0) {
+  <div class="cards-container">
+  @if(!isDelivery){}
+    @for (item of paginatedItems; track item.id) {
+      <ion-card>
+        <ion-card-header class="ion-text-capitalize ion-text-center">
+          <ion-card-title class="texto-negro">{{item.numeroMesa === 'A domicilio' ? item.numeroMesa : `Mesa N°${item.numeroMesa}`}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- FOTO -->
+          <div class="card-foto">
+            <ion-title class="texto-claro"> <strong>Pedido de:</strong> {{item.nombreCliente}}</ion-title>
+          </div>
+          @if(this.perfil() !== 'delivery'){
+          <app-lista-detalle-pedido
+            [pedido]="item"
+            [perfil]="this.perfil()"
+          ></app-lista-detalle-pedido>
+          }
+          @else {
+            <app-mapa [isDelivery]="true" [coordenadas]="{latitud: item.latitud, longitud: item.longitud}"></app-mapa>
+          }
+          <!-- ESTADO  -->
+          <div class="card-estado ion-display-flex ion-justify-content-center ion-align-items-center">
+            <ion-badge [color]="getStatusColor(item.estado)">
+              {{item.estado | titlecase}}
+            </ion-badge>
+          </div>
+
+          <!-- HORA -->
+          <div class="card-estado ion-display-flex ion-flex-col">
+            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              {{item.es_delivery ? 'Solicidado: ' : "Llegada: "}} <strong style="margin-left: 0.5rem;"> {{ item.created_at| formatoFecha }}</strong>
+            </ion-text>
+            @if(item.es_delivery){
+              <ion-text style="font-size: 0.8rem;" class="ion-text-capitalize texto-blanco">
+                Tiempo de entrega:<strong style="margin-left: 0.5rem;"> {{ item.tiempoEstimado | duracionMinutos }} minutos</strong>
+              </ion-text>
+            }
+          </div>
+          <!-- BOTONES -->
+          <div class="card-buttons">
+            @if(item.estado !== 'en proceso' && item.estado !== 'en camino' 
+            && item.estado !== 'listo para pagar'){
+
+              <ion-button color="success" fill="solid" size="small" (click)="confirmarPedido(item)">
+                <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+              @switch(item.estado){
+                @case('listo para servir'){
+                  Llevar
+                }
+                @case('espera de aprobación'){
+                  Aprobar
+                }
+                @case('espera confirmación de pago'){
+                  Confirmar pago
+                }
+              }
+            </ion-button>
+          }
+            @if(item.estado === 'espera de aprobación'){
+              <ion-button color="danger" fill="solid" size="small" (click)="rechazarPedido(item)">
+                <ion-icon slot="start" name="trash"></ion-icon>
+                Rechazar
+              </ion-button>
+            }
+          </div>
+        </ion-card-content>
+      </ion-card>
+    }
+  </div>
+}
+@else {
+<div class="cards-container">
+  <ion-card class="card-mensaje">
+    <ion-card-content>
+
+      <div class="card-foto mensaje-foto">
+        <ion-icon name="checkmark-outline"></ion-icon>
+
+        <ion-text>¡Estás al día!</ion-text>
+        <ion-text>No hay pedidos pendientes que revisar.</ion-text>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+</div>
+}

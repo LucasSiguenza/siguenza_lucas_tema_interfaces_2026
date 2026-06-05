@@ -1,0 +1,7 @@
+{
+  "name": "InterProto",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

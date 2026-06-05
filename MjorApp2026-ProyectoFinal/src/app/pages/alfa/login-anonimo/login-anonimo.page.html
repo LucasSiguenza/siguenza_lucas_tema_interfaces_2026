@@ -1,0 +1,44 @@
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100vh">
+      <ion-col size="12" sizeMd="6" sizeLg="3" class="ion-padding">
+
+        <div class="logo-container">
+          <img src="assets/mjor-splash.png" alt="Logo Sandik" class="logo-img" />
+        </div>
+
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title class="ion-text-center" style="color: black;">Iniciar Sesión</ion-card-title>
+          </ion-card-header>
+          
+          <ion-card-content class="ion-text-center botones-card">
+
+            <form [formGroup]="formulario" class="auth-form" (ngSubmit)="ingresar()">
+              
+              <div class="custom-input-field">
+                <app-input-mjor
+                    placeholder="Ingrese su nombre"
+                    [form]="formulario"
+                    control="nombre"
+                    mensajeValidacion="Debe poseer al menos 3 caracteres"
+                ></app-input-mjor>
+               </div>
+
+              <div class="ion-align-items-center">
+                <div class="container-anon">
+                  <img class="card__content" (click)="sacarFoto()" [src]="fotoPreview()">
+                </div>
+                
+                
+                <ion-button expand="full" color="warning" class="boton" type="submit">Entrar</ion-button>
+              </div>
+              
+            </form>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

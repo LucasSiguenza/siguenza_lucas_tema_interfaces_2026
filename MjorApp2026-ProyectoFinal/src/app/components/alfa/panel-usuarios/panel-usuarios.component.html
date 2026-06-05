@@ -1,0 +1,210 @@
+<!----------------Botonera superior---------------->
+
+<div class="wrapper" slot="end">
+  <ion-buttons slot="end">
+
+    @if(!isAprobacion()){
+      <ion-button
+        class="btn-verde ion-justify-content-end"
+        (click)="abrirFormularioNuevo()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    }
+
+    <ion-button
+      class="btn-azul ion-justify-content-end"
+      (click)="prevPage()"
+      [disabled]="page() === 1">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+
+    <span class="texto-blanco">
+      {{ page() }} de {{ totalPages() }}
+    </span>
+
+    <ion-button
+      class="btn-azul ion-justify-content-end"
+      (click)="nextPage()"
+      [disabled]="page() === totalPages()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+
+  </ion-buttons>
+</div>
+
+
+<!----------------Cards---------------->
+
+@if(paginatedItems.length !== 0){
+
+  @for (item of paginatedItems; track item.id) {
+
+    <div class="cards-container">
+
+      <ion-card>
+
+        <ion-card-header>
+          <ion-card-title class="texto-negro">
+            {{ item.nombre }} {{ item.apellido }}
+          </ion-card-title>
+        </ion-card-header>
+
+
+        <ion-card-content>
+
+          <!---------- FOTO ---------->
+
+          <div class="card-foto">
+            <img
+              [src]="item?.foto"
+              alt="Foto de {{item?.nombre}}">
+          </div>
+
+
+          <!---------- PERFIL ---------->
+
+          <div class="card-estado">
+            <ion-text class="ion-text-center ion-text-capitalize texto-negro">
+              Perfíl: <strong>{{item.perfil | titlecase}}</strong>
+            </ion-text>
+          </div>
+
+
+          <!---------- ESTADO ---------->
+
+          <div class="card-estado">
+            @if(item.estado){
+              Estado: Aprobado
+            } @else {
+              Estado: Pendiente
+            }
+          </div>
+
+
+          <!---------- BOTONES CRUD ---------->
+
+          @if(isAprobacion() === false){
+
+            <div class="card-buttons">
+
+              <ion-button
+                color="warning"
+                fill="solid"
+                size="small"
+                (click)="abrirFormularioEdicion(item)">
+
+                <ion-icon slot="start" name="build-outline"></ion-icon>
+                Editar
+
+              </ion-button>
+
+              <ion-button
+                color="primary"
+                fill="solid"
+                size="small"
+                (click)="verDetalles(item)">
+
+                <ion-icon slot="start" name="aperture-outline"></ion-icon>
+                Detalles
+
+              </ion-button>
+
+            </div>
+
+            <div>
+
+              <ion-button
+                shape="round"
+                fill="solid"
+                color="danger"
+                expand="block"
+                (click)="eliminarUsuario(item)">
+
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                Eliminar
+
+              </ion-button>
+
+            </div>
+
+          }
+
+
+          <!---------- BOTONES APROBACION ---------->
+
+          @if(isAprobacion()){
+
+            <div>
+
+              <ion-button
+                shape="round"
+                fill="solid"
+                color="success"
+                expand="block"
+                (click)="habilitarUsuario(item)">
+
+                <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+                Habilitar
+
+              </ion-button>
+
+            </div>
+
+            <div>
+
+              <ion-button
+                shape="round"
+                fill="solid"
+                color="danger"
+                expand="block"
+                (click)="eliminarUsuario(item)">
+
+                <ion-icon slot="start" name="trash-outline"></ion-icon>
+                Rechazar
+
+              </ion-button>
+
+            </div>
+
+          }
+
+        </ion-card-content>
+
+      </ion-card>
+
+    </div>
+
+  }
+
+} @else {
+
+  <!---------- MENSAJE SIN PENDIENTES ---------->
+
+  @if(isAprobacion()){
+
+    <div class="cards-container">
+
+      <ion-card class="card-mensaje">
+
+        <ion-card-content>
+
+          <div class="card-foto mensaje-foto">
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </div>
+
+          <div class="card-estado mensaje-texto">
+            <h1 class="texto-negro">¡Estás al día!</h1>
+            <h2 class="texto-negro">
+              No hay usuarios pendientes por revisar.
+            </h2>
+          </div>
+
+        </ion-card-content>
+
+      </ion-card>
+
+    </div>
+
+  }
+
+}

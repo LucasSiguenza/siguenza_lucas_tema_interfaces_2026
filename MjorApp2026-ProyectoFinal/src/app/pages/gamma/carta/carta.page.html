@@ -1,0 +1,395 @@
+<ion-content>
+<!-- 'Alert' de aviso aprobación -->
+@if (this.showAvisoAprobacion)
+{
+  <div class="container">
+    <ion-card class="card-full">
+      <div class="jodertiounelementocentradoomg">
+        <div class="logo-container">
+            <img
+              src="assets/mjor-splash.png"
+              class="logo-img"
+            />
+          </div>
+        <h1>Pedido aprobado por el mozo</h1>
+        <div class="botones-confirmacion">
+          <ion-button
+          class="btn-ok"
+          (click)="this.goToCliente()"
+          >
+            Entendido
+          </ion-button>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+}
+
+<!-- 'Alert' de aviso pendiente -->
+@if (this.showAvisoPendiente)
+{
+  <div class="container">
+    <ion-card class="card-full">
+      <div class="jodertiounelementocentradoomg">
+        <div class="logo-container">
+          <img
+            src="assets/mjor-splash.png"
+            class="logo-img"
+          />
+        </div>
+        <h1 class="ion-text-center">Espere la aprobación del {{ pedidoDelUsuario!.es_delivery ? 'supervisor': 'mozo'}}</h1>
+        <div class="botones-confirmacion">
+          <ion-button
+          class="btn-ok"
+          (click)="this.goToCliente()"
+          >
+            Entendido
+          </ion-button>
+        </div>
+      </div>
+    </ion-card>
+  </div>
+}
+
+@if (!this.showAvisoAprobacion && !this.showAvisoPendiente)
+{
+  <ion-header>
+    <app-header></app-header>
+  
+  
+    <ion-segment [value]="segmentoActivo()" (ionChange)="segmentChanged($event)">
+      <ion-segment-button value="platos">
+        <ion-label>Platos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="bebidas">
+        <ion-label>Bebidas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="postres">
+        <ion-label>Postres</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-header>
+  
+  <ion-content [scrollY]="true">
+    <div id="importe-tl">
+      <ion-card class="importe elementos-centrados">
+        <h1 class="texto-bordo">TOTAL:{{this.PrecioTotal| currency}}</h1>
+      </ion-card>
+    </div>
+
+    <div class="swiper-pagination"></div>
+
+    @switch (segmentoActivo()) {
+
+    @case ('platos') {
+
+    <swiper-container
+      #mainSwiper
+      class="main-swiper"
+      navigation="true"
+      pagination="true"
+      *ngIf="platos.length > 0"
+      slides-per-view="1"
+      centered-slides="true"
+      (swiperslidechange)="onSlideChange()"
+    >
+      @for (plato of platos; track plato.id) {
+
+      <swiper-slide>
+        <div class="slide-content">
+
+          <ion-card>
+
+            <swiper-container
+              #imageSwiper
+              class="image-swiper"
+              pagination="true"
+              nested="true"
+            >
+              @for (imgUrl of plato.imagenes; track $index) {
+
+              <swiper-slide>
+                <img [src]="imgUrl" alt="Imagen de {{ plato.nombre }}" />
+              </swiper-slide>
+
+              }
+            </swiper-container>
+
+            <ion-card-header>
+              <ion-card-title class="ion-text-center texto-bordo">
+                {{ plato.nombre | nombreProducto | titlecase }}
+              </ion-card-title>
+
+              <ion-card-subtitle class="ion-text-center">
+                ${{ plato.precio }} • ⏱️ {{ plato.tiempo }} min
+              </ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              {{ plato.descripcion }}
+            </ion-card-content>
+  
+            <div class="botones-carrito">
+
+              <ion-button
+                class="btn-plus-minus"
+                fill="clear"
+                size="medium"
+                (click)="this.restarUnoCantidad()"
+              >
+                <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+              </ion-button>
+
+              <h2>
+                {{this.cantidadProducto}}
+              </h2>
+
+              <ion-button
+                class="btn-plus-minus"
+                fill="clear"
+                size="medium"
+                (click)="this.sumarUnoCantidad()"
+              >
+                <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+              </ion-button>
+
+              <ion-button
+                class="btn-add"
+                fill="clear"
+                size="medium"
+                (click)="agregarAlCarrito(plato)"
+              >
+                <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+                Añadir
+              </ion-button>
+
+            </div>
+  
+          </ion-card>
+
+        </div>
+      </swiper-slide>
+
+      }
+    </swiper-container>
+
+    @if (platos.length === 0) {
+      <div class="ion-padding ion-text-center">
+        Cargando platos...
+      </div>
+    }
+
+    }
+
+    @case ('bebidas') {
+
+    <swiper-container
+      #mainSwiper
+      class="main-swiper"
+      navigation="true"
+      pagination="true"
+      *ngIf="bebidas.length > 0"
+      slides-per-view="1"
+      centered-slides="true"
+      (swiperslidechange)="onSlideChange()"
+    >
+      @for (bebida of bebidas; track bebida.id) {
+
+      <swiper-slide>
+        <div class="slide-content">
+
+          <ion-card>
+
+            <swiper-container
+              #imageSwiper
+              class="image-swiper"
+              pagination="true"
+              nested="true"
+            >
+              @for (imgUrl of bebida.imagenes; track $index) {
+
+              <swiper-slide>
+                <img [src]="imgUrl" alt="Imagen de {{ bebida.nombre }}" />
+              </swiper-slide>
+
+              }
+            </swiper-container>
+
+            <ion-card-header>
+              <ion-card-title>
+                {{ bebida.nombre | nombreProducto | titlecase }}
+              </ion-card-title>
+
+              <ion-card-subtitle>
+                ${{ bebida.precio }} • ⏱️ {{ bebida.tiempo }} min
+              </ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              {{ bebida.descripcion }}
+            </ion-card-content>
+  
+            <div class="botones-carrito">
+
+              <ion-button
+                fill="clear"
+                size="medium"
+                (click)="this.restarUnoCantidad()"
+              >
+                <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+              </ion-button>
+
+              <h2>
+                {{this.cantidadProducto}}
+              </h2>
+
+              <ion-button
+                fill="clear"
+                size="medium"
+                (click)="this.sumarUnoCantidad()"
+              >
+                <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+              </ion-button>
+
+              <ion-button
+                class="btn-add"
+                fill="clear"
+                size="medium"
+                (click)="agregarAlCarrito(bebida)"
+              >
+                <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+                Añadir
+              </ion-button>
+
+            </div>
+
+          </ion-card>
+
+        </div>
+      </swiper-slide>
+
+      }
+    </swiper-container>
+
+    @if (bebidas.length === 0) {
+      <div class="ion-padding ion-text-center">
+        Cargando bebidas...
+      </div>
+    }
+
+    }
+
+    @case ('postres') {
+
+    <swiper-container
+      #mainSwiper
+      class="main-swiper"
+      navigation="true"
+      pagination="true"
+      *ngIf="postres.length > 0"
+      slides-per-view="1"
+      centered-slides="true"
+      (swiperslidechange)="onSlideChange()"
+    >
+      @for (postre of postres; track postre.id) {
+
+      <swiper-slide>
+        <div class="slide-content">
+
+          <ion-card>
+
+            <swiper-container
+              #imageSwiper
+              class="image-swiper"
+              pagination="true"
+              nested="true"
+            >
+              @for (imgUrl of postre.imagenes; track $index) {
+
+              <swiper-slide>
+                <img [src]="imgUrl" alt="Imagen de {{ postre.nombre }}" />
+              </swiper-slide>
+
+              }
+            </swiper-container>
+
+            <ion-card-header>
+              <ion-card-title>
+                {{ postre.nombre | nombreProducto | titlecase}}
+              </ion-card-title>
+
+              <ion-card-subtitle>
+                ${{ postre.precio }} • ⏱️ {{ postre.tiempo }} min
+              </ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-card-content>
+              {{ postre.descripcion }}
+            </ion-card-content>
+
+            <div class="botones-carrito">
+
+              <ion-button
+                fill="clear"
+                size="medium"
+                (click)="this.restarUnoCantidad()"
+              >
+                <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+              </ion-button>
+
+              <h2>
+                {{this.cantidadProducto}}
+              </h2>
+
+              <ion-button
+                fill="clear"
+                size="medium"
+                (click)="this.sumarUnoCantidad()"
+              >
+                <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+              </ion-button>
+
+              <ion-button
+                class="btn-add"
+                fill="clear"
+                size="medium"
+                (click)="agregarAlCarrito(postre)"
+              >
+                <ion-icon slot="icon-only" name="add-circle-outline"></ion-icon>
+                Añadir
+              </ion-button>
+
+            </div>
+
+          </ion-card>
+
+        </div>
+      </swiper-slide>
+
+      }
+    </swiper-container>
+
+    @if (postres.length === 0) {
+      <div class="ion-padding ion-text-center">
+        Cargando postres...
+      </div>
+    }
+
+    }
+
+    }
+
+  </ion-content>
+  
+  <!-- FAB principal con lista de acciones -->
+  <ion-fab class="lmao">
+
+    <!-- Ver carrito -->
+    <ion-fab-button (click)="abrirCarrito()">
+      <ion-icon class="fab-icon" name="cart-outline"></ion-icon>
+    </ion-fab-button>
+
+  </ion-fab>
+}
+
+</ion-content>

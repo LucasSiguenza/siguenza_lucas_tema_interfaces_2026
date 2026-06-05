@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true" class="game-container">
+  
+  <div class="background"></div>
+
+  <div *ngIf="esperandoInicio" class="inicio-overlay">
+    <h2>Ayuda al Mozo</h2>
+    <p>Inclina el celular para esquivar obstáculos y llegar a la mesa.</p>
+    
+    <div class="instrucciones">
+        <div class="item"><img src="assets/juego-mozo/patin.png"><span>Esquiva</span></div>
+        <div class="item"><img src="assets/juego-mozo/banana.png"><span>Esquiva</span></div>
+        <div class="item"><img src="assets/juego-mozo/mesa.png"><span>Llega aquí</span></div>
+    </div>
+
+    <button class="btn-comenzar" (click)="comenzarJuego()">COMENZAR</button>
+    <button class="btn-volver" (click)="volver()">VOLVER</button>
+  </div>
+
+  <div *ngIf="mensajeFin" class="mensaje-overlay">
+    <h1>{{ mensajeFin }}</h1>
+  </div>
+
+  <img 
+    src="assets/juego-mozo/mesa.png" 
+    class="game-object mesa"
+    [style.width.px]="mesaSize"
+    [style.height.px]="mesaSize"
+    [style.left.px]="mesaPos.x" 
+    [style.top.px]="mesaPos.y">
+
+  <img *ngFor="let obs of obstaculos"
+    [src]="obs.tipo"
+    class="game-object obstaculo"
+    [style.width.px]="obstaculoSize"
+    [style.height.px]="obstaculoSize"
+    [style.left.px]="obs.x" 
+    [style.top.px]="obs.y">
+
+  <img 
+    src="assets/juego-mozo/mozo.png" 
+    class="game-object mozo"
+    [style.width.px]="mozoSize"
+    [style.height.px]="mozoSize"
+    [style.left.px]="mozoPos.x" 
+    [style.top.px]="mozoPos.y">
+
+</ion-content>

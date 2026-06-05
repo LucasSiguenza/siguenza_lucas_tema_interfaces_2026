@@ -1,0 +1,219 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Personalización
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list inset>
+
+    <!-- COLORES -->
+
+    <ion-list-header>
+      <ion-label>Colores</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-label>Principal</ion-label>
+
+      <input
+        type="color"
+        [value]="colorPrimario()"
+        (input)="actualizarColorPrimario($event)"
+      >
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Secundario</ion-label>
+
+      <input
+        type="color"
+        [value]="colorSecundario()"
+        (input)="actualizarColorSecundario($event)"
+      >
+    </ion-item>
+    <!-- TIPOGRAFÍA -->
+
+    <ion-list-header>
+      <ion-label>Tipografía</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+
+      <ion-select
+        interface="popover"
+        label="Fuente"
+        [value]="fuente()"
+        (ionChange)="actualizarFuente($event)"
+      >
+
+        <ion-select-option value="inter">
+          Inter
+        </ion-select-option>
+
+        <ion-select-option value="roboto">
+          Roboto
+        </ion-select-option>
+
+        <ion-select-option value="poppins">
+          Poppins
+        </ion-select-option>
+
+        <ion-select-option value="JetBrains Mono">
+          JetBrains
+        </ion-select-option>
+
+      </ion-select>
+
+    </ion-item>
+
+    <!-- TAMAÑO FUENTE -->
+
+    <ion-list-header>
+      <ion-label>Tamaño de Fuente</ion-label>
+    </ion-list-header>
+
+    <ion-item>
+
+      <ion-range
+        min="12"
+        max="24"
+        [value]="fontSize()"
+        (ionInput)="actualizarTamanio($event)"
+      >
+      </ion-range>
+
+    </ion-item>
+
+  </ion-list>
+
+  <!-- SONIDOS -->
+
+  <ion-list-header>
+    <ion-label>Sonidos</ion-label>
+  </ion-list-header>
+
+  <ion-grid>
+
+    <!-- FILA 1 -->
+
+    <ion-row>
+
+      <ion-col size="4">
+        <ion-button (click)="elegirSonido('claro')" expand="block">
+          Brillo
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-button (click)="elegirSonido('profesional')" expand="block">
+          Corcho
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-button (click)="elegirSonido('argentina')" expand="block">
+          Argentina
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+    <!-- FILA 2 -->
+
+    <ion-row class="fila-sonidos">
+
+      <ion-col size="4">
+        <ion-button (click)="elegirSonido('inter')" expand="block">
+          Libro
+        </ion-button>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-button (click)="elegirSonido('oscuro')" expand="block">
+          Oscuridad
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+  <!-- PREVIEW -->
+
+  <ion-card class="preview-card">
+
+    <ion-card-header>
+
+      <ion-card-title>
+        Vista previa
+      </ion-card-title>
+
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-input
+        label="Nombre"
+        fill="outline"
+      >
+      </ion-input>
+
+      <ion-button expand="block">
+        Botón de ejemplo
+      </ion-button>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-button
+    expand="block"
+    color="danger"
+    (click)="restaurarConfiguracion()"
+  >
+    Restaurar configuración
+  </ion-button>
+  <!-- BOTÓN CERRAR -->
+
+  <ion-fab
+    slot="fixed"
+    vertical="top"
+    horizontal="end"
+  >
+
+    <ion-fab-button
+      size="small"
+      color="medium"
+      (click)="cerrarModal()"
+    >
+
+      <ion-icon name="close-outline"></ion-icon>
+
+    </ion-fab-button>
+
+  </ion-fab>
+
+  <!-- BOTÓN APLICAR CAMBIOS -->
+
+  <ion-fab
+    class="confirmacion-btn"
+    slot="fixed"
+    vertical="bottom"
+    horizontal="end"
+  >
+
+    <ion-fab-button
+      color="secondary"
+      (click)="confirmarCambios()"
+    >
+
+      <ion-icon color="primary" name="checkmark-outline"></ion-icon>
+
+    </ion-fab-button>
+
+  </ion-fab>
+
+</ion-content>

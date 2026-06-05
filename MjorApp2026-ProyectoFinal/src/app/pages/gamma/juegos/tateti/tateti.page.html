@@ -1,0 +1,50 @@
+<ion-content>
+  <div class="game-container">
+    
+    <div class="header-game">
+      <h1 class="titulo">Ta-Te-Ti</h1>
+      
+      <div class="status-panel">
+        @if (winner()) {
+          <div class="status-text win">
+            {{ winner() === 'X' ? '¡GANASTE!' : '¡PERDISTE!' }}
+          </div>
+        } @else if (isDraw()) {
+          <div class="status-text draw">¡EMPATE!</div>
+        } @else {
+          <div class="status-text playing">
+            Turno: <span [class.highlight]="currentPlayer() === 'X'">{{ currentPlayer() === 'X' ? 'Vos (X)' : 'Máquina (O)' }}</span>
+          </div>
+        }
+      </div>
+    </div>
+
+    <div class="board">
+      @for (cell of board(); track $index) {
+        <div 
+          class="cell" 
+          [class.x]="cell === 'X'"
+          [class.o]="cell === 'O'"
+          [class.disabled]="!gameActive() || cell !== ''"
+          (click)="makeMove($index)">
+          
+          <span class="mark">{{ cell }}</span>
+          
+        </div>
+      }
+    </div>
+
+    <div class="controls">
+      <ion-button expand="block" color="light" (click)="resetGame()">
+        <ion-icon slot="start" name="refresh-outline"></ion-icon>
+        Reiniciar
+      </ion-button>
+      
+      <ion-button expand="block" fill="outline" color="light" (click)="volver()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+        Volver
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

@@ -1,0 +1,13 @@
+@use 'src/theme/variables.scss' as *;
+
+ion-content {
+    background-color: $givry !important;
+    --background: $givry !important;
+}
+
+#map-div
+{
+    height: 90vh;
+    background-color: black;
+    border: 10px, solid, violet;
+}

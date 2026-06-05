@@ -1,0 +1,362 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+
+    <ion-buttons slot="start">
+    </ion-buttons>
+
+    <ion-title>
+      InterProto
+    </ion-title>
+
+    <ion-buttons slot="end">
+
+      <ion-button>
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <!-- NAVEGACIÓN -->
+
+  <ion-fab
+    slot="fixed"
+    vertical="center"
+    horizontal="start"
+  >
+
+
+      <ion-fab-button
+        size="small"
+        (click)="irSeccionAnterior()"
+      >
+        <ion-icon name="chevron-up-outline"></ion-icon>
+      </ion-fab-button>
+
+
+      <ion-fab-button
+        size="small"
+        (click)="irSeccionSiguiente()"
+      >
+        <ion-icon name="chevron-down-outline"></ion-icon>
+      </ion-fab-button>
+
+
+  </ion-fab>
+
+  <!-- CABECERA -->
+
+  <div class="hero">
+
+    <img
+      [src]="pathImagen()"
+      alt="Cabecera"
+    >
+
+    <h1>
+      Título Principal
+    </h1>
+
+    <p>
+      Subtítulo descriptivo
+    </p>
+
+  </div>
+
+  <!-- TIPOGRAFÍA -->
+
+  <section id="tipografia">
+
+    <h2>
+      Tipografía
+    </h2>
+    <p>
+      Texto de ejemplo para visualizar cambios
+      de fuente, tamaño, espaciado y colores.
+      Este párrafo es lo suficientemente largo
+      como para evaluar la legibilidad general
+      del tema seleccionado.
+    </p>
+
+    <ion-text color="primary">
+      Texto destacado utilizando ion-text.
+    </ion-text>
+
+    <h2>
+      Botones
+    </h2>
+  </section>
+
+  <!-- BOTONES -->
+
+  <section
+    id="botones"
+    class=""
+  >
+
+  <ion-buttons>
+
+    <ion-button color="primary">
+      Principal
+    </ion-button>
+
+    <ion-button
+      color="primary"
+      fill="outline"
+    >
+      Outline
+    </ion-button>
+  </ion-buttons>
+<ion-buttons>
+    <ion-button
+      color="primary"
+      fill="clear"
+    >
+      Clear
+    </ion-button>
+
+    <ion-button color="primary">
+
+      <ion-icon
+        slot="start"
+        name="save-outline"
+      >
+      </ion-icon>
+
+      Guardar
+
+    </ion-button>
+</ion-buttons>
+
+  </section>
+
+  <!-- CHIPS Y BADGES -->
+
+  <section id="chips">
+
+    <h2>
+      Chips y Badges
+    </h2>
+
+    <ion-chip>
+      <ion-label>
+        Activo
+      </ion-label>
+    </ion-chip>
+
+    <ion-chip color="secondary">
+      <ion-label>
+        Secundario
+      </ion-label>
+    </ion-chip>
+
+    <ion-badge color="primary">
+      Nuevo
+    </ion-badge>
+
+    <ion-badge color="danger">
+      12
+    </ion-badge>
+
+  </section>
+
+  <!-- INPUTS -->
+
+  <section id="inputs">
+
+    <h2>
+      Inputs
+    </h2>
+
+    <ion-input
+      label="Nombre"
+      label-placement="stacked"
+    >
+    </ion-input>
+
+    <ion-textarea
+      label="Descripción"
+      label-placement="stacked"
+    >
+    </ion-textarea>
+
+  </section>
+
+
+  <!-- LISTADO -->
+
+  <section id="listado">
+
+    <h2>
+      Listado
+    </h2>
+
+    <ion-list>
+
+      <ion-item>
+
+        <ion-icon
+          slot="start"
+          color="success"
+          name="checkmark-circle-outline"
+        >
+        </ion-icon>
+
+        <ion-label>
+          Completado
+        </ion-label>
+
+      </ion-item>
+
+      <ion-item>
+
+        <ion-icon
+          slot="start"
+          color="warning"
+          name="time-outline"
+        >
+        </ion-icon>
+
+        <ion-label>
+          Pendiente
+        </ion-label>
+
+      </ion-item>
+
+    </ion-list>
+
+  </section>
+
+  <!-- CARDS -->
+
+  <section id="cards">
+
+    <h2>
+      Cards
+    </h2>
+
+    <ion-card>
+
+      <ion-card-header>
+
+        <ion-card-title>
+          Card de ejemplo
+        </ion-card-title>
+
+        <ion-card-subtitle>
+          Subtítulo
+        </ion-card-subtitle>
+
+      </ion-card-header>
+
+      <ion-card-content>
+
+        Este contenido permite visualizar
+        fondos, bordes y tipografías.
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </section>
+
+  <!-- ICONOGRAFÍA -->
+
+  <section id="iconografia">
+
+    <h2>
+      Iconografía
+    </h2>
+
+    <div>
+
+      <ion-icon
+        color="secondary"
+        name="home-outline"
+      >
+      </ion-icon>
+
+      <ion-icon
+        color="secondary"
+        name="heart-outline"
+      >
+      </ion-icon>
+
+      <ion-icon
+        color="secondary"
+        name="star-outline"
+      >
+      </ion-icon>
+
+      <ion-icon
+        color="secondary"
+        name="settings-outline"
+      >
+      </ion-icon>
+
+      <ion-icon
+        color="secondary"
+        name="person-outline"
+      >
+      </ion-icon>
+
+    </div>
+
+  </section>
+
+  <!-- CONTROLES -->
+
+  <section id="controles">
+
+    <h2>
+      Controles
+    </h2>
+
+    <ion-item>
+
+      <ion-label>
+        Toggle
+      </ion-label>
+
+      <ion-toggle slot="end">
+      </ion-toggle>
+
+    </ion-item>
+
+    <ion-item>
+
+      <ion-checkbox slot="start">
+      </ion-checkbox>
+
+      <ion-label>
+        Checkbox
+      </ion-label>
+
+    </ion-item>
+
+  </section>
+
+  <!-- SONIDOS -->
+
+  <section id="sonidos">
+
+    <h2>
+      Sonidos
+    </h2>
+
+    <ion-button
+      color="primary"
+      (click)="reproducirSonido()"
+    >
+      Reproducir sonido
+    </ion-button>
+
+  </section>
+
+</ion-content>

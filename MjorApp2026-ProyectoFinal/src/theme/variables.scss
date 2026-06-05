@@ -1,0 +1,43 @@
+$bordo: #7A0F0F; //? Principal
+$dorado: #D4A32F; //? Secundario
+$verde: #28a745;
+$verde-hover: #218838;
+$azul: #0D47A1;
+$givry: #F7E7B6; //? Complementario con mejor contraste
+
+
+:root {
+
+  --app-principal: #7A0F0F;
+  --app-secundario: #D4A32F;
+
+  --app-fondo: #7A0F0F;
+  --app-fondo-secundario: #D4A32F;
+
+  --app-texto: #F7E7B6;
+  --app-texto-contraste: #ffffff;
+
+  --app-font-family: Arial;
+  --app-font-size: 16px;
+
+}
+
+//? Comentario para seccionar los componentes:
+
+  //! ======================= Variables y servicios =======================
+  //~ ======================= Servicios 
+  //~ ======================= Propiedades
+
+  //~ ======================= Inicializadores
+
+  //! ======================= Métodos =======================
+
+  //~ ======================= Paginación
+
+  //~ ======================= Lógicos
+
+  /*
+    const carga = await this.utilSvc.loading();
+    await carga.present();
+    await carga.dismiss();
+  */

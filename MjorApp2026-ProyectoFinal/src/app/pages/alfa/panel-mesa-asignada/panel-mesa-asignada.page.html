@@ -1,0 +1,53 @@
+<app-header></app-header>
+<ion-content>
+  <div class="contenido-centrado">
+
+    <div class="elementos-centrados">
+      <img src="assets/mjor-splash.png" class="logo-img" />
+    </div>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">
+          {{
+            estadoPedido() === 'en proceso' || estadoPedido() === 'en camino' || estadoPedido() === 'listo para servir'
+            ?
+            "¡Tu pedido ya ha sido aprobado!"
+            :
+            "¡Buen provecho!"
+            }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="ion-text-center botones-card">
+        @if(estadoPedido() !== 'listo para pagar'){
+          <ion-button expand="block" (click)="comprobarEstadoPedido()">Estado pedido</ion-button>
+        }
+        @if(estadoPedido() === 'en camino'){
+        <ion-button expand="block" (click)="modificarPedido()">Confirmar recepción del pedido</ion-button>
+        }
+        <ion-button expand="block" (click)="this.irA('/juegos')">Jugar Videojuegos</ion-button>
+        @if(estadoPedido() === 'en mesa'){
+          @if (this.encuestaSvc.isEncuestaEnviada())
+          {
+            <ion-button expand="block" fill="outline" color="primary" (click)="this.irA('resultados-encuesta')">Ver encuestas</ion-button>
+          }
+          @else
+          {
+            <ion-button expand="block" fill="outline" color="primary" (click)="this.irA('encuesta')">Realizar encuestas</ion-button>
+          }
+            <ion-button expand="block" fill="outline" color="success" (click)="modificarPedido()">Pedir la cuenta</ion-button>
+        }
+        @if(estadoPedido() === 'listo para pagar'){
+          <ion-button expand="block"  (click)="escanearQr()">
+<ion-icon name="qr-code-outline"></ion-icon>            
+          Abrir escaner Qr
+          </ion-button>
+        }
+
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

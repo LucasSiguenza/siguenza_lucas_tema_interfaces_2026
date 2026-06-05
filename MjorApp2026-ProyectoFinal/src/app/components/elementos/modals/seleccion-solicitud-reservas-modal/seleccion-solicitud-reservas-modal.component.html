@@ -1,0 +1,19 @@
+  <div class="contenido-centrado">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">
+          ¡Elije una opción!
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="ion-text-center botones-card">
+        <ion-button expand="block" (click)="abrirListaEspera()"> Solicitar mesa </ion-button>
+        <ion-button expand="block" routerLink="/resultados-encuesta" > Revisar encuestas </ion-button>
+        <ion-button color="danger" (click)="cancelar()" expand="block" >Cancelar</ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+

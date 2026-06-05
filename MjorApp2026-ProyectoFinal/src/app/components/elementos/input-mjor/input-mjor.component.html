@@ -1,0 +1,29 @@
+<div class="form-group">
+
+  <ion-input
+    [type]="tipo"
+    [formControl]="formControl"
+    (ionInput)="limitarLongitud($event)"
+    placeholder="{{placeholder}}">
+  </ion-input>
+  
+@if(this.formControl.touched){
+  <ion-label class="form-label">
+  {{ placeholder }}
+</ion-label>
+}
+  <!-- contador -->
+  @if (tipo === 'number' && maxLength != null) {
+    <div class="contador">
+      {{ contador }}
+    </div>
+  }
+
+  @if (form.get(control!)?.invalid && form.get(control!)?.touched) {
+    <div class="validators small mt-1">
+      No válido.<br>
+      {{ mensajeValidacion }}
+    </div>
+  }
+
+</div>

@@ -1,0 +1,30 @@
+<ion-content [fullscreen]="true">
+<app-header></app-header>
+<div class="container2">
+  <div class="elementos-centrados">
+    <img src="assets/mjor-splash.png" class="logo-img" />
+  </div>
+  <ion-datetime #datetime
+  color="warning"
+  [firstDayOfWeek]="1"
+  hourCycle="h23"
+  mode="md"
+  [preferWheel]="false"
+  [min]="this.fechaMinima"
+  [value]="this.fechaMinima"
+  doneText="Aceptar"
+  cancelText="Cancelar"
+  hour-values=[8,9,10,11,12,13,14,15,16,17,18,19,20,21,22]
+  locale="es-AR"
+  minute-values="0"
+  (ionChange)="this.seleccionarFecha($event)"
+  (ionCancel)="this.irACliente()">
+    <span slot="title">Seleccione fecha y hora de la reserva</span>
+    <span class="texto-negro" slot="time-label">Hora</span>
+    <ion-buttons slot="buttons">
+      <ion-button (click)="datetime.cancel()">Cancelar</ion-button>
+      <ion-button (click)="datetime.confirm()">Aceptar</ion-button>
+    </ion-buttons>
+  </ion-datetime>
+</div>
+</ion-content>

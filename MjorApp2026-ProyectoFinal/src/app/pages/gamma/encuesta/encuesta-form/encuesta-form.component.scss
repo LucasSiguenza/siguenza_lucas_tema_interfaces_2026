@@ -1,0 +1,325 @@
+/* Variables de Color */
+$color-bordo: #7A0F0F;
+$color-oro: #D4A32F;
+
+/* Estilos del carrusel de encuesta */
+.encuesta-swiper {
+  width: 100%;
+  height: calc(100vh - 120px);
+  padding: 20px 0;
+
+  /* Flechas de navegación - mismo estilo que el menú */
+  ::ng-deep .swiper-button-prev,
+  ::ng-deep .swiper-button-next {
+    color: white;
+    --swiper-navigation-size: 30px;
+  }
+
+  /* Paginación (puntitos) */
+  ::ng-deep .swiper-pagination-bullet-active {
+    background: white;
+  }
+}
+
+.slide-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+
+  ion-card {
+    --background: #{$color-oro};
+    --color: #000000;
+    width: 100%;
+    max-width: 450px;
+    height: 75vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px 20px;
+
+    ion-card-title {
+      color: #000000;
+      font-size: 1.8rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
+}
+
+.pregunta-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px 0;
+  flex: 1;
+  justify-content: center;
+
+  ion-range {
+    padding: 20px 10px;
+    --bar-height: 8px;
+    --bar-border-radius: 4px;
+    --bar-background: rgba(0, 0, 0, 0.3);
+    --bar-background-active: #000000;
+    --knob-background: #000000;
+    --knob-size: 24px;
+    --pin-background: #000000;
+    --pin-color: #fff;
+
+    ion-label {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #000000;
+    }
+  }
+
+  .valor-actual {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #{$color-bordo};
+    margin-top: 10px;
+  }
+
+  &.estrellas-container {
+    .estrellas {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+
+      ion-icon {
+        font-size: 4rem;
+        color: #000000;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.activa {
+          color: #FFD700;
+          transform: scale(1.1);
+        }
+
+        &:hover {
+          transform: scale(1.15);
+        }
+      }
+    }
+  }
+
+  &.radio-container {
+    ion-radio-group {
+      width: 100%;
+
+      ion-item {
+        --background: transparent;
+        margin: 10px 0;
+        border: 2px solid #ddd;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          border-color: #{$color-bordo};
+          background: rgba(122, 15, 15, 0.05);
+        }
+
+        ion-label {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #000;
+          margin-left: 15px;
+        }
+
+        ion-radio {
+          --color: #{$color-bordo};
+          --color-checked: #{$color-bordo};
+          left: 15px;
+        }
+      }
+    }
+  }
+
+  &.botones-container {
+    .botones-numericos {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0 20px;
+
+      .boton-numero {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: 3px solid #333;
+        background: transparent;
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: 800;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: scale(1.15);
+          border-color: #{$color-bordo};
+        }
+
+        &.seleccionado {
+          background: #{$color-bordo};
+          color: white;
+          border-color: #{$color-bordo};
+          transform: scale(1.2);
+        }
+      }
+    }
+
+    .etiquetas-botones {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      margin-bottom: 20px;
+
+      span {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #333;
+      }
+    }
+  }
+
+  .atencion-valor {
+    font-size: 2rem;
+    color: #{$color-bordo};
+  }
+
+  ion-segment {
+    ion-segment-button {
+      font-size: 1.2rem;
+      font-weight: 600;
+      min-height: 60px;
+
+      ion-label {
+        margin: 8px 0;
+        font-size: 1.3rem;
+      }
+    }
+  }
+
+  &.toggle-container {
+    ion-item {
+      --background: transparent;
+      --border-color: transparent;
+      text-align: center;
+      justify-content: center;
+
+      ion-label {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #{$color-bordo};
+        margin-right: 30px;
+      }
+
+      ion-toggle {
+        --handle-width: 32px;
+        --handle-height: 32px;
+        width: 70px;
+        height: 40px;
+      }
+    }
+  }
+
+  &.recomendacion-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    padding: 0 20px;
+
+    .boton-recomendacion {
+      --background: transparent;
+      --background-activated: rgba(122, 15, 15, 0.1);
+      --color: #{$color-bordo};
+      --border-color: #{$color-bordo};
+      --border-style: solid;
+      --border-width: 2px;
+      --border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      height: 55px;
+      margin: 0;
+      --box-shadow: none;
+
+      &.seleccionado {
+        --background: #{$color-bordo};
+        --color: white;
+        --border-color: #{$color-bordo};
+      }
+    }
+  }
+
+  ion-textarea {
+    border: 2px solid #000000;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 1.5rem;
+    min-height: 200px;
+    background: transparent;
+    --color: #000000 !important;
+    --placeholder-color: #555555;
+
+    &::part(native) {
+      color: #000000 !important;
+      background: transparent;
+    }
+  }
+
+  .submit-button {
+    margin-top: 30px;
+    --background: #{$color-bordo};
+    --background-hover: #5a0808;
+    font-size: 1.3rem;
+    font-weight: 700;
+    height: 60px;
+  }
+}
+
+/* Estilos generales */
+ion-content {
+  --background: #{$color-bordo};
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #{$color-bordo};
+    --color: #{$color-oro};
+  }
+}
+
+ion-item {
+  --background: transparent;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --min-height: 8vh;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .slide-content ion-card {
+    max-width: 90%;
+    height: 70vh;
+
+    ion-card-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .pregunta-container .valor-actual {
+    font-size: 1.5rem;
+  }
+
+  .pregunta-container.toggle-container ion-item ion-label {
+    font-size: 2rem;
+  }
+}

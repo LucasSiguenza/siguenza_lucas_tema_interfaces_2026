@@ -1,0 +1,349 @@
+<div class="hoja" id="facturaPdf">
+
+  <div class="wrapper text-center bold text-20 sin-borde-bottom">
+    ORIGINAL
+  </div>
+
+  <div class="cabecera-factura">
+
+    <div class="wrapper bloque-empresa flex sin-borde-right">
+
+      <h3 class="titulo-empresa">
+        MJOR
+      </h3>
+
+      <img
+        src="assets/mjor-splash.png"
+        class="logo"
+      >
+
+      <p class="texto-empresa">
+
+        <b>Razón Social:</b> Mjor
+
+        <br>
+
+        <b>Domicilio Comercial:</b>
+        Av. Mitre 750 (C1870ART) Avellaneda, Buenos Aires, Argentina
+
+        <br>
+
+        <b>Condición frente al IVA:</b>
+        Responsable Monotributo
+
+      </p>
+
+    </div>
+
+    <div class="wrapper bloque-categoria">
+
+      <h3 class="no-margin text-center letra-factura">
+        C
+      </h3>
+
+      <h5 class="no-margin text-center">
+        COD. 007
+      </h5>
+
+    </div>
+
+    <div class="wrapper bloque-factura">
+
+      <h3 class="titulo-factura">
+        FACTURA
+      </h3>
+
+      <p class="texto-factura">
+
+        <b>
+          Punto de Venta: 00001
+          Comp. Nro: 000{{pedido()!.id}}
+        </b>
+
+        <br>
+
+        <b>
+          Fecha de Emisión:
+          {{pedido()!.created_at | formatoFecha}}
+        </b>
+
+        <br>
+
+        <b>CUIT:</b>
+        30-12345678-9
+
+        <br>
+
+        <b>Ingresos Brutos:</b>
+        Exento
+
+        <br>
+
+        <b>Inicio de Actividades:</b>
+        20/04/2025
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="wrapper flex space-around periodo">
+
+    <span>
+      <b>Facturado desde:</b>
+      {{pedido()!.created_at | formatoFecha}}
+    </span>
+
+    <span>
+      <b>Hasta:</b>
+      {{pedido()!.created_at | formatoFecha}}
+    </span>
+
+    <span>
+      <b>Vencimiento:</b>
+      {{fechaVto}}
+    </span>
+
+  </div>
+
+  <div class="wrapper datos-cliente">
+
+    <div class="flex fila-cliente">
+
+      <span class="w30">
+        <b>CUIT:</b>
+        20-00000000-0
+      </span>
+
+      <span>
+        <b>Cliente:</b>
+        {{pedido()!.nombreCliente}}
+      </span>
+
+    </div>
+
+    <div class="flex fila-cliente">
+
+      <span>
+        <b>Condición IVA:</b>
+        Consumidor Final
+      </span>
+
+    </div>
+
+    <div class="flex">
+
+      <span>
+        <b>Condición de venta:</b>
+        Contado
+      </span>
+
+    </div>
+
+  </div>
+
+  <table class="tabla-productos">
+
+    <thead>
+
+      <tr>
+
+        <th class="text-left">
+          Producto
+        </th>
+
+        <th>
+          Cant.
+        </th>
+
+        <th>
+          Precio Unit.
+        </th>
+
+        <th>
+          Subtotal
+        </th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      @for(detalle of pedido()!.detalles; track detalle.id){
+
+        <tr>
+
+          <td class="text-left">
+            {{detalle.nombreProducto | titlecase}}
+          </td>
+
+          <td class="text-center">
+            {{detalle.cantidad}}
+          </td>
+
+          <td class="text-right">
+            {{detalle.precio | currency}}
+          </td>
+
+          <td class="text-right">
+            {{detalle.precio! * detalle.cantidad! | currency}}
+          </td>
+
+        </tr>
+
+      }
+
+    </tbody>
+
+  </table>
+
+  <div class="footer">
+
+    <div class="flex space-between">
+
+      <div class="tributos">
+
+        <p class="bold">
+          Observaciones
+        </p>
+
+        <table>
+
+          <tbody>
+
+            <tr>
+
+              <td>
+                Pedido generado desde sistema MJOR.
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      <div class="totales wrapper">
+
+        <span class="text-right etiqueta-total">
+          <b>Total Bruto:</b>
+        </span>
+
+        <span class="text-right">
+          <b>{{totalBrutoValor | currency}}</b>
+        </span>
+
+        <span class="text-right etiqueta-total">
+          <b>Propina:</b>
+        </span>
+
+        <span class="text-right">
+
+          <b>
+
+            @if(propina !== 1){
+
+              {{propina * totalBrutoValor | currency}}
+
+            } @else {
+
+              {{0 | currency}}
+
+            }
+
+          </b>
+
+        </span>
+
+        <span class="text-right etiqueta-total">
+          <b>Descuento:</b>
+        </span>
+
+        <span class="text-right">
+
+          <b>
+
+            @if(pedido()!.descuento !== 1){
+
+              {{
+                totalBrutoValor * (1 - pedido()!.descuento)
+                | currency
+              }}
+
+            } @else {
+
+              {{0 | currency}}
+
+            }
+
+          </b>
+
+        </span>
+
+        <span class="text-right etiqueta-total total-final">
+          <b>Importe Total:</b>
+        </span>
+
+        <span class="text-right total-final">
+          <b>{{totalFinal | currency}}</b>
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="flex footer-afip">
+
+      <div class="afip-info">
+
+        <img
+          src="assets/afip-logo.png"
+          class="logo-afip"
+        >
+
+        <h4 class="italic bold">
+          Comprobante Autorizado
+        </h4>
+
+        <p class="small italic bold texto-afip">
+
+          Esta Administración Federal no se responsabiliza
+          por los datos ingresados en el detalle de la operación
+
+        </p>
+
+      </div>
+
+      <div class="flex cae-box">
+
+        <span class="text-right mitad">
+          <b>CAE N°:</b>
+        </span>
+
+        <span class="text-left padding-left">
+          12345678901234
+        </span>
+
+        <span class="text-right mitad">
+          <b>Vto. CAE:</b>
+        </span>
+
+        <span class="text-left padding-left">
+          {{fechaVto}}
+        </span>
+
+      </div>
+
+      <div class="pagina-box bold">
+        Pág 1/1
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

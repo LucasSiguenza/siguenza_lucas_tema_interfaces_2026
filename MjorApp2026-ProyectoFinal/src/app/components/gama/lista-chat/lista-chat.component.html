@@ -1,0 +1,81 @@
+<ion-card class="card-full fondo-givry">
+
+  <ion-card-header>
+
+    <ion-card-title class="ion-text-center titulo-carta texto-oscuro">
+      {{
+        esDelivery
+          ? 'Entregas activas'
+          : 'Mesas'
+      }}
+    </ion-card-title>
+
+  </ion-card-header>
+
+  <ion-list lines="none">
+
+    @if(esDelivery)
+    {
+      @if(lista().length != 0)
+      {
+        @for(sala of lista(); track sala.uid_cliente)
+        {
+          <ion-item
+            class="fondo-bordo borde-dorado"
+            [button]="true"
+            (click)="this.abrirSalaDeChat(sala.uid_cliente)"
+          >
+
+            <ion-avatar slot="start">
+              <img src="assets/drakkar.png">
+            </ion-avatar>
+
+            <ion-label class="texto-claro">
+              {{sala.direccion_cliente}}
+            </ion-label>
+
+          </ion-item>
+        }
+      }
+      @else
+      {
+        <div class="mensaje-foto">
+
+          <ion-icon name="checkmark-outline"></ion-icon>
+
+          <ion-text class="texto-bordo">
+            ¡Estás al día!
+          </ion-text>
+
+          <ion-text class="texto-bordo">
+            No hay pedidos pendientes que revisar.
+          </ion-text>
+
+        </div>
+      }
+    }
+    @else
+    {
+      @for(mesa of mesasOrdenadas(); track mesa.numero)
+      {
+        <ion-item
+          class="fondo-bordo borde-dorado"
+          [button]="true"
+          (click)="this.abrirSalaDeChat(mesa.numero)"
+        >
+
+          <ion-avatar slot="start">
+            <img [src]="mesa.foto">
+          </ion-avatar>
+
+          <ion-label class="texto-claro">
+            Mesa Número {{mesa.numero}}
+          </ion-label>
+
+        </ion-item>
+      }
+    }
+
+  </ion-list>
+
+</ion-card>

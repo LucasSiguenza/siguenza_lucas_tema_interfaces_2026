@@ -1,0 +1,104 @@
+@use 'src/theme/variables.scss' as *;
+
+/* =========================
+  CARD PRINCIPAL
+========================= */
+
+.card-full {
+  margin-top: 3vh;
+
+  border-radius: 1.2rem;
+}
+
+/* =========================
+  TITULO
+========================= */
+
+.titulo-carta {
+  font-size: 1.8rem;
+}
+
+/* =========================
+  LISTA
+========================= */
+
+ion-list {
+  background: none;
+
+  padding: 1rem;
+}
+
+ion-item {
+  --background: transparent;
+  --inner-border-width: 0;
+
+  margin-bottom: 1rem;
+
+  border-radius: 1rem;
+
+  overflow: hidden;
+
+  transition: transform 0.15s ease;
+}
+
+ion-item:active {
+  transform: scale(0.98);
+}
+
+/* =========================
+  AVATAR
+========================= */
+
+ion-avatar img {
+  object-fit: cover;
+}
+
+/* =========================
+  MENSAJE VACÍO
+========================= */
+
+.card-foto {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.mensaje-foto {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  padding: 2rem 1rem;
+
+  text-align: center;
+}
+
+/* ICONO */
+
+.mensaje-foto ion-icon {
+  font-size: 5rem;
+
+  color: white;
+
+  background: #2ecc71;
+
+  border-radius: 50%;
+
+  padding: 1.5rem;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* TEXO */
+
+.mensaje-foto ion-text {
+
+  font-weight: 600;
+
+  font-size: 1rem;
+}

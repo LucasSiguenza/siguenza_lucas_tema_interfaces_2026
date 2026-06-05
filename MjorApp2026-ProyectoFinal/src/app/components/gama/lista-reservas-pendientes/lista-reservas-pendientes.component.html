@@ -1,0 +1,119 @@
+<!----------------Botonera superior---------------->
+<div class="wrapper" slot="end">
+  <ion-buttons slot="end">
+    <ion-button
+      class="btn-azul ion-justify-content-end"
+      (click)="prevPage()"
+      [disabled]="page() === 1">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+
+    <span class="texto-blanco">
+      {{ page() }} de {{ totalPages() }}
+    </span>
+
+    <ion-button
+      class="btn-azul ion-justify-content-end"
+      (click)="nextPage()"
+      [disabled]="page() === totalPages()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+
+  </ion-buttons>
+</div>
+
+<!----------------Cards---------------->
+
+@if(paginatedItems.length !== 0)
+{
+  @for (item of paginatedItems; track item.id)
+  {
+    <div class="cards-container">
+
+      <ion-card>
+
+        <ion-card-header>
+          <ion-card-title class="texto-negro">
+            Mesa {{ item.mesas?.numero }}
+          </ion-card-title>
+        </ion-card-header>
+
+        <!---------- FOTO ---------->
+
+        <div class="card-foto">
+          <img
+            [src]="item?.users?.foto"
+            alt="Foto de {{item?.users?.nombre}}">
+        </div>
+
+        <ion-card-content>
+          <div class="card-estado">
+            <ion-text class="ion-text-center ion-text-capitalize texto-negro">
+              Usuario: <strong>{{item.users?.apellido}}, {{item.users?.nombre}}</strong>
+            </ion-text>
+            <br>
+              <ion-text class="ion-text-center ion-text-capitalize texto-negro">
+                Fecha: <strong>{{item.fecha_reservada | date: " dd/MM/yyyy  HH:mm"}}</strong>
+              </ion-text>
+          </div>
+
+          <!---------- BOTONES APROBACION ---------->
+
+          <div>
+
+            <ion-button
+            shape="round"
+            fill="solid"
+            color="success"
+            expand="block"
+            (click)="this.cambiarEstadoReserva(item, 'aprobada')">
+
+              <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+              Aprobar
+            </ion-button>
+
+          </div>
+
+          <div>
+
+            <ion-button
+            shape="round"
+            fill="solid"
+            color="danger"
+            expand="block"
+            (click)="this.cambiarEstadoReserva(item, 'rechazada')">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Rechazar
+            </ion-button>
+
+          </div>
+
+        </ion-card-content>
+      </ion-card>
+    </div>
+  }
+} 
+@else
+{
+  <!---------- MENSAJE SIN PENDIENTES ---------->
+
+  <div class="cards-container">
+    <ion-card class="card-mensaje">
+      <ion-card-content>
+
+        <div class="card-foto mensaje-foto">
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </div>
+
+        <div class="card-estado mensaje-texto">
+          <h1 class="texto-negro">¡Estás al día!</h1>
+          <h2 class="texto-negro">
+            No hay reservas pendientes por revisar.
+          </h2>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+}

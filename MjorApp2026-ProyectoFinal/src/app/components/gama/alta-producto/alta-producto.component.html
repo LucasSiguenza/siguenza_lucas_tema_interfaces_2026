@@ -1,0 +1,174 @@
+  @if (this.showPhotoPrompt)
+  {
+    <div class="super-container">
+      <div class="elementos-centrados">
+
+        <ion-button
+        (click)="this.sacarFoto('camara', this.posicionFoto)"
+        class="btn-rojo"
+        >Abrir cámara</ion-button>
+
+        <ion-button
+        (click)="this.sacarFoto('galeria', this.posicionFoto)"
+        class="btn-rojo"
+        >Abrir galería</ion-button>
+
+        <ion-button
+        (click)="this.showPhotoPrompt = false"
+        class="btn-rojo"
+        >Cancelar</ion-button>
+      </div>
+    </div>
+  }
+
+  @if (this.flagExito)
+  {
+    <div class="super-container">
+      <div id="ventana-exito">
+        <h1 class="texto-bordo">¡Registro exitoso!</h1>
+        <ion-button 
+        type="button"
+        class="btn-rojo"
+        (click)="this.goBack()">
+        Finalizar
+        </ion-button>
+      </div>
+    </div>
+  }
+
+  <ion-card class="card-full">
+    <ion-card-header>
+      @switch (this.categoria)
+      {
+        @case ('bebida')
+        {
+          <ion-card-title class="ion-text-center titulo-carta">Nueva Bebida</ion-card-title>
+        }
+
+        @case ('plato')
+        {
+          <ion-card-title class="ion-text-center titulo-carta">Nuevo Plato</ion-card-title>
+        }
+
+        @case ('postre')
+        {
+          <ion-card-title class="ion-text-center titulo-carta">Nuevo Postre</ion-card-title>
+        }
+      }
+    </ion-card-header>
+    <ion-card-content class="contenido-carta">
+      <form [formGroup]="altaForm" class="auth-form" (ngSubmit)="submit()">
+
+        <app-input-mjor
+          placeholder="Nombre"
+          [form]="altaForm"
+          control="nombre">
+        </app-input-mjor>
+
+        @if (altaForm.controls.tiempo.errors && altaForm.controls.tiempo.touched)
+        {
+          <div class="validators">
+            @if (altaForm.controls['tiempo'].hasError('pattern'))
+            {
+              <div>Solo números enteros.</div>
+            }
+          </div>
+        }
+        <app-input-mjor
+          placeholder="Tiempo en minutos"
+          [form]="altaForm"
+          control="tiempo"
+          tipo="number">
+        </app-input-mjor>
+
+        <app-input-mjor
+          placeholder="Precio"
+          [form]="altaForm"
+          control="precio"
+          tipo="number">
+        </app-input-mjor>
+
+        <app-input-mjor
+          placeholder="Descripción"
+          [form]="altaForm"
+          control="descripcion">
+        </app-input-mjor>
+
+        <h1
+        class="invalidos"
+        >{{this.fotosValidas}}/3 fotos seleccionadas</h1>
+
+        <div class="photo-view-container">
+        </div>
+
+        <div class="fotos-container">
+         @switch (this.page)
+         {
+           @case (1)
+           {
+             @if (this.fotosTomadas[0] != null )
+             {
+               <img [src]="this.fotosTomadas[0]?.webPath" class="foto" (click)="this.elegirFotoASacar(0)">
+             } @else {
+               <img src="assets/camara.png" class="foto" (click)="this.elegirFotoASacar(0)">
+             }
+           }
+
+           @case (2)
+           {
+             @if (this.fotosTomadas[1] != null )
+             {
+               <img [src]="this.fotosTomadas[1]?.webPath" class="foto" (click)="this.elegirFotoASacar(1)">
+             } @else {
+               <img src="assets/camara.png" class="foto" (click)="this.elegirFotoASacar(1)">
+             }
+           }
+
+           @case (3)
+           {
+             @if (this.fotosTomadas[2] != null )
+             {
+               <img [src]="this.fotosTomadas[2]?.webPath" class="foto" (click)="this.elegirFotoASacar(2)">
+             } @else {
+               <img src="assets/camara.png" class="foto" (click)="this.elegirFotoASacar(2)">
+             }
+           }
+         }
+        </div>
+        <div class="btn-direccion">
+            <ion-button 
+            class="btn-lr btn-naranja"
+            (click)="this.previouspage()">
+              <ion-icon
+              name="chevron-back-outline"
+              ></ion-icon>
+            </ion-button>
+            
+            <ion-button
+            class="btn-lr btn-naranja"
+            (click)="this.nextPage()">
+              <ion-icon
+              name="chevron-forward-outline"
+              ></ion-icon>
+            </ion-button>
+        </div>
+
+        <div class="btn-registrar">
+
+          <ion-button
+          class="btn-submit btn-naranja"
+          (click)="this.goBack()"
+          >Cancelar</ion-button>
+
+        </div>
+
+        <div class="btn-registrar">
+          <ion-button 
+          class="btn-submit btn-naranja"
+          [disabled]="(this.fotosTomadas[0] == null) || (this.fotosTomadas[1] == null) || (this.fotosTomadas[2] == null) || (!this.altaForm.valid)"
+          (click)="this.submit()"
+          >Registrar</ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>

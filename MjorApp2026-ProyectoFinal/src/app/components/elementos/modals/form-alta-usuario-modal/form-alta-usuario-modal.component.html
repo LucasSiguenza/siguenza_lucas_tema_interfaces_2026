@@ -1,0 +1,265 @@
+
+<ion-content>
+  
+    <ion-button class="btn-volver-flotante" (click)="cancel()">
+      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+    </ion-button>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center" style="height: 100vh">
+      <ion-col size="12" sizeMd="6" sizeLg="4" class="ion-padding">
+        
+        <ion-card class="card-alta">
+        @if(this.currentStep() <4){
+          <div class="logo-container ion-margin-top">
+            <img src="assets/mjor-splash.png" class="logo-img">
+          </div>
+
+          <ion-card-header>
+            <div class="ion-text-center">
+              <ion-card-title class="titulo-alta">
+                {{ isNuevo ? 'Alta de ' : 'Editar ' }}{{ isEmpleado ? 'Empleado' : 'Cliente' }}
+              </ion-card-title>
+              <div class="paso-texto">Paso {{ currentStep() }} de 4</div>
+            </div>
+          </ion-card-header>
+        }
+
+          <ion-card-content class="contenido-alta">
+            <form [formGroup]="form" (ngSubmit)="confirm()">
+
+              <!-- PASO 1: Nombre y Apellido -->
+              @if(currentStep() === 1) {
+
+                <ion-button
+                  class="ion-margin-top"
+                  type="button"
+                  color="warning"
+                  expand="full"
+                  shape="round"
+                  strong="true"
+                  (click)="escanearDNI()"
+                >
+                  Escanear DNI-QR y rellenar
+                </ion-button>
+
+                <!-- Nombre -->
+                <div class="ion-margin-top">
+                  <app-input-mjor
+                    placeholder="Ingrese su nombre"
+                    [form]="form"
+                    control="nombre"
+                    mensajeValidacion="Debe tener al menos 3 caracteres"
+                  ></app-input-mjor>
+                </div>
+
+                <!-- Apellido -->
+                <div class="ion-margin-top">
+                  <app-input-mjor
+                    placeholder="Ingrese su apellido"
+                    [form]="form"
+                    control="apellido"
+                    mensajeValidacion="Debe tener al menos 3 caracteres"
+                  ></app-input-mjor>
+                </div>
+
+                <ion-grid class="ion-margin-top">
+                  <ion-row>
+                    <ion-col>
+                      <ion-button expand="block" color="warning" (click)="nextStep()">
+                        Siguiente
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              }
+
+              <!-- PASO 2: DNI y CUIL -->
+              @if(currentStep() === 2) {
+
+                <!-- DNI -->
+                <div class="ion-margin-top">
+                  <app-input-mjor
+                    tipo="number"
+                    [minLength]="7"
+                    [maxLength]="8"
+                    placeholder="Ingrese su documento"
+                    [form]="form"
+                    control="documento"
+                    mensajeValidacion="Debe tener al menos 7 dígitos"
+                  ></app-input-mjor>
+                </div>
+
+                <!-- CUIL -->
+                <div class="ion-margin-top">
+                  <app-input-mjor
+                    tipo="number"
+                    [minLength]="10"
+                    [maxLength]="11"
+                    placeholder="Ingrese su CUIL"
+                    [form]="form"
+                    control="cuil"
+                    mensajeValidacion="Debe tener al menos 10 dígitos"
+                  ></app-input-mjor>
+                </div>
+
+                <ion-grid class="ion-margin-top">
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-button expand="block" color="medium" (click)="prevStep()">
+                        Atrás
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col size="6">
+                      <ion-button expand="block" color="warning" (click)="nextStep()">
+                        Siguiente
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              }
+
+              <!-- PASO 3: Email y Contraseña -->
+              @if(currentStep() === 3) {
+
+                <!-- Email -->
+                <div class="ion-margin-top">
+                  <app-input-mjor
+                    placeholder="Ingrese su correo"
+                    tipo="email"
+                    [form]="form"
+                    control="email"
+                    mensajeValidacion="Debe obedecer el formato 'ejemplo@ejemplo.ejemplo'"
+                  ></app-input-mjor>
+                </div>
+
+                @if(this.isNuevo){
+
+                  <!-- Contraseña -->
+                  <div class="ion-margin-top">
+                    <app-input-mjor
+                      placeholder="Ingrese su contraseña"
+                      tipo="password"
+                      [form]="form"
+                      control="contrasenia"
+                      nombreControl="Contraseña"
+                      mensajeValidacion="Debe tener al menos 8 caracteres."
+                    ></app-input-mjor>
+                  </div>
+
+                  <!-- Repetir Contraseña -->
+                  <div class="ion-margin-top">
+                    <app-input-mjor
+                      placeholder="Repita su contraseña"
+                      tipo="password"
+                      [form]="form"
+                      control="repetirContrasenia"
+                      nombreControl="Repetición de contraseña"
+                      mensajeValidacion="Debe coincidir con la contraseña ingresada."
+                    ></app-input-mjor>
+                  </div>
+
+                }
+
+                <ion-grid class="ion-margin-top">
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-button expand="block" color="medium" (click)="prevStep()">
+                        Atrás
+                      </ion-button>
+                    </ion-col>
+
+                    <ion-col size="6">
+                      <ion-button expand="block" color="warning" (click)="nextStep()">
+                        Siguiente
+                      </ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              }
+              <!-- PASO 4: Foto y Confirmación -->
+              @if(currentStep() === 4) {
+                <div class="step-container ion-text-center">
+                  
+                  <!-- Preview foto -->
+                  <div class="ion-margin-top">
+                    @if(fotoPreview){
+                      <img [src]="fotoPreview"
+                        alt="Foto del usuario"
+                        class="foto-preview">
+                    } @else {
+                      <div class="placeholder-foto">
+                        <ion-icon name="person-outline" size="large"></ion-icon>
+                        <p>Sin foto</p>
+                      </div>
+                    }
+                  </div>
+
+                  <div class="ion-margin-top">
+                    <ion-button fill="outline" color="light" expand="block" class="btn-foto" (click)="tomarFoto()">
+                      <ion-icon name="camera-outline" slot="start"></ion-icon>
+                      {{ fotoPreview ? 'Cambiar foto' : 'Tomar foto' }}
+                    </ion-button>
+                  </div>
+                @if(this.isEmpleado){
+                <div class="ion-margin-top accordion-wrapper">
+                  <ion-accordion-group #accordion2>
+                    
+                    <ion-accordion class="acordeon-alta" value="perfiles" toggleIcon="caret-down-outline">
+                      
+                      <ion-item slot="header" lines="none">
+                        <ion-label class="ion-text-capitalize">
+                          Perfil: {{ form.controls.perfil.value |  titlecase }}
+                        </ion-label>
+                      </ion-item>
+
+                      <div class="ion-padding contenido-acordeon" slot="content">
+                        <ion-list lines="full">
+                          <ion-item button (click)="seleccionarPerfil('dueño')">Dueño</ion-item>
+                          <ion-item button (click)="seleccionarPerfil('supervisor')">Supervisor</ion-item>
+                          <ion-item button (click)="seleccionarPerfil('maitre')">Maitre</ion-item>
+                          <ion-item button (click)="seleccionarPerfil('cocinero')">Cocinero</ion-item>
+                          <ion-item button (click)="seleccionarPerfil('bartender')">Bartender</ion-item>
+                          <ion-item button (click)="seleccionarPerfil('mozo')">Mozo</ion-item>
+                        </ion-list>
+                      </div>
+
+                    </ion-accordion>
+                  </ion-accordion-group>
+                </div>
+                }
+                  <!-- Mensaje de validación -->
+                  <div class="mensaje-texto ion-margin-top" [ngClass]="{ 'error': form.invalid, 'ok': form.valid }">
+                    @if(form.invalid){
+                      <p>Faltan datos obligatorios.</p>
+                    } @else{
+                      <p>¡Todo listo!</p>
+                    }
+                  </div>
+
+                  <div class="botones-nav ion-margin-top">
+
+                    <ion-button fill="outline" (click)="prevStep()" class="btn-nav">
+                      <ion-icon name="arrow-back-outline"></ion-icon>
+                    </ion-button>
+
+                    <ion-button color="success" [disabled]="form.invalid" (click)="confirm()" strong="true" class="btn-nav">
+                      <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </ion-button>
+
+                  </div>
+                  
+                  <div class="ion-margin-top">
+                     <ion-button class="cancelar" color="dark" fill="outline" (click)="cancel()">Cancelar Operación</ion-button>
+                  </div>
+
+                </div>
+              }
+
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

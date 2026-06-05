@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="contenido-centrado">
+
+    <div class="elementos-centrados">
+      <img src="assets/mjor-splash.png" class="logo-img" />
+    </div>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">
+          ¡Bienvenido!
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="ion-text-center botones-card">
+        <ion-button expand="block" (click)="irAnonimo()">Ingreso Anónimo</ion-button>
+        <ion-button expand="block" (click)="irUsuario()">Ingreso usuario</ion-button>
+        <ion-button expand="block" (click)="irRegistro()">Registrarse</ion-button>
+
+        @if(this.isTesting)
+        {
+          <ion-button expand="block" (click)="test()">Tests</ion-button>
+        }
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+</ion-content>

@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Tu pedido</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="volver()">
+<ion-icon name="arrow-back-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+
+
+  <div class="carrito-container">
+    @if (listaCarrito().length === 0) {
+      <div class="empty-cart ion-text-center">
+        <ion-icon name="cart-outline"></ion-icon>
+        <h2>Tu carrito está vacío.</h2>
+        <ion-button (click)="volver()">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+    </ion-button>
+  </div>
+} @else {
+  <ion-list lines="full">
+    @for (item of listaCarrito(); track item.id) {
+      <ion-item>
+      <ion-label>
+        <h2>{{ item.nombre }}</h2>
+        <p>${{ item.precio }} c/u</p>
+      </ion-label>
+
+      <div slot="end" class="item-controls">
+        <!-- Botones de cantidad -->
+        <div class="quantity-controls">
+          <ion-button
+          size="small"
+          fill="clear"
+          (click)="decrementar(item)"
+          [disabled]="item.cantidad! <= 1"
+          >
+          <ion-icon slot="icon-only" name="remove-outline"></ion-icon>
+          </ion-button>
+
+          <ion-badge color="primary" class="quantity-badge">
+            {{ item.cantidad }}
+          </ion-badge>
+
+          <ion-button size="small" fill="clear" (click)="incrementar(item)">
+            <ion-icon slot="icon-only" name="add-outline"></ion-icon>
+          </ion-button>
+        </div>
+        
+        <!-- Subtotal y eliminar -->
+        <div class="item-actions">
+          <ion-note color="primary" class="subtotal">
+            {{ item.cantidad! * item.precio! | currency}}
+          </ion-note>
+          <ion-button
+            size="small"
+            fill="clear"
+            color="danger"
+            (click)="eliminar(item)"
+            >
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-item>
+  }
+  </ion-list>
+  }
+  </div>
+
+
+@if (listaCarrito().length !== 0) {
+
+<ion-footer>
+
+  <ion-toolbar>
+
+    <div class="resumen">
+
+      <div class="texto">
+        <strong>Total:</strong>
+         {{precioTotal() | currency}}
+      </div>
+
+      <div class="texto">
+        <strong>Tiempo estimado:</strong>
+        {{tiempoEstimado()}} min
+      </div>
+
+    </div>
+
+    <ion-button expand="block" color="warning" (click)="confirmarPedido()">
+      Confirmar pedido
+    </ion-button>
+
+  </ion-toolbar>
+
+</ion-footer>
+}

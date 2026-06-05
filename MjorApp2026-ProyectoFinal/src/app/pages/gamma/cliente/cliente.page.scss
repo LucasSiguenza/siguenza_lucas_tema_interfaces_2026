@@ -1,0 +1,132 @@
+@use 'src/theme/variables.scss' as *;
+
+/* =========================
+        CONTENEDOR
+========================= */
+
+.container {
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
+
+  min-height: 100%;
+
+  padding: 1.5rem;
+
+}
+
+
+/* =========================
+          TITULO
+========================= */
+.instruction
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.flecha
+{
+  width: 25%;
+}
+
+.texto-vertical
+{
+  text-orientation: upright;
+}
+h3 {
+
+  text-align: center;
+
+  color: #{$dorado};
+
+  font-weight: 450;
+
+  max-width: 320px;
+
+}
+
+
+/* =========================
+        BOTON QR
+========================= */
+
+.btn-qr {
+
+  width: min(85vw, 360px);
+
+  height: 42vh;
+
+  font-size: 1.3rem;
+
+  border-radius: 18rem;
+
+  font-weight: 600;
+
+}
+
+
+/* =========================
+      BOTON DELIVERY
+========================= */
+
+.btn-delivery {
+
+  width: min(85vw, 360px);
+
+  height: 60px;
+
+  font-size: 1.05rem;
+
+  border-radius: 14px;
+
+  font-weight: 600;
+
+}
+
+
+/* =========================
+   CLASES REUTILIZABLES
+========================= */
+
+/* fondo bordó */
+
+.color-bordo {
+
+  --background: #{$bordo};
+
+  --color: #{$givry};
+
+}
+
+
+/* fondo dorado */
+
+.color-dorado {
+
+  --background: #{$dorado};
+
+  --color: #{$bordo};
+
+}
+
+
+/* fondo givry */
+
+.color-givry {
+
+  --background: #{$givry};
+
+  --color: #{$bordo};
+
+}
+
+ion-fab {
+  margin-right: 1rem;
+  margin-top: 4rem;
+}

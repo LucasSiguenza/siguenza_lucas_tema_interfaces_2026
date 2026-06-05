@@ -1,0 +1,149 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  @if (!estadisticas) {
+  <div class="empty-state">
+    <ion-icon name="stats-chart-outline" size="large"></ion-icon>
+    <h2>No hay encuestas disponibles</h2>
+    <p>Aún no se han registrado encuestas de clientes.</p>
+  </div>
+  } @else {
+  <swiper-container
+    class="resultados-swiper"
+    navigation="true"
+    pagination="true"
+    slides-per-view="1"
+    centered-slides="true"
+    space-between="20"
+  >
+    <!-- Slide 1: Resumen General -->
+    <swiper-slide>
+      <div class="slide-content">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Resumen General</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="stats-grid">
+              <div class="stat-item">
+                <div class="stat-value">{{ estadisticas.totalEncuestas }}</div>
+                <div class="stat-label">Encuestas Totales</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">
+                  {{ estadisticas.promedioGeneral.toFixed(2) }}/5
+                </div>
+                <div class="stat-label">Promedio General</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value">
+                  {{ estadisticas.porcentajePostres.toFixed(1) }}%
+                </div>
+                <div class="stat-label">Probaron Postre</div>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </swiper-slide>
+
+    <!-- Slide 2: Gráfico de Promedios -->
+    <swiper-slide>
+      <div class="slide-content">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Calificaciones Promedio</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="chart-container">
+              <canvas id="chartPromedios"></canvas>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </swiper-slide>
+
+    <!-- Slide 3: Gráfico de Recomendación -->
+    <swiper-slide>
+      <div class="slide-content">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>¿Nos recomendarías?</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="chart-container">
+              <canvas id="chartRecomendacion"></canvas>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </swiper-slide>
+
+    <!-- Slide 4: Detalle de Recomendación -->
+    <swiper-slide>
+      <div class="slide-content">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Detalle de Recomendación</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="recommendation-grid">
+              <div class="rec-item rec-si">
+                <div class="rec-count">
+                  {{ estadisticas.distribucionRecomendacion.si }}
+                </div>
+                <div class="rec-label">Sí nos recomiendan</div>
+              </div>
+              <div class="rec-item rec-talvez">
+                <div class="rec-count">
+                  {{ estadisticas.distribucionRecomendacion.tal_vez }}
+                </div>
+                <div class="rec-label">Tal vez</div>
+              </div>
+              <div class="rec-item rec-no">
+                <div class="rec-count">
+                  {{ estadisticas.distribucionRecomendacion.no }}
+                </div>
+                <div class="rec-label">No nos recomiendan</div>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </swiper-slide>
+
+    <!-- Slide 5: Últimos Comentarios -->
+    <swiper-slide>
+      <div class="slide-content">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Últimos Comentarios</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            @if (ultimosComentarios.length === 0) {
+            <div class="no-comentarios">
+              <ion-icon name="chatbubbles-outline"></ion-icon>
+              <p>No hay comentarios disponibles</p>
+            </div>
+            } @else {
+            <div class="comentarios-lista">
+              @for (comentario of ultimosComentarios; track $index) {
+              <div class="comentario-item">
+                <div class="comentario-header">
+                  <ion-icon name="person-circle-outline"></ion-icon>
+                  <span class="comentario-fecha">{{ comentario.fecha }}</span>
+                </div>
+                <div class="comentario-texto">
+                  "{{ comentario.comentario }}"
+                </div>
+              </div>
+              }
+            </div>
+            }
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+  }
+</ion-content>

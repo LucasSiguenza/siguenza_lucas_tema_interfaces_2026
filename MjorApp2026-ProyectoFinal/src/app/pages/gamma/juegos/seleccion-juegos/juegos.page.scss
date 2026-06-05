@@ -1,0 +1,31 @@
+$color-dorado: #D4A32F;
+
+ion-card {
+  --background: #{$color-dorado};
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease-in-out;
+  font-weight: bold;
+
+  ion-card-title {
+    font-size: 2rem;
+    font-weight: 800;
+  }
+
+  &:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+}
+
+ion-button {
+  margin-top: 1rem;
+
+  font-weight: bold;
+
+  --background: #F7E7B6; /* rojo vino */
+  --color: #7A0F0F;      /* dorado claro para contraste */
+  border-radius: 0.6rem;
+
+  transition: transform 0.18s ease, filter 0.18s ease;
+}

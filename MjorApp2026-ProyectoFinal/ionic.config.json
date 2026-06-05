@@ -1,0 +1,10 @@
+{
+  "plugins":{
+    "CapacitorCookies": true
+  },
+  "name": "MjorApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

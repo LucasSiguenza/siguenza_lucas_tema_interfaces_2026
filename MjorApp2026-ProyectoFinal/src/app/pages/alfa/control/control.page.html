@@ -1,0 +1,168 @@
+<ion-content id="main-content">
+  <app-header></app-header>
+@switch (this.userSvc.usrActual()?.perfil) {
+  @case ('supervisor') { <ng-container *ngTemplateOutlet="panelAdmin"></ng-container> }
+  @case ('dueño') { <ng-container *ngTemplateOutlet="panelAdmin"></ng-container> }
+  @case ('maitre'){
+    <ion-segment class="full-width-segment">
+      <ion-segment-button value="clientes" content-id="clientes">
+        Clientes
+      </ion-segment-button>
+      <ion-segment-button value="lespera" content-id="lespera">
+        Lista de espera
+      </ion-segment-button>
+      <ion-segment-button value="mesas" content-id="mesas">
+        Mesas
+      </ion-segment-button>
+
+    </ion-segment>
+
+    <ion-segment-view>
+      <ion-segment-content value="clientes" id="clientes">
+        <app-panel-usuarios
+          perfil="cliente"
+          [isAprobacion]="false"
+        ></app-panel-usuarios>
+      </ion-segment-content>
+      <ion-segment-content value="lespera" id="lespera">
+        <app-lista-espera></app-lista-espera>
+      </ion-segment-content>
+      <ion-segment-content value="mesas" id="mesas">
+        <app-panel-mesas></app-panel-mesas>
+      </ion-segment-content>
+    </ion-segment-view>
+  }
+  @case ('mozo') {
+    <ion-segment class="full-width-segment">
+      <ion-segment-button value="pedidos" content-id="pedidos">
+        Pedidos
+      </ion-segment-button>
+      <ion-segment-button value="sala-de-chat" content-id="sala-de-chat">
+        Sala de chat
+      </ion-segment-button>
+
+    </ion-segment>
+
+    <ion-segment-view>
+      <ion-segment-content value="pedidos" id="pedidos">
+        <app-panel-pedidos-aprobacion></app-panel-pedidos-aprobacion>
+      </ion-segment-content>
+      <ion-segment-content value="sala-de-chat" id="sala-de-chat">
+        <app-lista-chat></app-lista-chat>
+      </ion-segment-content>
+    </ion-segment-view>
+  }
+  @case ('delivery') {
+       <ion-segment class="full-width-segment">
+      <ion-segment-button value="pedidos" content-id="pedidos">
+        Pedidos
+      </ion-segment-button>
+      <ion-segment-button  value="sala-de-chat" content-id="sala-de-chat">
+        Sala de chat
+      </ion-segment-button>
+
+    </ion-segment>
+
+    <ion-segment-view>
+      <ion-segment-content value="pedidos" id="pedidos">
+        <app-panel-pedidos-aprobacion></app-panel-pedidos-aprobacion>
+      </ion-segment-content>
+      <ion-segment-content value="sala-de-chat" id="sala-de-chat">
+        <app-lista-chat [esDelivery]="true" ></app-lista-chat>
+      </ion-segment-content>
+    </ion-segment-view>
+  }
+  @case ('bartender') {
+    <ion-segment class="full-width-segment">
+      <ion-segment-button value="pedidos" content-id="pedidos">
+        Pedidos
+      </ion-segment-button>
+      <ion-segment-button value="bebidas" content-id="bebidas">
+        Bebidas
+      </ion-segment-button>
+
+    </ion-segment>
+
+    <ion-segment-view>
+      <ion-segment-content value="pedidos" id="pedidos">
+        <app-panel-pedidos-preparacion></app-panel-pedidos-preparacion>
+      </ion-segment-content>
+      <ion-segment-content value="bebidas" id="bebidas">
+        <app-alta-producto categoria="bebida"></app-alta-producto>
+      </ion-segment-content>
+    </ion-segment-view>
+
+  }
+  @case ('cocinero') {
+    <ion-segment class="full-width-segment">
+      <ion-segment-button value="pedidos" content-id="pedidos">
+        Pedidos
+      </ion-segment-button>
+      <ion-segment-button value="platos" content-id="platos">
+        Platos
+      </ion-segment-button>
+      <ion-segment-button value="postres" content-id="postres">
+        Postres
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-segment-view>
+      <ion-segment-content value="pedidos" id="pedidos">
+        <app-panel-pedidos-preparacion></app-panel-pedidos-preparacion>
+      </ion-segment-content>
+      <ion-segment-content value="platos" id="platos">
+        <app-alta-producto categoria="plato"></app-alta-producto>
+      </ion-segment-content>
+      <ion-segment-content value="postres" id="postres">
+        <app-alta-producto categoria="postre"></app-alta-producto>
+      </ion-segment-content>
+    </ion-segment-view>
+
+  }
+}
+</ion-content>
+
+<ng-template #panelAdmin>
+   <!-- Contenido para supervisor y dueño -->
+    <ion-segment class="full-width-segment">
+      <ion-segment-button value="empleados" content-id="alta">
+        Empleados
+      </ion-segment-button>
+      <ion-segment-button value="mesas" content-id="mesas">
+        Mesas
+      </ion-segment-button>
+      <ion-segment-button value="Pendientes" content-id="Pendientes">
+        Pendientes
+      </ion-segment-button>
+      <ion-segment-button value="Reservas" content-id="Reservas">
+        Reservas
+      </ion-segment-button>
+      <ion-segment-button value="Delivery" content-id="Delivery">
+        A Domicilio
+      </ion-segment-button>
+    </ion-segment>
+
+    <ion-segment-view>
+      <ion-segment-content value="empleados" id="alta">
+        <app-panel-usuarios
+          perfil="empleado"
+          [isAprobacion]="false"
+        ></app-panel-usuarios>
+      </ion-segment-content>
+      <ion-segment-content value="mesas" id="mesas">
+        <app-panel-mesas></app-panel-mesas>
+      </ion-segment-content>
+      <ion-segment-content value="Pendientes" id="Pendientes">
+        <app-panel-usuarios
+          perfil="cliente"
+          [isAprobacion]="true"
+        ></app-panel-usuarios>
+      </ion-segment-content>
+      <ion-segment-content value="Reservas" id="Reservas">
+        <app-lista-reservas-pendientes></app-lista-reservas-pendientes>
+      </ion-segment-content>
+      <ion-segment-content value="Delivery" id="Delivery">
+        <app-panel-pedidos-aprobacion [isDelivery]="true"></app-panel-pedidos-aprobacion>
+      </ion-segment-content>
+    </ion-segment-view>
+</ng-template>

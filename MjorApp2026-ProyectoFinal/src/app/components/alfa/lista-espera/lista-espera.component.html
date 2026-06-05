@@ -1,0 +1,89 @@
+<div class="wrapper" slot="end">
+  <ion-buttons slot="end">
+    <ion-button class="btn-azul ion-justify-content-end" (click)="prevPage()" [disabled]="page() === 1">
+      <ion-icon name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    <span class="texto-blanco">{{ page() }} de {{ totalPages() }}</span>
+    <ion-button class="btn-azul ion-justify-content-end" (click)="nextPage()" [disabled]="page() === totalPages()">
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</div>
+
+@if (paginatedItems.length != 0) {
+  <div class="cards-container">
+
+    @for (item of paginatedItems; track item.id) {
+      <ion-card>
+        <ion-card-header class="ion-text-capitalize ion-text-center">
+          <ion-card-title class="texto-negro">{{ item.nombre_usuario }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <!-- FOTO -->
+          <div class="card-foto">
+            <img [src]="item.foto" alt="Avatar de {{ item.nombre_usuario }}" />
+          </div>
+
+          <!-- ESTADO (ANONIMO/REGISTRADO) -->
+          <div class="card-estado">
+            <ion-badge [color]="getStatusColor(item.is_anonimo)">
+              @if (item.is_anonimo) { ANONIMO }
+              @else { REGISTRADO }
+            </ion-badge>
+          </div>
+
+          <!-- HORA -->
+          <div class="card-estado">
+            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              Llegada: <strong>{{ item.hora | formatoFecha }}</strong>
+            </ion-text>
+          </div>
+
+          <!-- TIPO -->
+          <div class="card-estado">
+            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              Mesa: <strong>{{ item.tipo_solicitado | formatoTipoMesa }}</strong>
+            </ion-text>
+          </div>
+
+          <!-- CANTIDAD -->
+          <div class="card-estado">
+            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+              Cantidad: <strong>{{ item.cantidad }}</strong>
+            </ion-text>
+          </div>
+
+          <!-- BOTONES -->
+          <div class="card-buttons">
+            <ion-button color="success" fill="solid" size="small" (click)="asignarMesaUsuario(item)">
+              <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+              Asignar
+            </ion-button>
+            
+            <ion-button color="danger" fill="solid" size="small" (click)="rechazarUsuario(item)">
+              <ion-icon slot="start" name="trash"></ion-icon>
+              Rechazar
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    }
+  </div>
+}
+@else {
+<div class="cards-container">
+  <ion-card class="card-mensaje">
+    <ion-card-content>
+
+      <div class="card-foto mensaje-foto">
+        <ion-icon name="checkmark-outline"></ion-icon>
+
+        <ion-text>¡Estás al día!</ion-text>
+        <ion-text>No hay usuarios pendientes por revisar.</ion-text>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+</div>
+}

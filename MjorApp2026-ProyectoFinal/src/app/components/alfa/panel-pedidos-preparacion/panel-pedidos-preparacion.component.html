@@ -1,0 +1,57 @@
+<ion-content class="panel-preparacion ion-flex-start">
+
+  @if(paginatedItems.length === 0){
+<div class="cards-container">
+  <ion-card class="card-mensaje">
+    <ion-card-content>
+
+      <div class="card-foto mensaje-foto">
+        <ion-icon name="checkmark-outline"></ion-icon>
+
+        <ion-text class="texto-claro">¡Estás al día!</ion-text>
+        <ion-text class="texto-claro">No hay pedidos pendientes por elaborar.</ion-text>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+</div>
+  }@else{
+
+    <!-- Pedido actual -->
+    @for(item of paginatedItems; track item!.uid){
+      <app-controlador-pedido
+        [pedido]="item!"
+        >
+      </app-controlador-pedido>
+    }
+
+    <!-- Controles de paginación -->
+    <div class="paginacion">
+
+      <ion-button
+        fill="solid"
+        class="btn-paginacion"
+        (click)="prevPage()"
+        [disabled]="page() === 1"
+      >
+        Anterior
+      </ion-button>
+
+      <span class="pagina-info">
+        {{page()}} / {{totalPages()}}
+      </span>
+
+      <ion-button
+        fill="solid"
+        class="btn-paginacion"
+        (click)="nextPage()"
+        [disabled]="page() === totalPages()"
+      >
+        Siguiente
+      </ion-button>
+
+    </div>
+
+  }
+
+</ion-content>

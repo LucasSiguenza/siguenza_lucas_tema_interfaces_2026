@@ -1,0 +1,288 @@
+@use 'src/theme/variables.scss' as *;
+
+/* =========================
+   CONTENEDOR DE CARDS
+========================= */
+
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3vw;
+  padding: 3vw;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+ion-card {
+  border-radius: 1.6rem;
+  padding-top: 0.5rem;
+  border: 0.4rem solid #D4A32F;
+  transition: transform .2s ease;
+}
+
+ion-card-header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 6vh;
+  text-align: center;
+}
+
+
+/* =========================
+   FOTO
+========================= */
+
+.card-foto {
+  display:flex;
+  justify-content:center;
+  margin-bottom:2rem;
+}
+
+.card-foto img{
+  width:60%;
+  max-width:220px;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid #7a0f0f;
+}
+
+
+/* =========================
+   TEXTO
+========================= */
+
+.card-estado{
+  text-align:center;
+  font-size:clamp(.9rem,3.8vw,1.1rem);
+  margin-bottom:.6rem;
+}
+
+
+/* =========================
+   BOTONES CARD
+========================= */
+
+.card-buttons{
+  margin-top:1rem;
+  display:flex;
+  flex-direction:column;
+  gap:.6rem;
+  width:100%;
+}
+
+
+/* contenedor de editar / eliminar */
+
+.card-buttons ion-buttons{
+  display:flex;
+  gap:.5rem;
+}
+
+
+/* botones dentro de card */
+
+.card-buttons ion-button{
+  flex:1;
+  font-size:.85rem;
+  --border-radius:.6rem;
+  min-height:2.5rem;
+}
+
+
+/* iconos */
+
+.card-buttons ion-icon{
+  font-size:1.2rem;
+}
+
+
+/* =========================
+   PAGINACION SUPERIOR
+========================= */
+
+.wrapper{
+  padding:0 1rem;
+}
+
+ion-buttons{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:.6rem;
+  height:8vh;
+}
+
+ion-button.btn-azul{
+  --background:#0D47A1;
+  --color:#fff;
+  --border-radius:50%;
+
+  width:2rem;
+  height:2rem;
+}
+ion-button.btn-verde{
+  --background:#2fff0082;
+  --color:#fff;
+  --border-radius:50%;
+
+  width:2.5rem;
+  height:2.5rem;
+}
+
+ion-button.btn-azul ion-icon{
+  font-size:1.4rem;
+}
+
+.texto-blanco{
+  color: $givry;
+  font-size:.9rem;
+}
+
+
+/* =========================
+   FOOTER MODAL
+========================= */
+
+ion-footer ion-toolbar{
+  padding:0 .5rem;
+}
+
+/* =========================
+   AJUSTES SOLO EN MODAL
+========================= */
+
+ion-modal app-panel-mesas {
+
+  display: block;
+  padding-bottom: env(safe-area-inset-bottom);
+
+}
+
+
+/* =========================
+     NAV MÁS ACCESIBLE
+========================= */
+
+ion-modal app-panel-mesas .wrapper {
+
+  position: sticky;
+  bottom: 0;
+
+  z-index: 10;
+
+  padding: .6rem .4rem;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.65),
+    rgba(0,0,0,0)
+  );
+
+}
+
+
+/* Botones cómodos para pulgar */
+
+ion-modal app-panel-mesas .wrapper ion-button {
+
+  --padding-start: 14px;
+  --padding-end: 14px;
+
+  height: 44px;
+  min-width: 44px;
+
+}
+
+
+/* texto de paginación */
+
+ion-modal app-panel-mesas .wrapper span {
+
+  font-size: .9rem;
+  margin-inline: .4rem;
+
+}
+
+
+/* =========================
+        CARDS
+========================= */
+
+ion-modal app-panel-mesas .cards-container {
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: .9rem;
+
+  padding-bottom: 70px; /* espacio para botones */
+
+}
+
+
+/* =========================
+      CARD RESPONSIVE
+========================= */
+
+ion-modal app-panel-mesas ion-card {
+
+  width: 100%;
+
+  margin: 0;
+
+  border-radius: 16px;
+
+}
+
+
+/* =========================
+         FOTO
+========================= */
+
+ion-modal app-panel-mesas .card-foto img {
+
+  width: 100%;
+  height: auto;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+
+}
+
+
+/* =========================
+        TEXTOS
+========================= */
+
+ion-modal app-panel-mesas .card-estado {
+
+  font-size: .9rem;
+  margin-top: .35rem;
+
+}
+
+
+/* =========================
+      TABLET / WEB
+========================= */
+
+@media (min-width: 768px) {
+
+  ion-modal app-panel-mesas .cards-container {
+
+    grid-template-columns: repeat(2, 1fr);
+
+  }
+
+}

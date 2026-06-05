@@ -1,0 +1,219 @@
+@use 'src/theme/variables.scss' as *;
+
+/* --- Variables de Color --- */
+$color-bordo: #7A0F0F;
+$color-oro: #D4A32F;
+
+/* --- Estilos Generales de la Página --- */
+ion-content {
+  --background: #{$color-bordo};
+  height: 95vh;
+}
+.jodertiounelementocentradoomg{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+}
+.container{
+  flex-direction: column !important;
+}
+
+ion-header {
+  ion-toolbar {
+    --background: #{$color-bordo};
+    --color: #{$color-oro};
+  }
+
+  ion-segment {
+    --background: #{$color-bordo};
+
+    ion-segment-button {
+      --color: #{$color-oro};
+      --color-checked: white;
+      --indicator-color: white;
+      --ripple-color: rgba(255, 255, 255, 0.2);
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.fab-icon{
+  color: #D4A32F;
+}
+.lmao{
+  position: fixed;
+  bottom: calc(2.5rem + var(--ion-safe-area-bottom));
+  right: 1rem;
+  z-index: 10;
+}
+
+
+/* --- Estilos para el Carrusel Principal --- */
+.main-swiper {
+  width: 100%;
+  height: calc(100% - 20px); // Ocupa casi toda la altura menos padding
+  padding-bottom: 20px;     // Espacio para la paginación
+
+  swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  /* Flechas de navegación */
+  .swiper-button-prev, .swiper-button-next {
+    color: white;
+    --swiper-navigation-size: 30px;
+  }
+
+  /* Paginación (puntitos) */
+  .swiper-pagination-bullet-active {
+     background: white;
+  }
+}
+
+/* Contenedor dentro del slide principal */
+.slide-content {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  width: 100%;
+  max-width: 450px; // Ancho máximo de la tarjeta
+  height: 90%;
+}
+
+/* --- Estilos para la Tarjeta (ion-card) --- */
+ion-card {
+  --background: #{$color-oro};
+  --color: #000000;
+  height: 75vh;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1; // Para que ocupe la altura del slide
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+  ion-card-title {
+    font-size: 1.4rem; // Tamaño ajustado (era 1.3rem en una parte)
+    font-weight: bold;
+  }
+
+  ion-card-subtitle {
+    font-size: 1.1rem;
+    color: #333; // Color ajustado (era #444 en una parte)
+  }
+
+  ion-card-content {
+    font-size: 1rem;
+    flex-grow: 1; // Permite que el contenido crezca
+    padding-bottom: 0;
+    // Opcional: Limitar líneas si el texto es muy largo
+    overflow: hidden; // Ya estaba
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: white;
+  }
+
+  ion-footer {
+    background: rgba(0,0,0,0);
+    padding-top: 0;
+  }
+}
+
+/* --- Estilos para el Carrusel de Imágenes Anidado --- */
+.image-swiper {
+  width: 100%;
+  height: 40vh; // Altura para las imágenes
+
+  img { // Estilo movido aquí desde ion-card img
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // border-radius: 10px; // Se quita, la tarjeta ya tiene borde redondeado
+  }
+
+  /* Paginación (puntitos) */
+  .swiper-pagination-bullet {
+     background: rgba(0,0,0,0.5);
+  }
+  .swiper-pagination-bullet-active {
+     background: black;
+  }
+}
+
+.botones-carrito
+{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.btn-add
+{
+  margin-left: 5vw;
+  width: 45vw;
+  color: #7A0F0F;
+}
+
+.btn-plus-minus
+{
+  color: #7A0F0F;
+}
+
+ion-button.btn-ok {
+  width: 50vw;
+  height: 10vh;
+  font-size: x-large;
+
+  background-color: $givry;
+  color: $color-bordo;
+  --background: $givry;
+  --color: $color-bordo; // opcional si querés texto oscuro
+}
+#importe-tl
+{
+  display: flex;
+  align-items: center;
+  width: 95vw;
+  padding-left: 5vw;
+}
+
+.importe
+{
+  margin-top: 1vh;
+  background-color: $givry !important;
+  height: 7vh;
+  width: 50%;
+  padding: 0;
+  margin-bottom: 0;
+}
+
+h1{
+  font-size: 2rem;
+}
+
+ion-card-title{
+  color: #000000;
+}
+
+.elementos-centrados
+{
+  flex-direction: column;
+}
+
+.texto-bordo{
+  color: $bordo;
+}

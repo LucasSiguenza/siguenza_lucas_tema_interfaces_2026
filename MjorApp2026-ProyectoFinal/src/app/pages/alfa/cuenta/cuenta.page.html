@@ -1,0 +1,57 @@
+ <ion-content>
+
+   @if (this.showExito())
+   {
+    <div class="super-container" style="background-color: rgba(247, 246, 246, 01);">
+      <ion-card class="alert">
+        <h1>Pedido pagado. Aguarde la confirmación del {{this.pedido()?.es_delivery ? 'repartidor': 'mozo'}}</h1>
+        <div class="botones-confirmacion">
+          <ion-button color="warning"
+          class="btn-confirmacion"
+          (click)="this.goToCliente()"
+          >
+          Entendido
+        </ion-button>
+        </div>
+      </ion-card>
+    </div>
+  }
+
+  @if (this.showConfirmacion())
+  {
+    <div class="super-container">
+      <ion-card class="alert">
+        <h1>¿Confirmar pago?</h1>
+        <div class="botones-confirmacion">
+          <ion-button color="warning"
+          class="btn-confirmacion"
+          (click)="this.showConfirmacion.set(false)"
+          >NO
+        </ion-button>
+        
+          <ion-button color="warning"
+          (click)="pagarCuenta()"
+          class="btn-confirmacion"
+          >
+          SÍ
+        </ion-button>
+      </div>
+    </ion-card>
+  </div>
+}
+
+  <div class="container">
+    <app-controlador-pedido
+      [pedido]="pedido()!"
+      [propina]="valorPropina"
+      [descuento]="pedido()?.descuento"
+    ></app-controlador-pedido>
+    
+    <ion-button fill="outline" expand="block" (click)="this.showConfirmacion.set(true)"  >
+      <ion-icon name="cash-outline"></ion-icon>
+      Pagar la cuenta</ion-button>
+  </div>
+
+  
+  
+</ion-content>

@@ -1,0 +1,207 @@
+<ion-content>
+  <ion-grid>
+    <ion-row
+      class="ion-justify-content-center ion-align-items-center"
+      style="height: 100vh"
+    >
+      <ion-col
+        size="12"
+        sizeMd="6"
+        sizeLg="3"
+        class="ion-padding"
+        style="margin-bottom: 50px"
+      >
+        <div class="logo-container">
+          <img
+            src="assets/mjor-splash.png"
+            alt="Logo Sandik"
+            class="logo-img"
+          />
+        </div>
+        <br />
+
+        <ion-card>
+          <ion-card-header class="ion-no-padding">
+            <ion-card-title class="ion-text-center texto-negro"
+              >¡Regístrate!</ion-card-title
+            >
+          </ion-card-header>
+
+          <ion-card-content>
+            <form [formGroup]="formRegistro" (ngSubmit)="registrar()">
+              
+              <!-- PASO 1: Nombre y Apellido -->
+              @if(currentStep() === 1) {
+                <ion-item class="transparent">
+                  <ion-button
+                    class="ion-margin-top"
+                    type="button"
+                    color="warning"
+                    expand="full"
+                    shape="round"
+                    strong="true"
+                    (click)="escanearDNI()"
+                  >
+                    Escanear DNI-QR y rellenar
+                  </ion-button>
+                </ion-item>
+
+                <!-- Nombre -->
+                <div class="ion-margin-top">
+                <app-input-mjor
+                  placeholder="Ingrese su nombre"
+                  [form]="formRegistro"
+                  control="nombre"
+                  mensajeValidacion="Debe tener al menos 3 caracteres"
+                 ></app-input-mjor>
+                 
+                </div>
+
+                <!-- Apellido -->
+                <div class="ion-margin-top">
+                 <app-input-mjor
+                  placeholder="Ingrese su apellido"
+                  [form]="formRegistro"
+                  control="apellido"
+                  mensajeValidacion="Debe tener al menos 3 caracteres"
+                 ></app-input-mjor>
+                </div>
+
+                <ion-button class="ion-margin-top siguiente" expand="block" color="warning" (click)="nextStep()">
+                  Siguiente
+                </ion-button>
+              }
+
+              <!-- PASO 2: DNI y CUIL -->
+              @if(currentStep() === 2) {
+                <!-- DNI -->
+              <div class="ion-margin-top">
+                <app-input-mjor
+                  tipo="number"
+                  [minLength]="7"
+                  [maxLength]="8"
+                  placeholder="Ingrese su documento"
+                  [form]="formRegistro"
+                  control="documento"
+                  mensajeValidacion="Debe tener al menos 7 dígitos"
+                 ></app-input-mjor>
+                </div>
+
+                <!-- CUIL -->
+                <div class="ion-margin-top">
+                <app-input-mjor
+                  tipo="number"
+                  [minLength]="10"
+                  [maxLength]="11"
+                  placeholder="Ingrese su CUIL"
+                  [form]="formRegistro"
+                  control="cuil"
+                  mensajeValidacion="Debe tener al menos 10 dígitos"
+                 ></app-input-mjor>
+                </div>
+
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-button expand="block" color="medium" (click)="prevStep()">Atrás</ion-button>
+                    </ion-col>
+                    <ion-col>
+                      <ion-button expand="block" color="warning" (click)="nextStep()">Siguiente</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              }
+
+              <!-- PASO 3: Email y Contraseña -->
+              @if(currentStep() === 3) {
+                <!-- Email -->
+                 <div class="ion-margin-top">
+                 <app-input-mjor
+                    placeholder="Ingrese su correo"
+                    tipo="email"
+                    [form]="formRegistro"
+                    control="email"
+                    mensajeValidacion="Debe obedecer el formato 'ejemplo@ejemplo.ejemplo'"
+                  ></app-input-mjor>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="ion-margin-top">
+                 <app-input-mjor
+                    placeholder="Ingrese su contraseña"
+                    tipo="password"
+                    [form]="formRegistro"
+                    control="contrasenia"
+                    nombreControl="Contraseña"
+                    mensajeValidacion="Debe tener al menos 8 caracteres."
+                  ></app-input-mjor>
+                </div>
+                
+                <!-- Repetir Contraseña -->
+                <div class="ion-margin-top">
+                 <app-input-mjor
+                    placeholder="Repita su contraseña"
+                    tipo="password"
+                    [form]="formRegistro"
+                    control="repetirContrasenia"
+                    nombreControl="Repetición de contraseña"
+                    mensajeValidacion="Debe coincidir con la contraseña ingresada."
+                  ></app-input-mjor>
+                </div>
+
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-button expand="block" color="medium" (click)="prevStep()">Atrás</ion-button>
+                    </ion-col>
+                    <ion-col>
+                      <ion-button expand="block" color="warning" (click)="nextStep()">Siguiente</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              }
+
+              <!-- PASO 4: Foto y Registro -->
+              @if(currentStep() === 4) {
+                <!-- Foto previa -->
+                @if(fotoPreview) {
+                  <div class="ion-text-center ion-margin-top">
+                    <img
+                      [src]="fotoPreview"
+                      alt="Foto del usuario"
+                      style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;"
+                    />
+                  </div>
+                }
+                <ion-item class="transparent">
+                  <ion-button
+                    class="ion-margin-top"
+                    type="button"
+                    color="warning"
+                    expand="full"
+                    shape="round"
+                    strong="true"
+                    (click)="sacarFoto()"
+                  >
+                    Sacar foto
+                  </ion-button>
+                </ion-item>
+
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-button expand="block" color="medium" (click)="prevStep()">Atrás</ion-button>
+                    </ion-col>
+                    <ion-col>
+                      <ion-button expand="block" color="success" type="submit">Registrar</ion-button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              }
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,54 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <!-- Este fab sólo debe ser visible cuando hay una mesa asignada al cliente. -Dzisko -->
+  <!-- El comentario anterior era sobre el botón de la consulta, lo del delivery te lo inventaste. -Dzisko --> 
+  <!-- Sí, y estoy harto de fingir que no. Me atrapaste, Dizsko. Yo. Soy. Kira. ─Lucas.-->
+  <!-- !(Te dejo un comentario no más porque sé que vas a volver acá cuando veas que no podés pedir a domicilio -Dzisko)-->
+   @if(this.mesaSvc.mesaDelUsuario() || esPedidoDelivery()){
+    <ion-fab slot="fixed" vertical="center" horizontal="end">
+      <ion-fab-button class="color-dorado" (click)="irAlChat()">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  }
+  <!-- -->
+  <div class="container">
+
+    <h3>{{ mostrarDelivery()
+      ?
+      "Presione el botón para corroborar su envío."
+      :
+      "Presione el botón para escanear el código QR"
+      }}</h3>
+    <ion-button
+      class="btn-qr color-givry"
+      (click)="this.navegar()">
+      {{mostrarDelivery() ? 
+      'Revisar pedido'
+      :
+      "Escanear QR"
+      }} 
+      
+    </ion-button>
+    @if (!this.usrSvc.usrAuth()?.is_anonymous && mostrarDelivery())
+    {
+      <ion-button
+        (click)="abrirFormularioDelivery()"
+        class="btn-delivery color-givry"
+        routerLink="/pedir-a-domicilio">
+        Pedir a domicilio
+      </ion-button>
+    }
+
+    @if (!this.usrSvc.usrAuth()?.is_anonymous && mostrarDelivery())
+    {
+      <ion-button
+        class="btn-delivery color-givry"
+        (click)="this.irReservarMesa()">
+        Reservar mesa
+      </ion-button>
+    }
+
+  </div>
+
+</ion-content>

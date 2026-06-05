@@ -1,0 +1,93 @@
+@use 'src/theme/variables.scss' as *;
+
+#desc {
+    height: 20vh;
+}
+
+.foto {
+    width: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+}
+
+#ventana-exito {
+    display: flex;
+    flex-direction: column;
+}
+
+.fotos-container {
+    width: 100%;
+}
+
+.elementos-centrados {
+    flex-direction: column;
+}
+
+.photo-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+
+}
+
+.btn-lr {
+    height: 100%;
+    margin: 0;
+    padding-bottom: 1vh;
+    width: 45%;
+}
+
+.btn-direccion {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 8vh;
+}
+
+.invalidos {
+    color: white;
+    background-color: #7a0f0f;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.ion-text-center {
+    background-color: #7a0f0f;
+}
+
+/* Estilos para los campos del formulario */
+ion-item {
+    --background: $givry;
+    /* Fondo Bordo */
+    --color: #ffffff;
+    /* Texto Blanco */
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ion-input,
+ion-textarea {
+    --color: #ffffff;
+    --placeholder-color: #e0e0e0;
+    --placeholder-opacity: 0.8;
+}
+
+/* Asegurar que el label flotante sea legible */
+ion-item::part(native) {
+    border-radius: 8px;
+}
+
+.titulo-carta
+{
+    color: white;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.contenido-carta
+{
+    padding-top: 8px;
+}

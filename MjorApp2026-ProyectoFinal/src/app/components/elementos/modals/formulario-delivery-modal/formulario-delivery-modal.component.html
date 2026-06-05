@@ -1,0 +1,19 @@
+  <div class="contenido-centrado">
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">
+          ¡Elije una opción!
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content class="ion-text-center botones-card">
+        <ion-button expand="block" (click)="usarUbicacionActual()" >Usar mi ubicación actual</ion-button>
+        <ion-button expand="block" (click)="elegirUbicacion()" >Seleccionar en el mapa</ion-button>
+        <ion-button color="danger" (click)="cancelar()" expand="block" >Cancelar</ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+

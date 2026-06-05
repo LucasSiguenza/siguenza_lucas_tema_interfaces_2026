@@ -1,0 +1,114 @@
+$color-bordo: #7A0F0F;
+$color-dorado: #D4A32F;
+
+ion-content {
+  --background: #{$color-bordo};
+}
+
+.sudoku-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  color: $color-dorado;
+}
+
+.titulo {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-panel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Grilla */
+.sudoku-grid {
+  background-color: white; /* Fondo blanco para el tablero */
+  border: 3px solid $color-dorado;
+  display: flex;
+  flex-direction: column;
+}
+
+.fila {
+  display: flex;
+  height: 40px; /* Altura de celda */
+}
+
+.celda {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+}
+
+.celda.fija {
+    color: #000;
+    background-color: #e0e0e0;
+}
+
+.celda.selected {
+    background-color: $color-dorado;
+    color: $color-bordo;
+}
+
+.border-bottom-thick {
+    border-bottom: 2px solid $color-bordo;
+}
+
+.border-right-thick {
+    border-right: 2px solid $color-bordo;
+}
+
+/* Teclado */
+.teclado-numerico {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.tecla {
+    width: 35px;
+    height: 35px;
+    background-color: $color-dorado;
+    color: $color-bordo;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.contador {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: white;
+}
+
+.controls ion-button {
+    margin-top: 10px;
+    --border-color: #{$color-dorado};
+    --color: #{$color-dorado};
+}
+
+.result-message {
+    text-align: center;
+    background: $color-dorado;
+    color: $color-bordo;
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+}

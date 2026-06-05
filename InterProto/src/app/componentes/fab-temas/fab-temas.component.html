@@ -1,0 +1,91 @@
+<ion-fab
+  slot="fixed"
+  vertical="bottom"
+  horizontal="end"
+>
+
+  <ion-fab-button>
+    <ion-icon name="color-palette-outline"></ion-icon>
+  </ion-fab-button>
+
+  <ion-fab-list side="top">
+
+    <div class="fab-item">
+      <ion-fab-button
+        aria-label="Tema InterProto"
+        (click)="seleccionarTema('inter')"
+      >
+        <ion-icon name="at-circle-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-label>InterProto</ion-label>
+    </div>
+    <div class="fab-item">
+      <ion-fab-button
+        aria-label="Tema Profesional"
+        (click)="seleccionarTema('profesional')"
+      >
+        <ion-icon name="briefcase-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-label>Profesional</ion-label>
+    </div>
+
+    <div class="fab-item">
+      <ion-fab-button
+        aria-label="Tema Argentina"
+        (click)="seleccionarTema('argentina')"
+      >
+        <ion-icon name="flag-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-label>Argentina</ion-label>
+    </div>
+
+    <div class="fab-item">
+      <ion-fab-button
+        aria-label="Tema Naif"
+        (click)="seleccionarTema('naif')"
+      >
+        <ion-icon name="balloon-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-label>Naif</ion-label>
+    </div>
+
+    <div class="fab-item">
+      <ion-fab-button
+        aria-label="Tema Claro"
+        (click)="seleccionarTema('claro')"
+      >
+        <ion-icon name="sunny-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-label>Claro</ion-label>
+    </div>
+
+    <div class="fab-item">
+      <ion-fab-button
+        aria-label="Tema Oscuro"
+        (click)="seleccionarTema('oscuro')"
+      >
+        <ion-icon name="moon-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-label>Oscuro</ion-label>
+    </div>
+
+    <div class="fab-item">
+      <ion-fab-button
+        aria-label="Tema Custom"
+        (click)="abrirCustom()"
+      >
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-fab-button>
+
+      <ion-label>Custom</ion-label>
+    </div>
+
+  </ion-fab-list>
+
+</ion-fab>
