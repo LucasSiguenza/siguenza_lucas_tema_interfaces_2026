@@ -1,38 +1,31 @@
-ion-content{
-  --padding-start:0;
-  --padding-end:0;
+ion-content
+{
+  --padding-start: 0;
+  --padding-end: 0;
 }
 
-/* CONTENEDOR CENTRADO */
+/* =========================
+      CONTENEDOR CENTRADO
+========================= */
 
-.contenido-centrado{
-  min-height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:1rem;
+.contenido-centrado
+{
+  min-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 1rem;
 }
 
-/* CARD */
+/* =========================
+            CARD
+========================= */
 
-ion-card{
-  width:95%;
-  max-width:400px;
-
-  padding:1rem;
-  margin:0 auto;
-
-  border-radius:0.9rem;
-  box-shadow:0 0.4rem 0.9rem rgba(0,0,0,0.18);
-
-  --background:#D4A32F;
-
-  animation:fadeInUp 0.6s ease-out 0.1s both;
-}
-
-/* CARD */
-ion-card {
+ion-card
+{
   width: 95%;
   max-width: 400px;
 
@@ -40,34 +33,52 @@ ion-card {
   margin: 0 auto;
 
   border-radius: 0.9rem;
-  box-shadow: 0 0.4rem 0.9rem rgba(0,0,0,0.18);
 
-  --background: #D4A32F; /* dorado principal */
+  box-shadow: 0 0.4rem 0.9rem rgba(0, 0, 0, 0.18);
+
+  /* Fondo principal del tema */
+  --background: var(--app-principal);
+
   justify-content: center;
 
   animation: fadeInUp 0.6s ease-out 0.1s both;
 }
 
-/* TITULO */
-ion-card-title {
+/* =========================
+           TITULO
+========================= */
+
+ion-card-title
+{
   font-size: clamp(1.2rem, 1.5vw, 1.4rem);
   font-weight: bold;
 
-  color: #5c0a0a; /* rojo vino profundo */
+  /* Texto sobre fondo principal */
+  color: var(--app-texto-contraste);
+
   text-align: center;
 }
 
+/* =========================
+     CONTENEDOR BOTONES
+========================= */
 
-/* CONTENEDOR BOTONES */
-.botones-card {
+.botones-card
+{
   display: flex;
   flex-direction: column;
+
   gap: 1rem;
+
   height: 100%;
 }
 
-/* BOTONES */
-.botones-card ion-button {
+/* =========================
+           BOTONES
+========================= */
+
+.botones-card ion-button
+{
   flex: 1;
 
   font-size: clamp(1rem, 1.2vw, 1.15rem);
@@ -78,56 +89,77 @@ ion-card-title {
   border-radius: 0.75rem;
 }
 
-/* ESTILO BASE BOTÓN */
-ion-button {
+/* =========================
+      ESTILO BASE BOTÓN
+========================= */
+
+ion-button
+{
   margin-top: 1rem;
 
   font-weight: bold;
 
-  --background: #F7E7B6; /* rojo vino */
-  --color: #7A0F0F;      /* dorado claro para contraste */
+  /* Acción secundaria */
+  --background: var(--app-secundario);
+
+  /* Texto sobre botón */
+  --color: var(--app-texto-contraste);
+
   border-radius: 0.6rem;
 
-  transition: transform 0.18s ease, filter 0.18s ease;
+  transition:
+    transform 0.18s ease,
+    filter 0.18s ease;
 }
 
-/* INTERACCIONES */
+/* =========================
+        INTERACCIONES
+========================= */
+
 ion-button:hover,
-ion-button:active {
+ion-button:active
+{
   transform: scale(0.97);
   filter: brightness(1.08);
 }
 
+/* =========================
+          ANIMACIÓN
+========================= */
 
-/* ANIMACIÓN */
-@keyframes fadeInUp {
-
-  from {
+@keyframes fadeInUp
+{
+  from
+  {
     opacity: 0;
     transform: translateY(30px);
   }
 
-  to {
+  to
+  {
     opacity: 1;
     transform: translateY(0);
   }
-
 }
 
+/* =========================
+         RESPONSIVE
+========================= */
 
-/* RESPONSIVE */
-@media (max-width:360px) {
-
-  ion-card {
+@media (max-width: 360px)
+{
+  ion-card
+  {
     padding: 0.8rem;
   }
 
-  ion-card-title {
+  ion-card-title
+  {
     font-size: 1.1rem;
   }
 
-  ion-button {
+  ion-button
+  {
     font-size: 0.9rem;
   }
-
 }

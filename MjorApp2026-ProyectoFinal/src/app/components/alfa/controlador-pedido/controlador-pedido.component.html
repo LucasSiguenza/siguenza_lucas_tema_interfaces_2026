@@ -1,12 +1,12 @@
 <div class="container flex-col">
   <ion-card class="flex-col">
     @if(this.perfilUsuario() !== 'mozo'){
-      <ion-title class="ion-text-center texto-oscuro">{{this.pedido().numeroMesa !== 'A domicilio'
+      <ion-title class="ion-text-center ">{{this.pedido().numeroMesa !== 'A domicilio'
       ?
       ` Mesa N° ${this.pedido().numeroMesa}`
       : `${pedido().direccion_cliente}`}}</ion-title>
     }
-    <ion-text class="ion-text-center texto-oscuro">
+    <ion-text class="ion-text-center ">
       {{this.pedido().es_delivery ? "Solicitado:" : 'Llegada:'}} 
       {{this.pedido().created_at|formatoFecha}}
     </ion-text>
@@ -27,8 +27,8 @@
       @if(this.perfilUsuario() !== 'mozo' && this.pedido().estado !== 'en camino' 
       && this.pedido().estado !== 'listo para pagar' && this.pedido().estado !== 'espera confirmación de pago'){
         <div class="flex-col">
-          <ion-title class="ion-text-center texto-claro" >Estado pedido:</ion-title> 
-          <ion-text class="ion-text-center texto-claro">
+          <ion-title class="ion-text-center texto " >Estado pedido:</ion-title> 
+          <ion-text class="ion-text-center texto ">
             <strong>{{this.pedido().estado | titlecase}}</strong>
           </ion-text>
         </div>
@@ -41,9 +41,9 @@
       @if(this.pedido().estado === 'listo para pagar' &&
        perfilUsuario() === 'cliente'){
          
-         <div class="flex-col texto">
+         <div class="flex-col texto ">
 
-           <ion-text class="ion-text-center texto-claro-invertido">
+           <ion-text class="ion-text-center">
             A pagar:<br>
             Propina ─ {{ this.propina() !== 0 ? (this.propina()! * 100) + '%'  : 'Ninguna' }}<br>
             Descuento ─ {{ this.descuento() !== 1 ? descuentoFormateado() + '%'  : 'Ninguno' }}

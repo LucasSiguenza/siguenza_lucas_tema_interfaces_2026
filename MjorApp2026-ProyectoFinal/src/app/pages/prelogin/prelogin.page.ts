@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Util } from 'src/app/services/util';
 import { UsuarioSb } from 'src/app/services/usuario-sb';
+import { TemaService } from 'src/app/services/tema-service';
 
 @Component({
   selector: 'app-prelogin',
@@ -16,11 +17,13 @@ export class PreloginPage implements OnInit {
 
   private noise: HTMLAudioElement | null = null;
   private utilSvc = inject(Util);
+  private temaSvc = inject(TemaService);
   private usuarioSvc = inject(UsuarioSb);
 
     
    async ionViewWillEnter() {
     let sesion = null;
+    await this.temaSvc.cargarTema();
     try {
       sesion = await this.usuarioSvc.recuperarSesion();
     } catch (e) {

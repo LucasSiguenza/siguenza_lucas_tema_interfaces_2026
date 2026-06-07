@@ -1,93 +1,125 @@
 @use 'src/theme/variables.scss' as *;
 
+/* =========================
+   DESCRIPCIÓN
+========================= */
 #desc {
-    height: 20vh;
+  height: 20vh;
 }
 
+/* =========================
+   FOTO PRINCIPAL
+========================= */
 .foto {
-    width: 100%;
-    aspect-ratio: auto;
-    object-fit: cover;
+  width: 100%;
+  aspect-ratio: auto;
+  object-fit: cover;
 }
 
+/* =========================
+   VENTANA ÉXITO
+========================= */
 #ventana-exito {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
+/* =========================
+   CONTENEDORES GENERALES
+========================= */
 .fotos-container {
-    width: 100%;
+  width: 100%;
 }
 
 .elementos-centrados {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .photo-view-container {
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    justify-content: space-evenly;
-
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-evenly;
 }
 
+/* =========================
+   BOTONES NAVEGACIÓN
+========================= */
 .btn-lr {
-    height: 100%;
-    margin: 0;
-    padding-bottom: 1vh;
-    width: 45%;
+  height: 100%;
+  margin: 0;
+  padding-bottom: 1vh;
+  width: 45%;
 }
 
 .btn-direccion {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    height: 8vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  height: 8vh;
 }
 
+/* =========================
+   ERRORES / VALIDACIÓN
+========================= */
 .invalidos {
-    color: white;
-    background-color: #7a0f0f;
-    border-radius: 5px;
-    text-align: center;
+  color: var(--app-texto-contraste);
+  background: var(--app-principal);
+
+  border-radius: 5px;
+  text-align: center;
 }
 
+/* =========================
+   TEXTO CENTRADO
+========================= */
 .ion-text-center {
-    background-color: #7a0f0f;
+  background: var(--app-principal);
+  color: var(--app-texto-contraste);
 }
 
-/* Estilos para los campos del formulario */
+/* =========================
+   FORM ITEMS
+========================= */
 ion-item {
-    --background: $givry;
-    /* Fondo Bordo */
-    --color: #ffffff;
-    /* Texto Blanco */
-    border-radius: 8px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --background: var(--app-fondo);
+  --color: var(--app-texto);
+
+  border-radius: 8px;
+  margin-bottom: 10px;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* inputs */
 ion-input,
 ion-textarea {
-    --color: #ffffff;
-    --placeholder-color: #e0e0e0;
-    --placeholder-opacity: 0.8;
+  --color: var(--app-texto);
+  --placeholder-color: var(--app-texto);
+  --placeholder-opacity: 0.6;
 }
 
-/* Asegurar que el label flotante sea legible */
+/* borde interno Ionic */
 ion-item::part(native) {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 
-.titulo-carta
-{
-    color: white;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+/* =========================
+   TÍTULO CARD
+========================= */
+.titulo-carta {
+  color: var(--app-texto-contraste);
+  padding-top: 1vh;
+  padding-bottom: 1vh;
 }
 
-.contenido-carta
-{
-    padding-top: 8px;
+/* =========================
+   CONTENIDO CARD
+========================= */
+.contenido-carta {
+  padding-top: 8px;
+
+  background: var(--app-fondo-secundario);
+  color: var(--app-texto);
 }

@@ -10,11 +10,11 @@ export class TemaService {
   private archivoSvc = inject(ArchivoService);
 
   public temaActual = signal<Tema>({
-    principal: '#3880ff',
-    secundario: '#5260ff',
-    fondo: '#ffffff',
-    fondo_secundario: '#7880ff',
-    texto: '#000000'
+    principal: '#7A0F0F',
+    secundario: '#D4A32F',
+    fondo: '#7A0F0F',
+    fondo_secundario: '#D4A32F',
+    texto: '#F7E7B6'
   });
 
   public nombreTemaActual = signal< 'profesional' | 'claro' | 'inter' |
@@ -23,11 +23,7 @@ export class TemaService {
   public sonidoTemaActual = signal<'profesional' | 'claro' | 'inter' |
    'naif' | 'oscuro' | 'argentina'>('inter')
 
-  constructor() {
-    this.cargarTema();
-  }
-
-   private async cargarTema(): Promise<void> {
+  async cargarTema(): Promise<void> {
 
     const temaObj : {tema: Tema,nombre: string, sonido: string} | null = await this.archivoSvc.recuperarArchivoGuardado('tema.usuario') ;
     console.log(JSON.stringify(temaObj));
@@ -56,7 +52,9 @@ export class TemaService {
     this.temaActual.set(tema);
     const temaObj = {tema: tema, nombre: this.nombreTemaActual(), 
       sonido: this.sonidoTemaActual()}
-     this.archivoSvc.guardarArchivoLocal('tema.usuario',temaObj);
+    queueMicrotask(() => {
+      this.archivoSvc.guardarArchivoLocal('tema.usuario',temaObj);
+    });
     const root = document.documentElement;
 
     const textoContraste =
@@ -75,6 +73,10 @@ export class TemaService {
     root.style.setProperty(
       '--app-secundario',
       tema.secundario
+    );
+    root.style.setProperty(
+      '--app-fondo-secundario',
+      tema.fondo_secundario
     );
 
     root.style.setProperty(

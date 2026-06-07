@@ -66,6 +66,14 @@ export class ResultadosEncuestaPage implements OnInit {
       personCircleOutline,
     });
   }
+  estilos = getComputedStyle(document.documentElement);
+
+  principal = this.estilos.getPropertyValue('--app-principal').trim();
+  secundario = this.estilos.getPropertyValue('--app-secundario').trim();
+  texto = this.estilos.getPropertyValue('--app-texto').trim();
+  textoContraste = this.estilos.getPropertyValue('--app-texto-contraste').trim();
+  fondo = this.estilos.getPropertyValue('--app-fondo').trim();
+  fondoSecundario = this.estilos.getPropertyValue('--app-fondo-secundario').trim();
 
   async ngOnInit() {
     await this.cargarEstadisticas();
@@ -144,13 +152,12 @@ export class ResultadosEncuestaPage implements OnInit {
     this.crearGraficoRadar();
   }
 
+  
   /**
    * Gráfico de barras con promedios de calificaciones
    */
   private crearGraficoPromedios() {
-    const canvas = document.getElementById(
-      'chartPromedios'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('chartPromedios') as HTMLCanvasElement;
     if (!canvas || !this.estadisticas) return;
 
     const ctx = canvas.getContext('2d');
@@ -170,18 +177,18 @@ export class ResultadosEncuestaPage implements OnInit {
               this.estadisticas.promedioAtencion,
             ],
             backgroundColor: [
-              'rgba(255, 99, 132, 0.8)',
-              'rgba(54, 162, 235, 0.8)',
-              'rgba(255, 206, 86, 0.8)',
-              'rgba(75, 192, 192, 0.8)',
+              this.principal,
+              this.secundario,
+              this.textoContraste,
+              this.texto,
             ],
             borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
+              this.principal,
+              this.secundario,
+              this.principal,
+              this.texto,
             ],
-            borderWidth: 2,
+            borderWidth: 5,
           },
         ],
       },
@@ -193,25 +200,25 @@ export class ResultadosEncuestaPage implements OnInit {
             beginAtZero: true,
             max: 5,
             ticks: {
-              color: 'white',
+              color: this.texto,
               stepSize: 1,
               font: {
                 size: 14,
               },
             },
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)',
+              color: this.texto + '33',
             },
           },
           x: {
             ticks: {
-              color: 'white',
+              color: this.texto,
               font: {
                 size: 12,
               },
             },
             grid: {
-              color: 'rgba(255, 255, 255, 0.1)',
+              color: this.texto + '33',
             },
           },
         },
@@ -222,7 +229,7 @@ export class ResultadosEncuestaPage implements OnInit {
           title: {
             display: true,
             text: 'Calificaciones Promedio (1-5)',
-            color: 'white',
+            color: this.texto,
             font: {
               size: 16,
               weight: 'bold',
@@ -237,9 +244,7 @@ export class ResultadosEncuestaPage implements OnInit {
    * Gráfico de dona para probabilidad de recomendación
    */
   private crearGraficoRecomendacion() {
-    const canvas = document.getElementById(
-      'chartRecomendacion'
-    ) as HTMLCanvasElement;
+    const canvas = document.getElementById('chartRecomendacion') as HTMLCanvasElement;
     if (!canvas || !this.estadisticas) return;
 
     const ctx = canvas.getContext('2d');
@@ -255,14 +260,14 @@ export class ResultadosEncuestaPage implements OnInit {
           {
             data: [si, no, tal_vez],
             backgroundColor: [
-              'rgba(75, 192, 192, 0.8)',
-              'rgba(255, 99, 132, 0.8)',
-              'rgba(255, 206, 86, 0.8)',
+              this.secundario,
+              this.principal,
+              this.fondoSecundario,
             ],
             borderColor: [
-              'rgba(75, 192, 192, 1)',
-              'rgba(255, 99, 132, 1)',
-              'rgba(255, 206, 86, 1)',
+              this.texto,
+              this.texto,
+              this.texto,
             ],
             borderWidth: 2,
           },
@@ -275,7 +280,7 @@ export class ResultadosEncuestaPage implements OnInit {
           legend: {
             position: 'bottom',
             labels: {
-              color: 'white',
+              color: this.texto,
               font: {
                 size: 14,
               },
@@ -285,7 +290,7 @@ export class ResultadosEncuestaPage implements OnInit {
           title: {
             display: true,
             text: '¿Nos recomendarías?',
-            color: 'white',
+            color: this.texto,
             font: {
               size: 16,
               weight: 'bold',
@@ -319,13 +324,13 @@ export class ResultadosEncuestaPage implements OnInit {
               this.estadisticas.promedioPrecioCalidad,
               this.estadisticas.promedioAtencion,
             ],
-            backgroundColor: 'rgba(212, 163, 47, 0.2)', // Gold transparent
-            borderColor: '#D4A32F', // Gold
+            backgroundColor: this.secundario + '55',
+            borderColor: this.principal,
             borderWidth: 2,
-            pointBackgroundColor: '#D4A32F',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: '#D4A32F',
+            pointBackgroundColor: this.principal,
+            pointBorderColor: this.texto,
+            pointHoverBackgroundColor: this.texto,
+            pointHoverBorderColor: this.principal,
           },
         ],
       },
@@ -337,7 +342,7 @@ export class ResultadosEncuestaPage implements OnInit {
             beginAtZero: true,
             max: 5,
             ticks: {
-              color: 'white',
+              color: this.texto,
               backdropColor: 'transparent',
               stepSize: 1,
               font: {
@@ -345,10 +350,10 @@ export class ResultadosEncuestaPage implements OnInit {
               },
             },
             grid: {
-              color: 'rgba(255, 255, 255, 0.2)',
+              color: this.texto + '33',
             },
             pointLabels: {
-              color: 'white',
+              color: this.texto,
               font: {
                 size: 13,
                 weight: 'bold',
@@ -363,7 +368,7 @@ export class ResultadosEncuestaPage implements OnInit {
           title: {
             display: true,
             text: 'Vista General',
-            color: 'white',
+            color: this.texto,
             font: {
               size: 16,
               weight: 'bold',

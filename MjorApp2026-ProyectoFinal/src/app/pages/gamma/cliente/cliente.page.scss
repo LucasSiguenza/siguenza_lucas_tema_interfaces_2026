@@ -3,9 +3,7 @@
 /* =========================
         CONTENEDOR
 ========================= */
-
 .container {
-
   display: flex;
   flex-direction: column;
 
@@ -18,48 +16,40 @@
 
   padding: 1.5rem;
 
+  background: var(--app-fondo);
 }
-
 
 /* =========================
           TITULO
 ========================= */
-.instruction
-{
+.instruction {
   display: flex;
   flex-direction: row;
 }
 
-.flecha
-{
+.flecha {
   width: 25%;
 }
 
-.texto-vertical
-{
+.texto-vertical {
   text-orientation: upright;
 }
-h3 {
 
+h3 {
   text-align: center;
 
-  color: #{$dorado};
+  color: var(--app-texto);
 
   font-weight: 450;
 
   max-width: 320px;
-
 }
-
 
 /* =========================
         BOTON QR
 ========================= */
-
 .btn-qr {
-
   width: min(85vw, 360px);
-
   height: 42vh;
 
   font-size: 1.3rem;
@@ -67,18 +57,13 @@ h3 {
   border-radius: 18rem;
 
   font-weight: 600;
-
 }
-
 
 /* =========================
       BOTON DELIVERY
 ========================= */
-
 .btn-delivery {
-
   width: min(85vw, 360px);
-
   height: 60px;
 
   font-size: 1.05rem;
@@ -86,46 +71,33 @@ h3 {
   border-radius: 14px;
 
   font-weight: 600;
-
 }
-
 
 /* =========================
    CLASES REUTILIZABLES
 ========================= */
 
-/* fondo bordó */
-
+/* 🔶 fondo principal */
 .color-bordo {
-
-  --background: #{$bordo};
-
-  --color: #{$givry};
-
+  --background: var(--app-principal);
+  --color: var(--app-texto-contraste);
 }
 
-
-/* fondo dorado */
-
+/* 🔶 acción destacada */
 .color-dorado {
-
-  --background: #{$dorado};
-
-  --color: #{$bordo};
-
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
 }
 
-
-/* fondo givry */
-
+/* 🔶 superficie clara del sistema */
 .color-givry {
-
-  --background: #{$givry};
-
-  --color: #{$bordo};
-
+  --background: var(--app-fondo-secundario);
+  --color: var(--app-texto);
 }
 
+/* =========================
+   FAB
+========================= */
 ion-fab {
   margin-right: 1rem;
   margin-top: 4rem;

@@ -1,0 +1,7 @@
+.global-overlay {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 9999;
+  pointer-events: auto;
+}

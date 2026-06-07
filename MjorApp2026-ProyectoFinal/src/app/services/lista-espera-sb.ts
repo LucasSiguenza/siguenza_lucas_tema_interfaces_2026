@@ -14,8 +14,7 @@ export class ListaEsperaSb {
   usrSeleccionado = signal<ListEsperaUsuario | null>(null);
   usrActual = signal<ListEsperaUsuario | null>(null);
   
-  private canalListEsperaUsuarios: RealtimeChannel | null = this.sbSvc.sb.channel('lista-espera-clientes-realtime');
-  private isCanalInicializado = false;
+
 //! =================== Métodos CRUD ===================
 
   async agregarListEsperaUsuario(usr: ListEsperaUsuario){
@@ -34,12 +33,38 @@ export class ListaEsperaSb {
   }
 
   //! =================== Métodos Tiempo Real ===================
+private canalListEsperaUsuarios: RealtimeChannel | null = null;
+private isCanalInicializado = false;
+private reintentandoCanal = false;
 
-  async iniciarTRListEsperaUsuarios() {
+async iniciarTRListEsperaUsuarios() {
+
   if (this.isCanalInicializado) return;
+
   await this.refrescarListaListEsperaUsuarios();
-  this.isCanalInicializado = true;
-  this.canalListEsperaUsuarios!
+
+  this.crearCanalListEsperaUsuarios();
+
+  document.addEventListener('visibilitychange', async() => {
+
+    if (
+      document.visibilityState === 'visible' &&
+      !this.isCanalInicializado &&
+      !this.reintentandoCanal
+    ) {
+
+      console.warn('App volvió al foreground. Reconectando realtime lista de espera...');
+
+      await this.reconectarCanalListEsperaUsuarios();
+    }
+  });
+}
+
+private crearCanalListEsperaUsuarios() {
+
+  this.canalListEsperaUsuarios = this.sbSvc.sb.channel('lista-espera-clientes-realtime');
+
+  this.canalListEsperaUsuarios
     .on(
       'postgres_changes',
       {
@@ -47,37 +72,90 @@ export class ListaEsperaSb {
         schema: 'public',
         table: 'usuarios_espera'
       },
-      (evento) => {
+      async(evento) => {
+
         console.log('Evento realtime recibido:', evento);
 
         switch (evento.eventType) {
+
           case 'INSERT':
-            setTimeout(()=> {
-                this.refrescarListaListEsperaUsuarios();
+            setTimeout(async() => {
+              await this.refrescarListaListEsperaUsuarios();
             }, 1000);
-            break;
+          break;
 
           case 'UPDATE':
-            this.refrescarListaListEsperaUsuarios();
-            break;
+            await this.refrescarListaListEsperaUsuarios();
+          break;
 
           case 'DELETE':
-            this.refrescarListaListEsperaUsuarios();
-            break;
+            await this.refrescarListaListEsperaUsuarios();
+          break;
         }
       }
     )
-    .subscribe((status) => {
-      console.log("Estado canal realtime Lista de espera:", status);
-    });
-  }
+    .subscribe(async(status) => {
 
-  destruirCanalListEsperaUsuarios() {
+      console.log('Estado canal realtime Lista de espera:', status);
+
+      switch (status) {
+
+        case 'SUBSCRIBED':
+          this.isCanalInicializado = true;
+          this.reintentandoCanal = false;
+        break;
+
+        case 'TIMED_OUT':
+        case 'CHANNEL_ERROR':
+        case 'CLOSED':
+
+          if (this.reintentandoCanal) return;
+
+          this.reintentandoCanal = true;
+
+          console.warn('Canal realtime lista de espera caído. Reconectando...');
+
+          this.isCanalInicializado = false;
+
+          await this.reconectarCanalListEsperaUsuarios();
+
+        break;
+      }
+    });
+}
+
+private async reconectarCanalListEsperaUsuarios() {
+
+  try {
+
     if (this.canalListEsperaUsuarios) {
-      this.sbSvc.sb.removeChannel(this.canalListEsperaUsuarios);
+
+      await this.destruirCanalListEsperaUsuarios();
+
       this.canalListEsperaUsuarios = null;
     }
+
+    setTimeout(() => {
+      this.crearCanalListEsperaUsuarios();
+    }, 2000);
+
+  } catch(error) {
+
+    console.error('Error reconectando canal lista de espera:', error);
+
+    this.reintentandoCanal = false;
   }
+}
+
+async destruirCanalListEsperaUsuarios() {
+
+  if (this.canalListEsperaUsuarios) {
+
+    await this.sbSvc.sb.removeChannel(this.canalListEsperaUsuarios);
+
+    this.isCanalInicializado = false;
+  }
+}
   //! =================== Métodos Privados ===================
 
   private async obtenerListaEsperaUsuario(usuario: string): Promise<ListEsperaUsuario | null>{

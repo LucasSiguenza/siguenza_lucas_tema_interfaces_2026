@@ -1,114 +1,183 @@
-$color-bordo: #7A0F0F;
-$color-dorado: #D4A32F;
-
+/* =========================
+   CONTENEDOR GENERAL
+   ========================= */
+/* Fondo principal de la pantalla */
 ion-content {
-  --background: #{$color-bordo};
+  --background: var(--app-fondo);
 }
 
+/* =========================
+   CONTENEDOR SUDOKU
+   ========================= */
+/* Texto principal adaptado al tema */
 .sudoku-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  color: $color-dorado;
+
+  color: var(--app-texto);
 }
 
+/* =========================
+   TÍTULO
+   ========================= */
+/* Texto destacado */
 .titulo {
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    margin-bottom: 10px;
+  text-align: center;
+
+  color: var(--app-texto);
+
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
+/* =========================
+   PANEL DE INFORMACIÓN
+   ========================= */
+/* Información de tiempo, errores, etc. */
 .info-panel {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+
+  font-size: 1.1rem;
+  font-weight: bold;
+
+  color: var(--app-texto);
 }
 
-/* Grilla */
+/* =========================
+   TABLERO
+   ========================= */
+/* Fondo secundario para diferenciar el tablero */
 .sudoku-grid {
-  background-color: white; /* Fondo blanco para el tablero */
-  border: 3px solid $color-dorado;
+  background-color: var(--app-fondo-secundario);
+
+  border: 3px solid var(--app-principal);
+
   display: flex;
   flex-direction: column;
 }
 
 .fila {
   display: flex;
-  height: 40px; /* Altura de celda */
+  height: 40px;
 }
 
+/* =========================
+   CELDAS
+   ========================= */
+/* Celdas normales */
 .celda {
   flex: 1;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #ccc;
+
+  border: 1px solid var(--app-principal);
+
   font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
+
+  color: var(--app-texto);
+
   cursor: pointer;
 }
 
+/* Celdas bloqueadas */
 .celda.fija {
-    color: #000;
-    background-color: #e0e0e0;
+  background-color: var(--app-fondo);
+
+  color: var(--app-texto);
 }
 
+/* Celda seleccionada */
 .celda.selected {
-    background-color: $color-dorado;
-    color: $color-bordo;
+  background-color: var(--app-principal);
+
+  color: var(--app-texto-contraste);
 }
 
+/* Líneas gruesas de separación */
 .border-bottom-thick {
-    border-bottom: 2px solid $color-bordo;
+  border-bottom: 2px solid var(--app-secundario);
 }
 
 .border-right-thick {
-    border-right: 2px solid $color-bordo;
+  border-right: 2px solid var(--app-secundario);
 }
 
-/* Teclado */
+/* =========================
+   TECLADO NUMÉRICO
+   ========================= */
+
 .teclado-numerico {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 10px;
+  margin-top: 20px;
 }
 
+/* Botones numéricos */
 .tecla {
-    width: 35px;
-    height: 35px;
-    background-color: $color-dorado;
-    color: $color-bordo;
-    border: none;
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 1.2rem;
+  width: 35px;
+  height: 35px;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: var(--app-principal);
+
+  color: var(--app-texto-contraste);
+
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
+/* =========================
+   CONTADORES
+   ========================= */
+/* Texto auxiliar */
 .contador {
-    display: block;
-    text-align: center;
-    font-size: 0.8rem;
-    color: white;
+  display: block;
+
+  text-align: center;
+
+  font-size: 0.8rem;
+
+  color: var(--app-texto);
 }
 
+/* =========================
+   CONTROLES
+   ========================= */
+/* Botones de acciones */
 .controls ion-button {
-    margin-top: 10px;
-    --border-color: #{$color-dorado};
-    --color: #{$color-dorado};
+  margin-top: 10px;
+
+  --border-color: var(--app-fondo-secundario);
+  --color: var(--app-texto);
 }
 
+/* =========================
+   MENSAJE RESULTADO
+   ========================= */
+/* Victoria, derrota o finalización */
 .result-message {
-    text-align: center;
-    background: $color-dorado;
-    color: $color-bordo;
-    padding: 10px;
-    border-radius: 8px;
-    margin-top: 20px;
-    font-weight: bold;
+  margin-top: 20px;
+  padding: 10px;
+
+  text-align: center;
+
+  border-radius: 8px;
+
+  background: var(--app-principal);
+
+  color: var(--app-texto-contraste);
+
+  font-weight: bold;
 }

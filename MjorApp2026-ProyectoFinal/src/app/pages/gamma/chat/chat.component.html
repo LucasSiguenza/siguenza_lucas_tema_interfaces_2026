@@ -1,7 +1,7 @@
 <ion-content class="fondo-bordo">
   <app-header></app-header>
 
-  <div class="sala ion-text-center texto-claro">
+  <div class="sala ion-text-center ">
     <h1>
       {{
         this.chatService.chatID().length >= 2
@@ -21,7 +21,7 @@
       {
         @if (item.users.uid == this.User.usrActual()?.uid)
         {
-          <div class="message-right texto-givry">
+          <div class="message-right ">
 
             <h6>
               {{item.created_at | date:'dd/MM/yyyy HH:mm':'-0300'}}
@@ -35,7 +35,7 @@
         }
         @else
         {
-          <div class="message-left texto-bordo">
+          <div class="message-left ">
 
             <h3>
               {{item.users.nombre}}

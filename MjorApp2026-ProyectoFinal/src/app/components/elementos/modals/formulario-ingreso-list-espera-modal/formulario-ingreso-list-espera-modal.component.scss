@@ -1,5 +1,3 @@
-@use 'src/theme/variables.scss' as *;
-
 /* =========================
         HEADER
 ========================= */
@@ -8,8 +6,11 @@
 
   ion-toolbar {
 
-    --background: #{$bordo};
-    --color: #{$givry};
+    /* Fondo principal de la aplicación */
+    --background: var(--app-principal);
+
+    /* Texto sobre color principal */
+    --color: var(--app-texto-contraste);
 
     ion-title {
       font-weight: 600;
@@ -17,7 +18,10 @@
     }
 
     ion-button {
-      --color: #{$dorado};
+
+      /* Acciones destacadas del header */
+      --color: var(--app-secundario);
+
       font-weight: 500;
     }
 
@@ -32,7 +36,8 @@
 
 .content {
 
-  --background: #{$dorado};
+  /* Fondo general de la vista */
+  --background: var(--app-fondo);
 
   --padding-top: 0.75rem;
   --padding-start: 1rem;
@@ -66,11 +71,12 @@
 
   border-radius: 16px;
 
-  border: 1px solid rgba($dorado, .25);
+  /* Borde utilizando color secundario del tema */
+  border: 1px solid color-mix(in srgb, var(--app-secundario) 25%, transparent);
 
   box-shadow:
-    0 10px 25px rgba(0,0,0,.18),
-    0 4px 10px rgba(0,0,0,.12);
+    0 10px 25px rgba(0, 0, 0, .18),
+    0 4px 10px rgba(0, 0, 0, .12);
 
   ion-card-content {
     padding: 1.25rem;
@@ -107,7 +113,8 @@ ion-list {
 
 h2 {
 
-  color: $givry;
+  /* Texto principal */
+  color: var(--app-texto-contraste);
 
   font-weight: 600;
 
@@ -125,7 +132,8 @@ h2 {
 
 .input-field-mjor {
 
-  --background: rgba($givry, .08);
+  /* Fondo suave basado en el color secundario */
+  --background: color-mix(in srgb, var(--app-secundario) 8%, transparent);
 
   border-radius: 12px;
 
@@ -142,20 +150,25 @@ h2 {
 
 .radio-item {
 
-  --background: rgba($givry, .05);
+  /* Fondo suave para opciones */
+  --background: color-mix(in srgb, var(--app-secundario) 5%, transparent);
 
   border-radius: 10px;
 
   margin-top: .35rem;
 
   ion-label {
-    color: $givry;
+
+    /* Texto principal */
+    color: var(--app-texto-contraste);
+
   }
 
   ion-radio {
 
-    --color: #{$dorado};
-    --color-checked: #{$dorado};
+    /* Color de selección */
+    --color: var(--app-secundario);
+    --color-checked: var(--app-secundario);
 
   }
 
@@ -185,8 +198,9 @@ h2 {
 
 .actions ion-button[type="submit"] {
 
-  --background: #{$dorado};
-  --color: #{$bordo};
+  /* Acción principal */
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
 
   font-weight: 600;
 
@@ -201,9 +215,9 @@ h2 {
 
 .actions ion-button:not([type="submit"]) {
 
-  --background: #c23b3b;
-
-  --color: white;
+  /* Acción secundaria */
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
 
   font-weight: 600;
 

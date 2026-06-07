@@ -1,314 +1,445 @@
-$color-bordo: #7A0F0F;
-$color-oro: #D4A32F;
+/* =========================
+   CONTENIDO GENERAL
+   ========================= */
 
+/* Fondo principal de la pantalla */
 ion-content {
-  --background: #{$color-bordo};
+  --background: var(--app-fondo);
 }
 
-ion-header {
-  ion-toolbar {
-    --background: #{$color-bordo};
-    --color: white;
+/* =========================
+   LOADING
+   ========================= */
 
-    ion-title {
-      font-weight: 700;
-      font-size: 1.3rem;
-
-      ion-icon {
-        margin-right: 8px;
-        vertical-align: middle;
-      }
-    }
-
-    ion-button {
-      --color: white;
-
-      ion-icon {
-        font-size: 1.5rem;
-      }
-    }
-  }
-}
-
+/* Pantalla de carga */
 .loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   height: 100vh;
   gap: 1.5rem;
 
   ion-spinner {
-    --color: #{$color-oro};
+
+    /* Color principal del tema */
+    --color: var(--app-principal);
+
     width: 60px;
     height: 60px;
   }
 
   p {
-    color: white;
+
+    /* Texto principal */
+    color: var(--app-texto);
+
     font-size: 1.2rem;
     font-weight: 600;
   }
 }
 
+/* =========================
+   ESTADO VACÍO
+   ========================= */
+
+/* Sin resultados */
 .empty-state {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   height: 100vh;
-  text-align: center;
+
   padding: 2rem;
-  color: white;
+
+  text-align: center;
+
+  color: var(--app-texto);
 
   ion-icon {
+
+    /* Color principal del tema */
+    color: var(--app-principal);
+
     font-size: 6rem;
-    color: #{$color-oro};
+
     margin-bottom: 2rem;
   }
 
   h2 {
-    color: white;
+
+    /* Texto principal */
+    color: var(--app-texto);
+
     font-size: 1.8rem;
     font-weight: 700;
+
     margin-bottom: 1rem;
   }
 
   p {
-    color: rgba(255, 255, 255, 0.8);
+
+    /* Texto principal suavizado */
+    color: var(--app-texto);
+
+    opacity: .8;
+
     font-size: 1.1rem;
   }
 }
+
+/* =========================
+   SWIPER RESULTADOS
+   ========================= */
 
 .resultados-swiper {
   height: calc(100vh - 56px);
   width: 100%;
 
-  --swiper-navigation-color: white;
-  --swiper-pagination-color: #{$color-oro};
-  --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
-  --swiper-pagination-bullet-inactive-opacity: 1;
+  /* Colores de navegación */
+  --swiper-navigation-color: var(--app-secundario);
+
+  /* Paginación activa */
+  --swiper-pagination-color: var(--app-secundario);
+
+  /* Paginación inactiva */
+  --swiper-pagination-bullet-inactive-color: var(--app-texto);
+  --swiper-pagination-bullet-inactive-opacity: .4;
 
   swiper-slide {
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 20px;
   }
 }
 
+/* =========================
+   SLIDE
+   ========================= */
+
 .slide-content {
   width: 100%;
   max-width: 900px;
+
+  height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
 
   ion-card {
     width: 100%;
-    background: #{$color-oro};
-    border-radius: 20px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+
     margin: 0;
+
     max-height: 80vh;
+
     overflow: hidden;
+
+    border-radius: 20px;
+
+    /* Fondo secundario del tema */
+    background: var(--app-fondo-secundario);
+
+    /* Texto principal */
+    color: var(--app-texto);
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
 
     ion-card-header {
       text-align: center;
+
       padding: 1.5rem;
-      background: rgba(122, 15, 15, 0.2);
-      border-bottom: 3px solid #{$color-bordo};
+
+      /* Cabecera destacada */
+      background: var(--app-principal);
 
       ion-card-title {
-        color: #{$color-bordo};
+
+        /* Texto contrastante sobre principal */
+        color: var(--app-texto-contraste);
+
         font-size: 2rem;
         font-weight: 800;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
       }
     }
 
     ion-card-content {
       padding: 2rem;
+
       overflow-y: auto;
+
       max-height: calc(80vh - 120px);
+
+      color: var(--app-texto);
     }
   }
 }
 
+/* =========================
+   ESTADÍSTICAS
+   ========================= */
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
   gap: 2rem;
+
   padding: 1rem 0;
 }
 
 .stat-item {
   text-align: center;
+
   padding: 2rem 1rem;
-  background: $color-oro;
+
+  /* Superficie interna */
+  background: var(--app-fondo);
+
+  color: var(--app-texto);
+
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+
+  transition: transform .3s ease;
 
   &:hover {
     transform: translateY(-5px);
   }
 
   .stat-value {
+
+    /* Valor destacado */
+    color: var(--app-principal);
+
     font-size: 3rem;
     font-weight: 900;
-    color: #{$color-bordo};
-    margin-bottom: 0.8rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
+    margin-bottom: .8rem;
   }
 
   .stat-label {
+
+    /* Texto principal */
+    color: var(--app-texto);
+
     font-size: 1.1rem;
     font-weight: 700;
-    color: #333;
   }
 }
 
+/* =========================
+   GRÁFICOS
+   ========================= */
+
 .chart-container {
   position: relative;
+
   height: 450px;
+
   padding: 1rem;
-  background: $color-bordo;
+
+  /* Superficie secundaria dentro de la tarjeta */
+  background: var(--app-fondo);
+
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
 }
+
+/* =========================
+   RECOMENDACIONES
+   ========================= */
 
 .recommendation-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+
   gap: 1rem;
-  padding: 0.5rem 0;
+
+  padding: .5rem 0;
 }
 
 .rec-item {
   text-align: center;
-  padding: 1.2rem 0.8rem;
+
+  padding: 1.2rem .8rem;
+
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease;
+
+  /* Color principal */
+  background: var(--app-principal);
+
+  /* Contraste sobre principal */
+  color: var(--app-texto-contraste);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+
+  transition: transform .3s ease;
 
   &:hover {
     transform: scale(1.05);
   }
 
   .rec-count {
+    color: var(--app-texto-contraste);
     font-size: 2.5rem;
     font-weight: 900;
-    margin-bottom: 0.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+    margin-bottom: .5rem;
   }
 
   .rec-label {
-    font-size: 0.95rem;
+    font-size: .95rem;
     font-weight: 700;
     line-height: 1.3;
   }
-
-  &.rec-si {
-    background: $color-bordo;
-    color: white;
-  }
-
-  &.rec-talvez {
-    background: $color-bordo;
-    color: white;
-  }
-
-  &.rec-no {
-    background: $color-bordo;
-    color: white;
-  }
 }
+
+/* =========================
+   SIN COMENTARIOS
+   ========================= */
 
 .no-comentarios {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   padding: 3rem 2rem;
+
   text-align: center;
 
   ion-icon {
+
+    /* Color principal */
+    color: var(--app-principal);
+
     font-size: 5rem;
-    color: #{$color-bordo};
+
     margin-bottom: 1.5rem;
-    opacity: 0.6;
+
+    opacity: .7;
   }
 
   p {
+
+    /* Texto principal */
+    color: var(--app-texto);
+
     font-size: 1.3rem;
-    color: #666;
     font-weight: 600;
   }
 }
 
+/* =========================
+   COMENTARIOS
+   ========================= */
+
 .comentarios-lista {
   display: flex;
   flex-direction: column;
+
   gap: 1.5rem;
+
   padding: 1rem 0;
 }
 
 .comentario-item {
-  background: $color-oro;
-  border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #{$color-bordo};
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Fondo interno */
+  background: var(--app-fondo);
+
+  color: var(--app-texto);
+
+  border-radius: 12px;
+
+  border-left: 4px solid var(--app-principal);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+
+  transition: transform .3s ease, box-shadow .3s ease;
 
   &:hover {
     transform: translateX(5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
 
   .comentario-header {
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     margin-bottom: 1rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 2px solid rgba(122, 15, 15, 0.2);
+    padding-bottom: .8rem;
+
+    border-bottom: 2px solid color-mix(
+      in srgb,
+      var(--app-principal) 30%,
+      transparent
+    );
 
     ion-icon {
+
+      /* Color principal */
+      color: var(--app-principal);
+
       font-size: 2rem;
-      color: #{$color-bordo};
     }
 
     .comentario-fecha {
-      font-size: 0.9rem;
-      color: #666;
+
+      /* Texto secundario */
+      color: var(--app-texto);
+
+      opacity: .7;
+
+      font-size: .9rem;
       font-weight: 600;
     }
   }
 
   .comentario-texto {
+
+    /* Texto principal */
+    color: var(--app-texto);
+
     font-size: 1.1rem;
-    color: #333;
-    line-height: 1.6;
     font-style: italic;
     font-weight: 500;
-    padding-left: 0.5rem;
+    line-height: 1.6;
+
+    padding-left: .5rem;
   }
 }
 
+/* =========================
+   RESPONSIVE
+   ========================= */
+
 @media (max-width: 768px) {
+
   .resultados-swiper {
     height: calc(100vh - 56px);
   }
 
   .slide-content {
+
     ion-card {
+
       max-height: 85vh;
 
       ion-card-header {
+
         padding: 1rem;
 
         ion-card-title {
@@ -333,6 +464,7 @@ ion-header {
   }
 
   .stat-item {
+    color: var(--app-texto-contraste);
     padding: 1.5rem 1rem;
 
     .stat-value {
@@ -350,6 +482,7 @@ ion-header {
   }
 
   .rec-item {
+
     padding: 1.5rem 1rem;
 
     .rec-count {
@@ -362,18 +495,45 @@ ion-header {
   }
 
   .comentario-item {
+
     .comentario-header {
+
       ion-icon {
         font-size: 1.5rem;
       }
 
       .comentario-fecha {
-        font-size: 0.8rem;
+        font-size: .8rem;
       }
     }
 
     .comentario-texto {
       font-size: 1rem;
+    }
+  }
+}
+
+/* =========================
+   TÍTULOS DE SLIDES
+   ========================= */
+/* Título de cada tarjeta dentro del swiper */
+.slide-content {
+
+  ion-card {
+
+    ion-card-header {
+
+      .titulo-slide,
+      ion-card-title {
+        color: var(--app-texto-contraste);
+
+        font-size: 2rem;
+        font-weight: 800;
+
+        text-align: center;
+
+        letter-spacing: .03rem;
+      }
     }
   }
 }

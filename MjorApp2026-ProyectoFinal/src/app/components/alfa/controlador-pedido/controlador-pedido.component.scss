@@ -1,66 +1,130 @@
 @use 'src/theme/variables.scss' as *;
 
-.flex-col{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-  .texto{
-    background-color: #F7E7B6;
+/* ========================================
+   CONTENEDOR FLEX
+   ======================================== */
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  
+  .texto {
+
+    /* 🔶 Superficie secundaria para destacar texto */
+    background-color: var(--app-fondo-secundario);
+
+    /* 🔶 Texto adaptado al tema */
+    color: var(--app-texto);
+
     border-radius: 0.5rem;
+
+    padding: 0.25rem 0.5rem;
+
+    
   }
 }
 
-.texto-claro-invertido{
-    background-color: $givry;
-    color: $bordo;
-    --background: $givry;
-    --color : $bordo;
-    border-radius: 0.5rem;
-    --border-radius: 0.5rem;
-    width: fit-content;
+/* ========================================
+   TEXTO CLARO INVERTIDO
+   ======================================== */
 
+.texto-claro-invertido {
+
+  /* 🔶 Bloque destacado */
+  background-color: var(--app-fondo);
+
+  /* 🔶 Contraste sobre fondo principal */
+  color: var(--app-texto);
+
+  --background: var(--app-fondo);
+  --color: var(--app-texto-contraste);
+
+  border-radius: 0.5rem;
+  --border-radius: 0.5rem;
+
+  width: fit-content;
+
+  padding: 0.25rem 0.5rem;
 }
+
+/* ========================================
+   VARIABLES COMPONENTE
+   ======================================== */
+
 :host {
-  // Variables para personalizar
+
   --fav-button-size: 3rem;
-  --fav-button-bg: $givry; // Color de fondo
-  --fav-icon-color: $bordo; // Color del ícono por defecto
-  --fav-button-z: 1000; // para flotante sobre contenido
+
+  /* 🔶 Botones flotantes */
+  --fav-button-bg: var(--app-secundario);
+  --fav-icon-color: var(--app-texto-contraste);
+
+  --fav-button-z: 1000;
 }
 
-// Botón flotante
+/* ========================================
+   BOTÓN FLOTANTE
+   ======================================== */
+
 .fav-button.flotante {
+
   position: absolute;
-  margin-top: 4rem; // ubicación vertical
-  margin-right: 1rem;  // ubicación horizontal
+
+  margin-top: 4rem;
+  margin-right: 1rem;
+
   width: var(--fav-button-size);
   height: var(--fav-button-size);
+
   border-radius: 50%;
+
   background-color: var(--fav-button-bg);
   color: var(--fav-icon-color);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   z-index: var(--fav-button-z);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-// Botón de cerrar modal
+/* ========================================
+   BOTÓN CERRAR MODAL
+   ======================================== */
+
 .fav-button.cerrar-modal {
+
   position: absolute;
+
   top: 0.2rem;
   right: 0.5rem;
+
   width: 2.5rem;
   height: 2.5rem;
+
   border-radius: 50%;
-  background-color: $givry; // tu color de fondo
-  color: $bordo; // bordó para la X
+
+  /* 🔶 Acción secundaria */
+  background-color: var(--app-secundario);
+  color: var(--app-texto-contraste);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: var(--fav-button-z + 1);
+
+  z-index: calc(var(--fav-button-z) + 1);
+
   font-size: 1.2rem;
 }
+
+ion-card{
+  color: var(--app-texto);
+}
+

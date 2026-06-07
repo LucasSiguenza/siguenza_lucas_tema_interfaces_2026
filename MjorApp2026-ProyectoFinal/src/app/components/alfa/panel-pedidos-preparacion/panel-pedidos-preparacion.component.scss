@@ -8,7 +8,9 @@
   padding: 1rem;
 }
 
-/* Contenedor de paginación */
+/* =========================
+   PAGINACIÓN
+   ========================= */
 .paginacion {
   display: flex;
   justify-content: center;
@@ -18,30 +20,31 @@
   margin-top: 1rem;
 }
 
-/* Botones */
+/* 🔶 BOTONES PAGINACIÓN (tema dinámico) */
 .btn-paginacion {
-  --background: #{$bordo};
-  --color: #{$givry};
+  --background: var(--app-principal);
+  --color: var(--app-texto-contraste);
   --border-radius: 0.6rem;
 
   font-weight: 600;
 }
 
-/* Hover */
+/* Hover respetando jerarquía del tema */
 .btn-paginacion:hover {
-  --background: #{$dorado};
-  --color: #{$bordo};
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
 }
 
-/* Texto página */
+/* 🔶 INFO DE PÁGINA (texto del sistema) */
 .pagina-info {
   font-size: 1rem;
   font-weight: 600;
-  color: $bordo;
+  color: var(--app-texto);
 }
 
-
-/* GRID DE CARDS */
+/* =========================
+   GRID DE CARDS
+   ========================= */
 .cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -49,35 +52,47 @@
   padding: 8px 4px 16px 4px;
 }
 
-/* TARJETAS */
+/* =========================
+   CARDS
+   ========================= */
 ion-card {
   border-radius: 14px;
   overflow: hidden;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
+
+  background: var(--app-fondo);
+  color: var(--app-texto-contraste);
 }
 
 ion-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
-/* FOTO */
+
+/* =========================
+   FOTO
+   ========================= */
 .card-foto {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
 }
 
-
-/* CARD MENSAJE (cuando no hay datos) */
-/* CARD MENSAJE (cuando no hay datos) */
+/* =========================
+   CARD MENSAJE (vacío)
+   ========================= */
 .card-mensaje {
   grid-column: 1 / -1;
   text-align: center;
-  background: $dorado;
+
+  /* 🔶 fondo del sistema en estado vacío */
+  background: var(--app-fondo-secundario);
+
   box-shadow: none;
+  color: var(--app-texto);
 }
 
-/* CONTENEDOR DEL ICONO */
+/* CONTENEDOR ICONO */
 .mensaje-foto {
   display: flex;
   flex-direction: column;
@@ -86,12 +101,21 @@ ion-card:hover {
   padding: 20px;
 }
 
-/* CÍRCULO VERDE */
+/* ICONO ESTADO VACÍO */
 .mensaje-foto ion-icon {
   font-size: 10vh;
-  color: white;
-  background: #2ecc71;
+
+  /* 🔶 antes era verde fijo */
+  color: var(--app-texto-contraste);
+
+  background: var(--app-principal);
+
   border-radius: 50%;
   padding: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+ion-text{
+  color: var(--app-texto-contraste);
 }

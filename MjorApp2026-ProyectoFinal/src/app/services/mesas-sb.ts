@@ -15,10 +15,6 @@ export class MesasSb {
   private sbSvc = inject(SupabaseService);
   private camaraSvc = inject(CamaraService);
   private usrSvc = inject(UsuarioSb);
-
-  private canalMesas: RealtimeChannel | null = this.sbSvc.sb.channel('mesas-realtime');
-  private isCanalInicializado = false;
-
   isModal = signal<boolean>(false)
   listaMesas = signal<Mesa[]>([])
   mesaSeleccionada = signal<Mesa | null>(null)
@@ -34,49 +30,129 @@ export class MesasSb {
   
   //! ==================== Métodos públicos ====================
   //~ ==================== Tiempo real.
-  async iniciarTRMesas() {
-    if (this.isCanalInicializado) return;
-    await this.cargarListaMesas();
-    this.isCanalInicializado = true;
-    this.canalMesas!
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'mesas'
-        },
-        (evento) => {
-          console.log('Evento realtime recibido:', evento);
+private canalMesas: RealtimeChannel | null = null;
+private isCanalInicializado = false;
+private reintentandoCanal = false;
 
-          switch (evento.eventType) {
-            case 'INSERT':
-              setTimeout(()=> {
-                  this.cargarListaMesas();
-              }, 1000);
-              break;
+async iniciarTRMesas() {
 
-            case 'UPDATE':
-              this.cargarListaMesas();
-              break;
+  if (this.isCanalInicializado) return;
 
-            case 'DELETE':
-              this.cargarListaMesas();
-              break;
-          }
-        }
-      )
-      .subscribe((status) => {
-        console.log("Estado canal realtime MESAS:", status);
-      });
+  await this.cargarListaMesas();
+
+  this.crearCanalMesas();
+
+  document.addEventListener('visibilitychange', async() => {
+
+    if (
+      document.visibilityState === 'visible' &&
+      !this.isCanalInicializado &&
+      !this.reintentandoCanal
+    ) {
+
+      console.warn('App volvió al foreground. Reconectando realtime mesas...');
+
+      await this.reconectarCanalMesas();
     }
+  });
+}
 
-  destruirCanalMesas() {
+private crearCanalMesas() {
+
+  this.canalMesas = this.sbSvc.sb.channel('mesas-realtime');
+
+  this.canalMesas
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
+        table: 'mesas'
+      },
+      async(evento) => {
+
+        console.log('Evento realtime recibido:', evento);
+
+        switch (evento.eventType) {
+
+          case 'INSERT':
+            setTimeout(async() => {
+              await this.cargarListaMesas();
+            }, 1000);
+          break;
+
+          case 'UPDATE':
+            await this.cargarListaMesas();
+          break;
+
+          case 'DELETE':
+            await this.cargarListaMesas();
+          break;
+        }
+      }
+    )
+    .subscribe(async(status) => {
+
+      console.log('Estado canal realtime MESAS:', status);
+
+      switch (status) {
+
+        case 'SUBSCRIBED':
+          this.isCanalInicializado = true;
+          this.reintentandoCanal = false;
+        break;
+
+        case 'TIMED_OUT':
+        case 'CHANNEL_ERROR':
+        case 'CLOSED':
+
+          if (this.reintentandoCanal) return;
+
+          this.reintentandoCanal = true;
+
+          console.warn('Canal realtime mesas caído. Reconectando...');
+
+          this.isCanalInicializado = false;
+
+          await this.reconectarCanalMesas();
+
+        break;
+      }
+    });
+}
+
+private async reconectarCanalMesas() {
+
+  try {
+
     if (this.canalMesas) {
-      this.sbSvc.sb.removeChannel(this.canalMesas);
+
+      await this.destruirCanalMesas();
+
       this.canalMesas = null;
     }
+
+    setTimeout(() => {
+      this.crearCanalMesas();
+    }, 2000);
+
+  } catch(error) {
+
+    console.error('Error reconectando canal mesas:', error);
+
+    this.reintentandoCanal = false;
   }
+}
+
+async destruirCanalMesas() {
+
+  if (this.canalMesas) {
+
+    await this.sbSvc.sb.removeChannel(this.canalMesas);
+
+    this.isCanalInicializado = false;
+  }
+}
 
 
   //~ ==================== CRUD

@@ -3,286 +3,250 @@
 /* =========================
    CONTENEDOR DE CARDS
 ========================= */
-
 .cards-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 3vw;
   padding: 3vw;
   max-height: 90vh;
+
+  /* 🔶 superficie secundaria global (background de sección) */
+  background: var(--app-fondo-secundario);
+
   overflow-y: auto;
 }
 
-
 /* =========================
-   CARD
+   CARD (superficie principal)
 ========================= */
-
 ion-card {
   border-radius: 1.6rem;
   padding-top: 0.5rem;
-  border: 0.4rem solid #D4A32F;
   transition: transform .2s ease;
+
+  /* 🔶 nivel 1 de superficie */
+  background: var(--app-fondo);
+  color: var(--app-texto);
+
+  /* ⚠️ esto estaba duplicado más abajo */
+  padding: 1rem;
 }
 
-ion-card-header{
+/* =========================
+   HEADER CARD
+========================= */
+ion-card-header {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 6vh;
   text-align: center;
+
+  color: var(--app-texto);
 }
 
+/* =========================
+   CONTENIDO CARD (nivel interno)
+========================= */
+ion-card-content {
+  /* 🔶 nivel interno / superficie secundaria */
+  background: var(--app-fondo-secundario);
+
+  color: var(--app-texto);
+
+  padding: 1rem;
+  border-radius: 1.2rem;
+}
 
 /* =========================
    FOTO
 ========================= */
-
 .card-foto {
-  display:flex;
-  justify-content:center;
-  margin-bottom:2rem;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
-.card-foto img{
-  width:60%;
-  max-width:220px;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  border-radius:50%;
-  border:2px solid #7a0f0f;
-}
+.card-foto img {
+  width: 60%;
+  margin-top: .5rem;
+  max-width: 220px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 50%;
 
+  /* 🔶 separación visual usando superficie */
+  border: 3px solid var(--app-fondo-secundario);
+}
 
 /* =========================
    TEXTO
 ========================= */
+.card-estado {
+  text-align: center;
+  font-size: clamp(.9rem, 3.8vw, 1.1rem);
+  margin-bottom: .6rem;
 
-.card-estado{
-  text-align:center;
-  font-size:clamp(.9rem,3.8vw,1.1rem);
-  margin-bottom:.6rem;
+  /* 🔶 texto primario del sistema */
+  color: var(--app-texto);
 }
-
 
 /* =========================
    BOTONES CARD
 ========================= */
-
-.card-buttons{
-  margin-top:1rem;
-  display:flex;
-  flex-direction:column;
-  gap:.6rem;
-  width:100%;
+.card-buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  width: 100%;
 }
 
-
-/* contenedor de editar / eliminar */
-
-.card-buttons ion-buttons{
-  display:flex;
-  gap:.5rem;
+.card-buttons ion-buttons {
+  display: flex;
+  gap: .5rem;
 }
 
+/* 🔶 botones: acción secundaria del sistema */
+.card-buttons ion-button {
+  flex: 1;
+  font-size: .85rem;
+  --border-radius: .6rem;
+  min-height: 2.5rem;
 
-/* botones dentro de card */
-
-.card-buttons ion-button{
-  flex:1;
-  font-size:.85rem;
-  --border-radius:.6rem;
-  min-height:2.5rem;
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
 }
 
-
-/* iconos */
-
-.card-buttons ion-icon{
-  font-size:1.2rem;
+.card-buttons ion-icon {
+  font-size: 1.2rem;
 }
-
 
 /* =========================
-   PAGINACION SUPERIOR
+   PAGINACIÓN SUPERIOR
 ========================= */
-
-.wrapper{
-  padding:0 1rem;
+.wrapper {
+  padding: 0 1rem;
 }
 
-ion-buttons{
-  display:flex;
-  align-items:center;
-  justify-content:flex-end;
-  gap:.6rem;
-  height:8vh;
+ion-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .6rem;
+  height: 8vh;
 }
 
-ion-button.btn-azul{
-  --background:#0D47A1;
-  --color:#fff;
-  --border-radius:50%;
+/* 🔵 acción primaria */
+ion-button.btn-azul {
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
+  --border-radius: 50%;
 
-  width:2rem;
-  height:2rem;
-}
-ion-button.btn-verde{
-  --background:#2fff0082;
-  --color:#fff;
-  --border-radius:50%;
-
-  width:2.5rem;
-  height:2.5rem;
+  width: 2rem;
+  height: 2rem;
 }
 
-ion-button.btn-azul ion-icon{
-  font-size:1.4rem;
+/* 🟢 acción secundaria */
+ion-button.btn-verde {
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
+  --border-radius: 50%;
+
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
-.texto-blanco{
-  color: $givry;
-  font-size:.9rem;
+ion-button.btn-azul ion-icon {
+  font-size: 1.4rem;
 }
 
+.texto-blanco {
+  color: var(--app-texto-contraste);
+  font-size: .9rem;
+}
 
 /* =========================
    FOOTER MODAL
 ========================= */
-
-ion-footer ion-toolbar{
-  padding:0 .5rem;
+ion-footer ion-toolbar {
+  padding: 0 .5rem;
 }
 
 /* =========================
-   AJUSTES SOLO EN MODAL
+   MODAL PANEL MESAS
 ========================= */
-
 ion-modal app-panel-mesas {
-
   display: block;
   padding-bottom: env(safe-area-inset-bottom);
-
 }
 
-
 /* =========================
-     NAV MÁS ACCESIBLE
+   NAV ACCESIBLE
 ========================= */
-
 ion-modal app-panel-mesas .wrapper {
-
   position: sticky;
   bottom: 0;
-
   z-index: 10;
 
   padding: .6rem .4rem;
 
+  /* 🔶 overlay (esto NO es tema, es overlay UI) */
   background: linear-gradient(
     to top,
-    rgba(0,0,0,.65),
-    rgba(0,0,0,0)
+    rgba(0, 0, 0, .65),
+    rgba(0, 0, 0, 0)
   );
-
 }
 
-
-/* Botones cómodos para pulgar */
-
 ion-modal app-panel-mesas .wrapper ion-button {
-
   --padding-start: 14px;
   --padding-end: 14px;
 
   height: 44px;
   min-width: 44px;
-
 }
-
-
-/* texto de paginación */
 
 ion-modal app-panel-mesas .wrapper span {
-
   font-size: .9rem;
   margin-inline: .4rem;
-
+  color: var(--app-texto-contraste);
 }
 
-
 /* =========================
-        CARDS
+   CARDS MODAL
 ========================= */
-
 ion-modal app-panel-mesas .cards-container {
-
   width: 100%;
-
   display: grid;
-
   grid-template-columns: 1fr;
-
   gap: .9rem;
-
-  padding-bottom: 70px; /* espacio para botones */
-
+  padding-bottom: 70px;
 }
-
-
-/* =========================
-      CARD RESPONSIVE
-========================= */
 
 ion-modal app-panel-mesas ion-card {
-
   width: 100%;
-
   margin: 0;
-
   border-radius: 16px;
-
 }
-
-
-/* =========================
-         FOTO
-========================= */
 
 ion-modal app-panel-mesas .card-foto img {
-
   width: 100%;
   height: auto;
-
   object-fit: cover;
-
   border-radius: 12px;
-
 }
-
-
-/* =========================
-        TEXTOS
-========================= */
 
 ion-modal app-panel-mesas .card-estado {
-
   font-size: .9rem;
   margin-top: .35rem;
-
 }
 
-
 /* =========================
-      TABLET / WEB
+   RESPONSIVE
 ========================= */
-
 @media (min-width: 768px) {
-
   ion-modal app-panel-mesas .cards-container {
-
     grid-template-columns: repeat(2, 1fr);
-
   }
-
 }

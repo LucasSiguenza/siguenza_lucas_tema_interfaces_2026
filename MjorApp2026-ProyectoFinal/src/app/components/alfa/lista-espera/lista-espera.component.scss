@@ -7,23 +7,32 @@
   justify-content: flex-end;
   margin-bottom: 12px;
 }
+/* =========================
+   BOTONES SUPERIORES
+========================= */
+ion-button.btn-azul {
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
+  --border-radius: 50%;
 
-/* BOTONES DE PAGINACIÓN */
-ion-button.btn-azul{
-  margin-top: 0.2rem;
-  --background:#0066ffab;
-  --color:#fff;
-  --border-radius:50%;
-
-  width:2.2rem;
-  height:2.2rem;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  width: 2.2rem;
+  height: 2.2rem;
 }
+
+ion-button.btn-verde {
+  --background: var(--app-secundario);
+  --color: var(--app-texto);
+  --border-radius: 50%;
+
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+ion-button.btn-azul ion-icon,
+ion-button.btn-verde ion-icon {
+  font-size: 1.4rem;
+}
+
 
 ion-button.btn-azul:hover{
   transform: translateY(-1px);
@@ -92,6 +101,7 @@ ion-card-title {
 }
 
 .card-estado ion-text {
+  color: var(--app-texto-contraste);
   font-size: 0.9rem;
 }
 
@@ -120,7 +130,7 @@ ion-badge {
 .card-mensaje {
   grid-column: 1 / -1;
   text-align: center;
-  background: $dorado;
+  background: var(--fondo-secundario);
   box-shadow: none;
 }
 

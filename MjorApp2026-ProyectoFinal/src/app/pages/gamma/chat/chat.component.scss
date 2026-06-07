@@ -1,16 +1,28 @@
 @use 'src/theme/variables.scss' as *;
 
+/* =========================
+   CONTENEDOR GENERAL CHAT
+========================= */
 .chat-container {
   display: flex;
   flex-direction: column;
   height: 100%;
+  background: var(--app-fondo);
 }
 
+/* =========================
+   SALA / HEADER
+========================= */
 .sala {
   padding: 0.8rem;
   text-align: center;
+
+  color: var(--app-texto);
 }
 
+/* =========================
+   LISTA DE MENSAJES
+========================= */
 .mensajes {
   flex: 1;
   overflow-y: auto;
@@ -22,8 +34,13 @@
   gap: 0.6rem;
 
   padding: 1rem;
+
+  background: var(--app-fondo-secundario);
 }
 
+/* =========================
+   BURBUJAS BASE
+========================= */
 .message-left,
 .message-right {
   display: flex;
@@ -36,20 +53,37 @@
   padding: 0.8rem;
 
   word-break: break-word;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
+/* =========================
+   MENSAJE IZQUIERDA
+========================= */
 .message-left {
-  background-color: $dorado;
+  background: var(--app-fondo);
+
   align-self: flex-start;
+
+  color: var(--app-texto);
 }
 
+/* =========================
+   MENSAJE DERECHA
+========================= */
 .message-right {
-  background-color: #21a0a0;
+  background: var(--app-secundario);
+
   align-self: flex-end;
 
   text-align: right;
+
+  color: var(--app-texto-contraste);
 }
 
+/* =========================
+   TEXTO MENSAJES
+========================= */
 .message-left h3,
 .message-left h6,
 .message-right h6 {
@@ -61,6 +95,9 @@
   margin: 0.4rem 0 0;
 }
 
+/* =========================
+   INPUT CHAT
+========================= */
 #chat-input-zone {
   position: sticky;
   bottom: 0;
@@ -70,11 +107,15 @@
 
   padding: 0.7rem;
 
-  background-color: rgba(0, 0, 0, 0.15);
-
+  background: var(--app-fondo);
   backdrop-filter: blur(8px);
+
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
 
+/* =========================
+   TEXTAREA
+========================= */
 .textarea {
   flex: 1;
 
@@ -90,17 +131,20 @@
 
   font-size: 1rem;
 
-  color: black;
-
-  background-color: rgba(255, 255, 255, 0.85);
+  color: var(--app-texto);
+  background: var(--app-fondo-secundario);
 }
 
 .textarea:focus {
   outline: none;
 }
 
+/* =========================
+   BOTÓN ENVÍO
+========================= */
 ion-button {
-  --background: #0F7A7A;
+  --background: var(--app-principal);
+  --color: var(--app-texto-contraste);
 
   align-self: flex-end;
 }

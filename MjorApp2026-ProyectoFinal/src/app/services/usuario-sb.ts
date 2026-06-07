@@ -40,8 +40,6 @@ export class UsuarioSb {
     return usr.perfil === 'cliente';
   });
 
-  private canalUsuarios: RealtimeChannel | null = this.sbSvc.sb.channel('usuarios-realtime');
-  private isCanalInicializado = false;
 
   //! =================== Métodos Auth ===================
 
@@ -220,53 +218,134 @@ export class UsuarioSb {
     return await this.obtenerUsuario(uuid);
   }
 
+  //! =================== Canal en tiempo real ===================
+  private canalUsuarios: RealtimeChannel | null = null;
+  private isCanalInicializado = false;
+  private reintentandoCanal = false;
+
   //! =================== Métodos Tiempo Real ===================
 
   async iniciarTRUsuarios() {
-  if (this.isCanalInicializado) return;
-  await this.refrescarListaUsuarios();
-  this.isCanalInicializado = true;
-  this.canalUsuarios!
-    .on(
-      'postgres_changes',
-      {
-        event: '*',
-        schema: 'public',
-        table: 'users'
-      },
-      (evento) => {
-        console.log('Evento realtime recibido:', evento);
 
-        switch (evento.eventType) {
-          case 'INSERT':
-            setTimeout(()=> {
-                this.refrescarListaUsuarios();
-            }, 1000);
-            break;
+    if (this.isCanalInicializado) return;
 
-          case 'UPDATE':
-            setTimeout(()=> {
-                this.refrescarListaUsuarios();
-            }, 1000);
-            break;
+    await this.refrescarListaUsuarios();
 
-          case 'DELETE':
-            setTimeout(()=> {
-                this.refrescarListaUsuarios();
-            }, 1000);
-            break;
-        }
+    this.crearCanalUsuarios();
+
+    document.addEventListener('visibilitychange', async() => {
+
+      if (
+        document.visibilityState === 'visible' &&
+        !this.isCanalInicializado &&
+        !this.reintentandoCanal
+      ) {
+
+        console.warn('App volvió al foreground. Reconectando realtime usuarios...');
+
+        await this.reconectarCanalUsuarios();
       }
-    )
-    .subscribe((status) => {
-      console.log("Estado canal realtime USUARIOS :", status);
     });
   }
 
-  destruirCanalUsuarios() {
+  private crearCanalUsuarios() {
+
+    this.canalUsuarios = this.sbSvc.sb.channel('usuarios-realtime');
+
+    this.canalUsuarios
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'users'
+        },
+        async(evento) => {
+
+          console.log('Evento realtime recibido:', evento);
+
+          switch (evento.eventType) {
+
+            case 'INSERT':
+              setTimeout(async() => {
+                await this.refrescarListaUsuarios();
+              }, 1000);
+            break;
+
+            case 'UPDATE':
+              setTimeout(async() => {
+                await this.refrescarListaUsuarios();
+              }, 1000);
+            break;
+
+            case 'DELETE':
+              setTimeout(async() => {
+                await this.refrescarListaUsuarios();
+              }, 1000);
+            break;
+          }
+        }
+      )
+      .subscribe(async(status) => {
+
+        console.log('Estado canal realtime USUARIOS:', status);
+
+        switch (status) {
+
+          case 'SUBSCRIBED':
+            this.isCanalInicializado = true;
+            this.reintentandoCanal = false;
+          break;
+
+          case 'TIMED_OUT':
+          case 'CHANNEL_ERROR':
+          case 'CLOSED':
+
+            if (this.reintentandoCanal) return;
+
+            this.reintentandoCanal = true;
+
+            console.warn('Canal realtime usuarios caído. Reconectando...');
+
+            this.isCanalInicializado = false;
+
+            await this.reconectarCanalUsuarios();
+
+          break;
+        }
+      });
+  }
+
+  private async reconectarCanalUsuarios() {
+
+    try {
+
+      if (this.canalUsuarios) {
+
+        await this.destruirCanalUsuarios();
+
+        this.canalUsuarios = null;
+      }
+
+      setTimeout(() => {
+        this.crearCanalUsuarios();
+      }, 2000);
+
+    } catch(error) {
+
+      console.error('Error reconectando canal usuarios:', error);
+
+      this.reintentandoCanal = false;
+    }
+  }
+
+  async destruirCanalUsuarios() {
+
     if (this.canalUsuarios) {
-      this.sbSvc.sb.removeChannel(this.canalUsuarios);
-      this.canalUsuarios = null;
+
+      await this.sbSvc.sb.removeChannel(this.canalUsuarios);
+
+      this.isCanalInicializado = false;
     }
   }
   //! =================== Métodos Privados ===================

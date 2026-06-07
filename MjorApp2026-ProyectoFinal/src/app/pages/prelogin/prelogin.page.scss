@@ -1,13 +1,13 @@
 .nombre {
-  font-size: 1.5rem;
+  font-size: calc(var(--app-font-size) * 1.5);
   font-weight: bold;
-  color: #D4A32F;
+  color: var(--app-texto);
 }
 
 .division {
-  font-size: 2rem;
+  font-size: calc(var(--app-font-size) * 2);
   font-weight: bold;
-  color: #D4A32F;
+  color: var(--app-texto);
 }
 
 
@@ -94,4 +94,10 @@
   100% {
     opacity: 1;
   }
+}
+
+ion-grid{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

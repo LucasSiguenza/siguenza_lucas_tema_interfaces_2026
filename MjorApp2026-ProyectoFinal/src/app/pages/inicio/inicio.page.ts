@@ -48,17 +48,16 @@ export class InicioPage implements OnInit {
   }
 
   async irUsuario() {
-    return this.utilSvc.redirigir('/login-usuario');
+    
+    this.utilSvc.redirigir('/login-usuario');
+    
   }
   async test() {
-    return this.utilSvc.redirigir('test');
+    this.utilSvc.redirigir('test');
   }
 
   async irAnonimo(){
-    const carga = await this.utilSvc.loading()
-    carga.present();
     this.utilSvc.redirigir('/login-anonimo');
-    carga.dismiss()
   }
 
   irRegistro(){

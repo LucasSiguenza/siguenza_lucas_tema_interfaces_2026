@@ -49,16 +49,24 @@ export class PanelPedidosAprobacionComponent{
     const listado = this.pedidoSvc.listaPedidos()
       .filter(p => p.estado !== 'pagado' && p.estado !== 'en mesa' && p.estado !==  'rechazado')
       .sort((a, b) => new Date(a.created_at!).getTime() - new Date(b.created_at!).getTime());
+
     
-    if(perfil !== 'dueño' && perfil !== 'delivery' && perfil !== 'supervisor') return listado.filter((p) =>  !p.es_delivery)
+    if(perfil !== 'dueño' && perfil !== 'delivery' && perfil !== 'supervisor') return listado.filter((p) => !p.es_delivery)
+    
     if(perfil === 'dueño' || perfil === 'supervisor') return listado.filter((p) =>
        p.es_delivery && p.estado === 'espera de aprobación')
-    if(perfil === 'delivery') return listado.filter((p)=>
-      p.es_delivery && 
-      p.estado === 'en proceso' ||
-      p.estado === 'listo para servir' ||
-      p.estado === 'listo para pagar' || 
-      p.estado === 'espera confirmación de pago')
+    
+    if (perfil === 'delivery') {
+      return listado.filter((p) =>
+        p.es_delivery &&
+        (
+          p.estado === 'en proceso' ||
+          p.estado === 'listo para servir' ||
+          p.estado === 'listo para pagar' ||
+          p.estado === 'espera confirmación de pago'
+        )
+      );
+    }
     return listado;
   });
  
@@ -69,11 +77,14 @@ export class PanelPedidosAprobacionComponent{
   }
   
   async ngOnInit() {
+
+    console.log(this.perfil());
     const carga = await this.utilSvc.loading();
 
     await carga.present();
     await this.pedidoSvc.iniciarCanalPedidos();
-    console.log(JSON.stringify(this.pedidoSvc.listaPedidos().filter(pd => pd.es_delivery && pd.estado === 'espera de aprobación')))
+
+    console.log(JSON.stringify(this.listaFiltrada()))
 
     await carga.dismiss();
   }

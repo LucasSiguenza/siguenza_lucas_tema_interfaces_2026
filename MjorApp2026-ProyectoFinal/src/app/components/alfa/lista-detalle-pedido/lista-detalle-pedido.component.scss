@@ -1,24 +1,39 @@
 @use 'src/theme/variables.scss' as *;
 
+/* =========================
+   LISTA DE DETALLES
+========================= */
+
 .lista-detalles {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+/* =========================
+   ITEM DETALLE
+========================= */
+
 .item-detalle {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  color: $bordo;
-  background: $givry;
+  /* 🔶 Fondo secundario del tema */
+  background: var(--app-fondo-secundario);
+
+  /* 🔶 Texto principal del tema */
+  color: var(--app-texto);
 
   padding: 12px 16px;
   border-radius: 10px;
 
-  box-shadow: 0 2px 6px rgba(0,0,0,.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
 }
+
+/* =========================
+   INFORMACIÓN
+========================= */
 
 .info {
   display: flex;
@@ -28,32 +43,57 @@
 .nombre {
   font-size: 1rem;
   font-weight: 600;
+
+  /* 🔶 Texto destacado */
+  color: var(--app-texto);
 }
 
 .cantidad {
   font-size: .9rem;
+
+  /* 🔶 Texto secundario */
+  color: var(--app-texto);
   opacity: .9;
 }
 
 .estado {
   font-weight: bold;
   text-transform: capitalize;
+  span{
+      color: var(--app-texto);
+    }
+  /* 🔶 Estado destacado */
+  color: var(--app-texto);
 }
 
+/* =========================
+   BOTÓN CONFIRMACIÓN
+========================= */
+
 .btn-check {
-  --background: $givry;
-  --color: white;
+  /* 🔶 Acción principal */
+  --background: var(--app-principal);
+
+  /* 🔶 Contraste del botón */
+  --color: var(--app-texto-contraste);
+
   --border-radius: 10rem;
 
   width: 3.5rem;
   height: 3.5rem;
-
-  ion-icon{
-    --color: $bordo;
-    color: $bordo;
-    font-size: 10rem;
-  }
 }
+
+.btn-check ion-icon {
+  /* 🔶 Ícono contrastado */
+  color: var(--app-texto-contraste);
+  --color: var(--app-texto-contraste);
+
+  font-size: 2rem;
+}
+
+/* =========================
+   PAGINACIÓN
+========================= */
 
 .paginacion {
   display: flex;
@@ -62,5 +102,6 @@
 
   margin-top: 10px;
 
-  color: $givry;
+  /* 🔶 Texto de navegación */
+  color: var(--app-texto-contraste);
 }

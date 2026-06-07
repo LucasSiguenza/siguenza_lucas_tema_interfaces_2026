@@ -1,21 +1,15 @@
 @use 'src/theme/variables.scss' as *;
-@use "sass:color";
 
-/* --- Variables --- */
-$bordo: #7A0F0F;
-$dorado: #D4A32F;
-$blanco: #fff;
-$negro: #000;
-
-/* --- Base --- */
-
+/* =========================
+   BASE
+========================= */
 ion-content {
-  --background: #{$bordo};
-  background: $bordo;
+  --background: var(--app-principal);
 }
 
-/* --- Logo --- */
-
+/* =========================
+   LOGO
+========================= */
 .logo-container {
   display: flex;
   justify-content: center;
@@ -26,8 +20,9 @@ ion-content {
   }
 }
 
-/* --- Card principal --- */
-
+/* =========================
+   CARD PRINCIPAL (superficie elevada)
+========================= */
 .card-alta {
   width: 100%;
   max-width: 400px;
@@ -35,9 +30,12 @@ ion-content {
   padding: 8px;
 
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba($negro, .15);
 
-  --background: #{$dorado};
+  /* 🔶 superficie principal del flujo */
+  background: var(--app-fondo-secundario);
+  color: var(--app-texto);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
 
   animation: fadeInUp .6s ease-out .1s;
 
@@ -52,11 +50,10 @@ ion-content {
     font-size: 1.5rem;
     font-weight: bold;
 
-    color: $negro;
-    background: $dorado;
+    color: var(--app-texto);
+    background: var(--app-fondo);
 
     border-radius: 4px;
-    text-shadow: 0 0 2px $blanco;
   }
 
   .paso-texto {
@@ -65,7 +62,7 @@ ion-content {
     font-size: 1.2rem;
     font-weight: 500;
 
-    color: $negro;
+    color: var(--app-texto);
     opacity: .8;
   }
 
@@ -75,27 +72,26 @@ ion-content {
     padding: 12px;
 
     border-radius: 12px;
-    overflow: hidden;
+
+    /* 🔶 sub-surface */
+    background: var(--app-fondo);
 
     box-sizing: border-box;
-
-    --background: #{$bordo};
   }
 }
 
-/* --- Inputs --- */
-
+/* =========================
+   INPUTS
+========================= */
 .item-alta {
   margin-bottom: 8px;
   padding: 0;
 
   border-radius: 20px;
 
-  align-items: flex-start;
-  overflow: visible;
-
   --background: transparent;
   background: transparent;
+
   --min-height: 70px;
 
   --inner-border-width: 0;
@@ -104,39 +100,37 @@ ion-content {
   --highlight-height: 0;
 }
 
-/* --- Botones --- */
-
-.btn-alta,
-.btn-foto {
-  font-weight: bold;
-  border-radius: 8px;
-}
-
+/* =========================
+   BOTONES (acciones)
+========================= */
 .btn-alta {
   margin-top: 10px;
 
   height: 45px;
   font-size: 1rem;
 
-  --background: #{$bordo};
-  --color: #{$blanco};
+  /* 🔶 acción principal */
+  --background: var(--app-principal);
+  --color: var(--app-texto-contraste);
 }
 
 .btn-foto {
   height: 40px;
   border-width: 2px;
 
+  /* 🔶 acción secundaria */
   --background: transparent;
-  --border-color: #{$bordo};
-  --color: #{$bordo};
+  --border-color: var(--app-secundario);
+  --color: var(--app-secundario);
 }
 
 .cancelar {
-  color: $blanco;
+  color: var(--app-texto-contraste);
 }
 
-/* --- Fotos --- */
-
+/* =========================
+   FOTOS
+========================= */
 .foto-preview,
 .placeholder-foto {
   width: 120px;
@@ -147,7 +141,9 @@ ion-content {
 .foto-preview {
   object-fit: cover;
   margin-bottom: 10px;
-  border: 4px solid rgba($negro, .2);
+
+  /* 🔶 jerarquía visual */
+  border: 4px solid var(--app-fondo-secundario);
 }
 
 .placeholder-foto {
@@ -158,12 +154,13 @@ ion-content {
 
   margin: 0 auto 10px;
 
-  background: rgba($negro, .1);
-  color: $negro;
+  background: var(--app-fondo-secundario);
+  color: var(--app-texto);
 }
 
-/* --- Mensajes --- */
-
+/* =========================
+   MENSAJES
+========================= */
 .mensaje-texto {
   margin: 8px 0;
   padding: 6px;
@@ -172,59 +169,58 @@ ion-content {
   font-weight: bold;
   text-align: center;
 
-  color: $negro;
+  color: var(--app-texto);
   border-radius: 6px;
 
   &.error {
-    background: rgba(255,0,0,.1);
+    background: rgba(255, 0, 0, .1);
     color: #cc0000;
     border: 1px solid #ff0000;
   }
 
   &.ok {
-    background: rgba(0,255,0,.1);
+    background: rgba(0, 255, 0, .1);
     color: #006600;
     border: 1px solid #00ff00;
   }
 }
 
-/* --- Acordeón --- */
-
+/* =========================
+   ACORDEÓN
+========================= */
 ion-accordion-group,
 ion-accordion.acordeon-alta {
   border-radius: 8px;
-  background: $bordo;
-  --background: #{$bordo};
+
+  background: var(--app-fondo-secundario);
 }
 
 ion-accordion.acordeon-alta ion-item[slot="header"] {
-  --background: #{$bordo};
-  --color: #{$blanco};
+  --background: var(--app-fondo-secundario);
+  --color: var(--app-texto-contraste);
   --inner-padding-end: 0;
 }
 
 .contenido-acordeon {
   padding: 0 !important;
-  background: $bordo !important;
+
+  background: var(--app-fondo-secundario) !important;
 
   ion-list {
     padding: 0;
-    background: $bordo !important;
+    background: var(--app-fondo-secundario) !important;
   }
 
   ion-item {
-    --background: #{$bordo};
-    --color: #{$blanco};
-    --border-color: rgba(255,255,255,.2);
-
-    &::part(native) {
-      background: $bordo;
-    }
+    --background: var(--app-fondo-secundario);
+    --color: var(--app-texto-contraste);
+    --border-color: rgba(255, 255, 255, .2);
   }
 }
 
-/* --- Botones navegación --- */
-
+/* =========================
+   NAVEGACIÓN
+========================= */
 .botones-nav {
   display: flex;
   justify-content: space-between;
@@ -240,10 +236,10 @@ ion-accordion.acordeon-alta ion-item[slot="header"] {
   border-radius: 14px;
 }
 
-/* --- Responsive --- */
-
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 360px) {
-
   .card-alta {
     padding: 8px;
   }
@@ -261,21 +257,22 @@ ion-accordion.acordeon-alta ion-item[slot="header"] {
     height: 42px;
     font-size: 1rem;
   }
-
 }
 
+/* =========================
+   BOTÓN VOLVER FLOTANTE
+========================= */
 .btn-volver-flotante {
-
   position: absolute;
-
   top: 3vh;
   left: 2vw;
 
   width: 46px;
   height: 46px;
 
-  --background: #{$givry};
-  --color: #{$dorado};
+  /* 🔶 acción secundaria */
+  --background: var(--app-fondo-secundario);
+  --color: var(--app-texto-contraste);
 
   border-radius: 500vw;
 
@@ -283,12 +280,11 @@ ion-accordion.acordeon-alta ion-item[slot="header"] {
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 0.25rem 0.6rem rgba(0,0,0,0.25);
-
+  box-shadow: 0 0.25rem 0.6rem rgba(0, 0, 0, 0.25);
   z-index: 10;
 
   ion-icon {
     font-size: 1.4rem;
-    color: $dorado;
+    color: var(--app-texto-contraste);
   }
 }

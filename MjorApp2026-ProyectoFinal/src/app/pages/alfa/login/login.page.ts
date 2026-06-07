@@ -16,7 +16,7 @@ import { SupabaseService } from 'src/app/services/supabase-service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-imports: [IonText,  IonButton, IonCardContent, IonCardTitle, IonCardHeader,
+imports: [ IonButton, IonCardContent, IonCardTitle, IonCardHeader,
     IonCard, IonCol, IonRow, IonGrid, IonContent,
     ReactiveFormsModule, CommonModule, FormsModule, RouterModule, MatButtonModule, MatMenuModule, InputMjorComponent],})
 

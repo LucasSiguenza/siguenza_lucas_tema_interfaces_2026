@@ -33,26 +33,26 @@
       <ion-card>
 
         <ion-card-header>
-          <ion-card-title class="texto-negro">
+          <ion-card-title class="">
             Mesa {{ item.mesas?.numero }}
           </ion-card-title>
         </ion-card-header>
 
         <!---------- FOTO ---------->
-
+<!-- 
         <div class="card-foto">
           <img
             [src]="item?.users?.foto"
             alt="Foto de {{item?.users?.nombre}}">
-        </div>
+        </div> -->
 
         <ion-card-content>
           <div class="card-estado">
-            <ion-text class="ion-text-center ion-text-capitalize texto-negro">
+            <ion-text class="ion-text-center ion-text-capitalize ">
               Usuario: <strong>{{item.users?.apellido}}, {{item.users?.nombre}}</strong>
             </ion-text>
             <br>
-              <ion-text class="ion-text-center ion-text-capitalize texto-negro">
+              <ion-text class="ion-text-center ion-text-capitalize ">
                 Fecha: <strong>{{item.fecha_reservada | date: " dd/MM/yyyy  HH:mm"}}</strong>
               </ion-text>
           </div>
@@ -106,8 +106,8 @@
         </div>
 
         <div class="card-estado mensaje-texto">
-          <h1 class="texto-negro">¡Estás al día!</h1>
-          <h2 class="texto-negro">
+          <h1 class="">¡Estás al día!</h1>
+          <h2 class="">
             No hay reservas pendientes por revisar.
           </h2>
         </div>

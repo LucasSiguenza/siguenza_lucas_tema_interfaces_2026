@@ -1,23 +1,24 @@
-/* Variables de Color */
-$color-bordo: #7A0F0F;
-$color-oro: #D4A32F;
+@use 'src/theme/variables.scss' as *;
 
-/* Estilos del carrusel de encuesta */
+/* ==================================================
+   CARRUSEL DE ENCUESTA
+================================================== */
+
 .encuesta-swiper {
   width: 100%;
   height: calc(100vh - 120px);
   padding: 20px 0;
 
-  /* Flechas de navegación - mismo estilo que el menú */
+  /* Flechas de navegación */
   ::ng-deep .swiper-button-prev,
   ::ng-deep .swiper-button-next {
-    color: white;
+    color: var(--app-texto);
     --swiper-navigation-size: 30px;
   }
 
-  /* Paginación (puntitos) */
+  /* Paginación activa */
   ::ng-deep .swiper-pagination-bullet-active {
-    background: white;
+    background: var(--app-texto);
   }
 }
 
@@ -29,77 +30,118 @@ $color-oro: #D4A32F;
   padding: 0 20px;
 
   ion-card {
-    --background: #{$color-oro};
-    --color: #000000;
+
+    /* Fondo secundario del tema */
+    --background: var(--app-secundario);
+
+    /* Texto principal */
+    --color: var(--app-texto);
+
     width: 100%;
     max-width: 450px;
     height: 75vh;
+
     margin: 0 auto;
+
     display: flex;
     flex-direction: column;
+
     border-radius: 15px;
+
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
     padding: 30px 20px;
 
     ion-card-title {
-      color: #000000;
+
+      color: var(--app-texto);
+
       font-size: 1.8rem;
       font-weight: 800;
+
       text-align: center;
+
       margin-bottom: 30px;
     }
   }
 }
 
+/* ==================================================
+   CONTENEDOR DE PREGUNTA
+================================================== */
+
 .pregunta-container {
   display: flex;
   flex-direction: column;
+
   gap: 30px;
+
   padding: 20px 0;
+
   flex: 1;
+
   justify-content: center;
 
   ion-range {
     padding: 20px 10px;
+
     --bar-height: 8px;
     --bar-border-radius: 4px;
+
     --bar-background: rgba(0, 0, 0, 0.3);
-    --bar-background-active: #000000;
-    --knob-background: #000000;
+
+    /* Color principal del tema */
+    --bar-background-active: var(--app-principal);
+    --knob-background: var(--app-principal);
+
     --knob-size: 24px;
-    --pin-background: #000000;
-    --pin-color: #fff;
+
+    --pin-background: var(--app-principal);
+    --pin-color: var(--app-texto-contraste);
 
     ion-label {
       font-size: 1.1rem;
       font-weight: 700;
-      color: #000000;
+      color: var(--app-texto);
     }
   }
 
   .valor-actual {
     text-align: center;
+
     font-size: 1.8rem;
     font-weight: 800;
-    color: #{$color-bordo};
+
+    color: var(--app-principal);
+
     margin-top: 10px;
   }
 
+  /* ==================================================
+     ESTRELLAS
+  ================================================== */
+
   &.estrellas-container {
+
     .estrellas {
       display: flex;
       justify-content: center;
+
       gap: 15px;
+
       margin: 30px 0;
 
       ion-icon {
         font-size: 4rem;
-        color: #000000;
+
+        color: var(--app-texto);
+
         cursor: pointer;
+
         transition: all 0.3s ease;
 
         &.activa {
-          color: #FFD700;
+          color: var(--app-principal);
           transform: scale(1.1);
         }
 
@@ -110,66 +152,99 @@ $color-oro: #D4A32F;
     }
   }
 
+  /* ==================================================
+     RADIO BUTTONS
+  ================================================== */
+
   &.radio-container {
+
     ion-radio-group {
       width: 100%;
 
       ion-item {
+
         --background: transparent;
+
         margin: 10px 0;
-        border: 2px solid #ddd;
+
+        border: 2px solid var(--app-principal);
+
         border-radius: 12px;
+
         transition: all 0.3s ease;
 
         &:hover {
-          border-color: #{$color-bordo};
-          background: rgba(122, 15, 15, 0.05);
+          border-color: var(--app-principal);
+          background: color-mix(
+            in srgb,
+            var(--app-principal) 10%,
+            transparent
+          );
         }
 
         ion-label {
           font-size: 1rem;
           font-weight: 600;
-          color: #000;
+
+          color: var(--app-texto);
+
           margin-left: 15px;
         }
 
         ion-radio {
-          --color: #{$color-bordo};
-          --color-checked: #{$color-bordo};
+          --color: var(--app-principal);
+          --color-checked: var(--app-principal);
+
           left: 15px;
         }
       }
     }
   }
 
+  /* ==================================================
+     BOTONES NUMÉRICOS
+  ================================================== */
+
   &.botones-container {
+
     .botones-numericos {
       display: flex;
       justify-content: center;
+
       gap: 15px;
+
       margin: 30px 0 20px;
 
       .boton-numero {
+
         width: 60px;
         height: 60px;
+
         border-radius: 50%;
-        border: 3px solid #333;
+
+        border: 3px solid var(--app-texto);
+
         background: transparent;
-        color: #000;
+
+        color: var(--app-texto);
+
         font-size: 1.8rem;
         font-weight: 800;
+
         cursor: pointer;
+
         transition: all 0.3s ease;
 
         &:hover {
           transform: scale(1.15);
-          border-color: #{$color-bordo};
+          border-color: var(--app-principal);
         }
 
         &.seleccionado {
-          background: #{$color-bordo};
-          color: white;
-          border-color: #{$color-bordo};
+          background: var(--app-principal);
+          color: var(--app-texto-contraste);
+          border-color: var(--app-principal);
+
           transform: scale(1.2);
         }
       }
@@ -178,26 +253,32 @@ $color-oro: #D4A32F;
     .etiquetas-botones {
       display: flex;
       justify-content: space-between;
+
       padding: 0 20px;
+
       margin-bottom: 20px;
 
       span {
         font-size: 1rem;
         font-weight: 600;
-        color: #333;
+
+        color: var(--app-texto);
       }
     }
   }
 
   .atencion-valor {
     font-size: 2rem;
-    color: #{$color-bordo};
+    color: var(--app-principal);
   }
 
   ion-segment {
+
     ion-segment-button {
+
       font-size: 1.2rem;
       font-weight: 600;
+
       min-height: 60px;
 
       ion-label {
@@ -207,111 +288,187 @@ $color-oro: #D4A32F;
     }
   }
 
+  /* ==================================================
+     TOGGLE
+  ================================================== */
+
   &.toggle-container {
+
     ion-item {
+
       --background: transparent;
       --border-color: transparent;
+
       text-align: center;
+
       justify-content: center;
 
       ion-label {
+
         font-size: 2.5rem;
         font-weight: 800;
-        color: #{$color-bordo};
+
+        color: var(--app-principal);
+
         margin-right: 30px;
       }
 
       ion-toggle {
-        --handle-width: 32px;
         --handle-height: 32px;
+
         width: 70px;
         height: 40px;
       }
     }
   }
 
+  /* ==================================================
+     RECOMENDACIÓN
+  ================================================== */
+
   &.recomendacion-container {
+
     display: flex;
     flex-direction: column;
+
     gap: 15px;
+
     width: 100%;
+
     padding: 0 20px;
 
     .boton-recomendacion {
+
       --background: transparent;
-      --background-activated: rgba(122, 15, 15, 0.1);
-      --color: #{$color-bordo};
-      --border-color: #{$color-bordo};
+
+      --background-activated: color-mix(
+        in srgb,
+        var(--app-principal) 10%,
+        transparent
+      );
+
+      --color: var(--app-principal);
+
+      --border-color: var(--app-principal);
       --border-style: solid;
       --border-width: 2px;
+
       --border-radius: 12px;
+
       font-weight: 700;
       font-size: 1.2rem;
+
       height: 55px;
+
       margin: 0;
+
       --box-shadow: none;
 
       &.seleccionado {
-        --background: #{$color-bordo};
-        --color: white;
-        --border-color: #{$color-bordo};
+        --background: var(--app-principal);
+        --color: var(--app-texto-contraste);
+        --border-color: var(--app-principal);
       }
     }
   }
 
+  /* ==================================================
+     TEXTAREA
+  ================================================== */
+
   ion-textarea {
-    border: 2px solid #000000;
+
+    border: 2px solid var(--app-texto);
+
     border-radius: 12px;
+
     padding: 12px;
+
     font-size: 1.5rem;
+
     min-height: 200px;
+
     background: transparent;
-    --color: #000000 !important;
-    --placeholder-color: #555555;
+
+    --color: var(--app-texto);
+    --placeholder-color: var(--app-texto);
 
     &::part(native) {
-      color: #000000 !important;
+      color: var(--app-texto);
       background: transparent;
     }
   }
 
+  /* ==================================================
+     BOTÓN ENVIAR
+  ================================================== */
+
   .submit-button {
-    margin-top: 30px;
-    --background: #{$color-bordo};
-    --background-hover: #5a0808;
+
+    --background: var(--app-secundario);
+
     font-size: 1.3rem;
     font-weight: 700;
+
     height: 60px;
   }
 }
 
-/* Estilos generales */
+/* ==================================================
+   CONTENIDO
+================================================== */
+
 ion-content {
-  --background: #{$color-bordo};
+
+  /* Fondo principal de la app */
+  --background: var(--app-fondo);
 }
 
+/* ==================================================
+   HEADER
+================================================== */
+
 ion-header {
+
   ion-toolbar {
-    --background: #{$color-bordo};
-    --color: #{$color-oro};
+
+    /* Fondo secundario */
+    --background: var(--app-secundario);
+
+    /* Texto */
+    --color: var(--app-texto);
   }
 }
 
+/* ==================================================
+   ITEMS
+================================================== */
+
 ion-item {
   --background: transparent;
+
   --padding-start: 0;
   --inner-padding-end: 0;
+
   --min-height: 8vh;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .slide-content ion-card {
-    max-width: 90%;
-    height: 70vh;
+/* ==================================================
+   RESPONSIVE
+================================================== */
 
-    ion-card-title {
-      font-size: 1.5rem;
+@media (max-width: 768px) {
+
+  .slide-content {
+
+    ion-card {
+
+      max-width: 90%;
+      height: 70vh;
+
+      ion-card-title {
+        font-size: 1.5rem;
+      }
     }
   }
 

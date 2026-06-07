@@ -9,7 +9,7 @@
     <ion-button  class="btn-azul ion-justify-content-end"   (click)="prevPage()" [disabled]="page() === 1">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>
-    <span class="texto-blanco">{{ page() }} de {{ totalPages() }}</span>
+    <span class="">{{ page() }} de {{ totalPages() }}</span>
     <ion-button  class="btn-azul ion-justify-content-end"  (click)="nextPage()" [disabled]="page() === totalPages()">
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </ion-button>
@@ -20,7 +20,7 @@
   <div class="cards-container">
     <ion-card>
       <ion-card-header>
-        <ion-card-title class="texto-negro">Mesa N°{{ item.numero }}</ion-card-title>
+        <ion-card-title class="">Mesa N°{{ item.numero }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
@@ -31,18 +31,18 @@
         </div>
         <!-- Cantidad de comenzales-->
          <div class="card-estado">
-          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+          <ion-text class="ion-text-center ion-text-capitalize">
               Cantidad de comenzales: <strong>{{item.cantidad_comensales}}</strong>
           </ion-text>
         </div>
         <!-- Fecha de creación -->
         <div class="card-estado">
-          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+          <ion-text class="ion-text-center ion-text-capitalize">
               Fecha de creación:
           </ion-text>
         </div>
         <div class="card-estado">
-          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+          <ion-text class="ion-text-center ion-text-capitalize">
               <strong>{{item?.created_at | formatoFecha}}</strong>
           </ion-text>
         </div>
@@ -50,17 +50,17 @@
         <!-- Tipo de mesa -->
 
         <div class="card-estado">
-          <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+          <ion-text class="ion-text-center ion-text-capitalize">
               Tipo de mesa: <strong>{{item.tipo | formatoTipoMesa}}</strong>
           </ion-text>
         </div>
         <!-- Estado -->
 
         @if(item.usuario_asignado != "disponible"){
-        <div class="card-estado ion-text-center ion-text-capitalize texto-blanco">Estado: <strong> Ocupada </strong></div>
-        <div class="card-estado ion-text-center ion-text-capitalize texto-blanco">por {{item.usuario_asignado | titlecase}}</div>
+        <div class="card-estado ion-text-center ion-text-capitalize">Estado: <strong> Ocupada </strong></div>
+        <div class="card-estado ion-text-center ion-text-capitalize">por {{item.usuario_asignado | titlecase}}</div>
         } @else {
-        <div class="card-estado ion-text-center ion-text-capitalize texto-blanco">Estado: <strong>Disponible</strong></div>
+        <div class="card-estado ion-text-center ion-text-capitalize">Estado: <strong>Disponible</strong></div>
         }
 
         <!-- Botones -->

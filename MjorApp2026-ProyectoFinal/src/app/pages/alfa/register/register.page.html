@@ -21,8 +21,8 @@
         <br />
 
         <ion-card>
-          <ion-card-header class="ion-no-padding">
-            <ion-card-title class="ion-text-center texto-negro"
+          <ion-card-header class="ion-no-padding ">
+            <ion-card-title class="ion-text-center"
               >¡Regístrate!</ion-card-title
             >
           </ion-card-header>
@@ -36,7 +36,7 @@
                   <ion-button
                     class="ion-margin-top"
                     type="button"
-                    color="warning"
+                    color="secondary"
                     expand="full"
                     shape="round"
                     strong="true"
@@ -67,7 +67,7 @@
                  ></app-input-mjor>
                 </div>
 
-                <ion-button class="ion-margin-top siguiente" expand="block" color="warning" (click)="nextStep()">
+                <ion-button class="ion-margin-top siguiente" expand="block" class="siguiente" (click)="nextStep()">
                   Siguiente
                 </ion-button>
               }
@@ -106,7 +106,7 @@
                       <ion-button expand="block" color="medium" (click)="prevStep()">Atrás</ion-button>
                     </ion-col>
                     <ion-col>
-                      <ion-button expand="block" color="warning" (click)="nextStep()">Siguiente</ion-button>
+                      <ion-button expand="block" class="siguiente" (click)="nextStep()">Siguiente</ion-button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -155,7 +155,7 @@
                       <ion-button expand="block" color="medium" (click)="prevStep()">Atrás</ion-button>
                     </ion-col>
                     <ion-col>
-                      <ion-button expand="block" color="warning" (click)="nextStep()">Siguiente</ion-button>
+                      <ion-button expand="block" class="siguiente" (click)="nextStep()">Siguiente</ion-button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -177,7 +177,7 @@
                   <ion-button
                     class="ion-margin-top"
                     type="button"
-                    color="warning"
+                    class="siguiente"
                     expand="full"
                     shape="round"
                     strong="true"

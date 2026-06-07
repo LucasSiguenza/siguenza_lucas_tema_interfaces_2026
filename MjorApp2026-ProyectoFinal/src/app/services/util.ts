@@ -6,11 +6,13 @@ import { LoadingController,
 import { Location } from '@angular/common';
 import { Capacitor } from '@capacitor/core';
 import { Directory, Encoding, Filesystem } from '@capacitor/filesystem';
+import { TemaService } from './tema-service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Util {
+  private temaSvc = inject(TemaService);
   //! ================== Variables ==================
   private enrutador = inject(Router);
   private cargaCtrl = inject(LoadingController);
@@ -65,7 +67,7 @@ export class Util {
   }
   //! ================== Redirección ==================
   async redirigir(ruta: string, sinLoading: boolean = false): Promise<void> {
-    this.reproducirSonidoPorDuracion('assets/sonidos/nav.m4a', 1000)
+    this.reproducirSonidoPorDuracion(`assets/sonidos/${this.temaSvc.sonidoTemaActual()}-click.m4a`, 1000)
     if (!sinLoading) {
       const carga = await this.loading();
       await carga.present();
@@ -76,7 +78,6 @@ export class Util {
 
     await this.enrutador.navigateByUrl(ruta);
   }
-
   public goBack() : void
   {
     this.location.back();

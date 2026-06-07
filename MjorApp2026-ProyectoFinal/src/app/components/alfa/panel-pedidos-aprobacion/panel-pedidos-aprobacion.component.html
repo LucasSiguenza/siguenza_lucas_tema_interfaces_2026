@@ -3,7 +3,7 @@
     <ion-button class="btn-azul ion-justify-content-end" (click)="prevPage()" [disabled]="page() === 1">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>
-    <span class="texto-blanco">{{ page() }} de {{ totalPages() }}</span>
+    <span class="">{{ page() }} de {{ totalPages() }}</span>
     <ion-button class="btn-azul ion-justify-content-end" (click)="nextPage()" [disabled]="page() === totalPages()">
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </ion-button>
@@ -22,7 +22,7 @@
         <ion-card-content>
           <!-- FOTO -->
           <div class="card-foto">
-            <ion-title class="texto-claro"> <strong>Pedido de:</strong> {{item.nombreCliente}}</ion-title>
+            <ion-title class=""> <strong>Pedido de:</strong> {{item.nombreCliente}}</ion-title>
           </div>
           @if(this.perfil() !== 'delivery'){
           <app-lista-detalle-pedido
@@ -42,11 +42,11 @@
 
           <!-- HORA -->
           <div class="card-estado ion-display-flex ion-flex-col">
-            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+            <ion-text class="ion-text-center ion-text-capitalize ">
               {{item.es_delivery ? 'Solicidado: ' : "Llegada: "}} <strong style="margin-left: 0.5rem;"> {{ item.created_at| formatoFecha }}</strong>
             </ion-text>
             @if(item.es_delivery){
-              <ion-text style="font-size: 0.8rem;" class="ion-text-capitalize texto-blanco">
+              <ion-text style="font-size: 0.8rem;" class="ion-text-capitalize ">
                 Tiempo de entrega:<strong style="margin-left: 0.5rem;"> {{ item.tiempoEstimado | duracionMinutos }} minutos</strong>
               </ion-text>
             }

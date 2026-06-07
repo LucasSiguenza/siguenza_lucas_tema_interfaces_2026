@@ -4,32 +4,58 @@
   height: 75vh;
   align-self: flex-start;
   overflow-y: hidden;
+  scroll-snap-type: mandatory;
 }
 
-ion-card-content{
+ion-card-content
+{
   width: 100%;
 }
 
-mat-header-cell, mat-cell{
-  display:flex;
-  justify-content:flex-end;
+mat-header-cell,
+mat-cell
+{
+  display: flex;
+  justify-content: flex-end;
   text-align: center;
 }
 
-th, td{
+th,
+td
+{
   text-align: center;
   font-size: medium;
 }
 
-h1{
-  color: black;
+/* Texto principal */
+h1
+{
+  color: var(--app-texto-contraste);
+  margin-bottom: 1px;
 }
 
+h2,
+h3,
+h4
+{
+  color: var(--app-texto-contraste);
+  margin: 0;
+}
+
+h2
+{
+  font-size: large;
+}
+
+/* Contenedor de alerta */
 .alert
 {
   display: flex;
   flex-direction: column;
-  background-color: #7a0f0f !important;
+
+  /* Color principal del tema */
+  background-color: var(--app-principal) !important;
+
   align-items: center;
   width: 93vw;
 }
@@ -65,7 +91,8 @@ h1{
   width: 95%;
 }
 
-.container{
+.container
+{
   overflow-y: hidden;
   display: flex;
   flex-direction: column;
@@ -73,7 +100,6 @@ h1{
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .remover-container
@@ -84,15 +110,18 @@ h1{
   width: 100%;
 }
 
+/* Resumen de importe */
 .importe
 {
-  background-color: #7a0f0f;
+  background-color: var(--app-principal);
+  color: var(--app-texto-contraste);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   padding: 0;
   padding-bottom: 2vh;
-  color: white;
 }
 
 .carrito-vacio
@@ -117,30 +146,19 @@ h1{
   text-align: center;
 }
 
-h1{
-  color: white;
-  margin-bottom: 0;
-  margin-bottom: 1px;
-}
-
-h2,h3,h4{
-  color: white;
-  margin: 0;
-}
-
-h2{
-  font-size: large;
-}
-
+/* Imagen de producto */
 .imagen-pequeña
 {
   height: 15vh;
   max-width: 30vw;
   aspect-ratio: auto;
+
   border-style: solid;
   border-width: 3px;
   border-radius: 10%;
-  border-color: #7a0f0f;
+
+  /* Borde con color principal */
+  border-color: var(--app-principal);
 }
 
 .img-display
@@ -156,31 +174,33 @@ h2{
   margin-left: 1vw;
 }
 
-ul {
+ul
+{
   list-style-type: none;
   padding: 0;
 }
 
-li {
+li
+{
   font-family: sans-serif;
   padding: 8px;
   scroll-snap-align: start;
 }
 
-li:not(:last-of-type) {
-  border-bottom: 4px dotted #7a0f0f;
-}
-.card-full
+/* Separador entre productos */
+li:not(:last-of-type)
 {
-  scroll-snap-type: mandatory;
+  border-bottom: 4px dotted var(--app-principal);
 }
 
-.main-swiper {
+.main-swiper
+{
   width: 100%;
-  height: calc(100% - 20px); // Ocupa casi toda la altura menos padding
-  padding-bottom: 20px;     // Espacio para la paginación
+  height: calc(100% - 20px);
+  padding-bottom: 20px;
 
-  swiper-slide {
+  swiper-slide
+  {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -189,60 +209,76 @@ li:not(:last-of-type) {
     width: 100%;
   }
 
-  /* Flechas de navegación */
-  .swiper-button-prev, .swiper-button-next {
-    color: white;
+  /* Navegación del swiper */
+  .swiper-button-prev,
+  .swiper-button-next
+  {
+    color: var(--app-texto-contraste);
     --swiper-navigation-size: 30px;
   }
 
-  /* Paginación (puntitos) */
-  .swiper-pagination-bullet-active {
-     background: white;
+  /* Paginación activa */
+  .swiper-pagination-bullet-active
+  {
+    background: var(--app-texto-contraste);
   }
 }
 
-/* Contenedor dentro del slide principal */
-.slide-content {
+/* Contenedor del slide principal */
+.slide-content
+{
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100%;
-  max-width: 450px; // Ancho máximo de la tarjeta
+  max-width: 450px;
   height: 80%;
+
   margin-top: 1vh;
 }
 
-.image-swiper {
+.image-swiper
+{
   width: 100%;
-  height: 30vh; // Altura para las imágenes
-  
-  img { // Estilo movido aquí desde ion-card img
+  height: 30vh;
+
+  img
+  {
     border-style: solid;
     border-width: 3px;
-    border-color: #d4a32f;
+
+    /* Borde secundario para destacar imágenes */
+    border-color: var(--app-secundario);
+
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 5%;
-    // border-radius: 10px; // Se quita, la tarjeta ya tiene borde redondeado
   }
 
-  /* Paginación (puntitos) */
-  .swiper-pagination-bullet {
-     background: rgba(0,0,0,0.5);
+  .swiper-pagination-bullet
+  {
+    background: color-mix(in srgb, var(--app-texto) 50%, transparent);
   }
-  .swiper-pagination-bullet-active {
-     background: black;
+
+  .swiper-pagination-bullet-active
+  {
+    background: var(--app-texto);
   }
 }
 
-ion-card-title{
+ion-card-title
+{
   font-size: xx-large;
   text-align: center;
+
+  /* Texto principal */
+  color: var(--app-texto);
 }
 
 .container-satisfaccion
 {
-  color: black;
+  color: var(--app-texto);
   text-align: center;
 }

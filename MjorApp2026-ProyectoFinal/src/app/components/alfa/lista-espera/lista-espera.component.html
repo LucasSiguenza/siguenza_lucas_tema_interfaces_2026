@@ -3,7 +3,7 @@
     <ion-button class="btn-azul ion-justify-content-end" (click)="prevPage()" [disabled]="page() === 1">
       <ion-icon name="chevron-back-outline"></ion-icon>
     </ion-button>
-    <span class="texto-blanco">{{ page() }} de {{ totalPages() }}</span>
+    <span class="">{{ page() }} de {{ totalPages() }}</span>
     <ion-button class="btn-azul ion-justify-content-end" (click)="nextPage()" [disabled]="page() === totalPages()">
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </ion-button>
@@ -16,7 +16,7 @@
     @for (item of paginatedItems; track item.id) {
       <ion-card>
         <ion-card-header class="ion-text-capitalize ion-text-center">
-          <ion-card-title class="texto-negro">{{ item.nombre_usuario }}</ion-card-title>
+          <ion-card-title class="">{{ item.nombre_usuario }}</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
@@ -35,21 +35,21 @@
 
           <!-- HORA -->
           <div class="card-estado">
-            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+            <ion-text class="ion-text-center ion-text-capitalize ">
               Llegada: <strong>{{ item.hora | formatoFecha }}</strong>
             </ion-text>
           </div>
 
           <!-- TIPO -->
           <div class="card-estado">
-            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+            <ion-text class="ion-text-center ion-text-capitalize ">
               Mesa: <strong>{{ item.tipo_solicitado | formatoTipoMesa }}</strong>
             </ion-text>
           </div>
 
           <!-- CANTIDAD -->
           <div class="card-estado">
-            <ion-text class="ion-text-center ion-text-capitalize texto-blanco">
+            <ion-text class="ion-text-center ion-text-capitalize ">
               Cantidad: <strong>{{ item.cantidad }}</strong>
             </ion-text>
           </div>

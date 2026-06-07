@@ -1,80 +1,136 @@
-/* Contenedor principal */
+/* =======================================================
+   REGISTER - LAYOUT PRINCIPAL
+   ======================================================= */
 ion-content {
-  --background: #7A0F0F !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  padding: 0% !important;
+  --background: var(--app-fondo-secundario);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 }
 
-/* Card */
+/* =======================================================
+   CARD PRINCIPAL + HEADER FIX
+   ======================================================= */
 ion-card {
-  width: 100% !important;
-  margin: 2vh auto !important;
-  border-radius: 3vh !important;
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
+  width: 100%;
+  margin: 2vh auto;
+  border-radius: 3vh;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: var(--app-principal);
+  color: var(--app-texto-contraste);
 }
 
-/* Card Content */
+ion-card-title {
+  color: var(--app-texto-contraste);
+  border-bottom: none !important;
+}
+
+ion-card-header {
+  border-bottom: none !important;
+  box-shadow: none !important;
+
+  &::after {
+    display: none !important;
+  }
+}
+
+/* =======================================================
+   CARD CONTENT
+   ======================================================= */
 ion-card-content {
-  width: 90% !important;
-  margin: 2, 0 auto !important;
-  padding: 2vh 4vw !important;
-  border-radius: 3vh !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  box-sizing: border-box;
+  width: 90%;
+  margin: 2vh auto;
+  padding: 2vh 4vw;
+  border-radius: 3vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  --background: var(--app-principal);
+  --color: var(--app-texto-contraste);
 }
 
-
-/* Botones centrados */
+/* =======================================================
+   BOTONES
+   ======================================================= */
 ion-button {
   width: 100%;
-  margin-top: 2vh !important;
-  border-radius: 2vh !important;
-  font-size: 2.2vh !important;
-  --padding-top: 1.5vh !important;
-  --padding-bottom: 1.5vh !important;
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-} .siguiente{
-  background-color: #F7E7B6;
+  margin-top: 2vh;
+  border-radius: 2vh;
+  font-size: 2.2vh;
+
+  --padding-top: 1.5vh;
+  --padding-bottom: 1.5vh;
+
+  --background: var(--app-secundario);
+  --color: var(--app-principal);
+
+  display: block;
+  margin: 2vh auto 0;
 }
 
-/* Imagen preview */
+.siguiente {
+  --background: var(--app-secundario);
+  --color: var(--app-principal);
+}
+
+/* =======================================================
+   IMAGEN PREVIEW
+   ======================================================= */
 .ion-text-center img {
-  width: 35vw !important;
-  height: 35vw !important;
-  border-radius: 50% !important;
-  object-fit: cover !important;
-  margin: 0 auto !important;
-  display: inline-flexbox !important;
+  width: 35vw;
+  height: 35vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
 }
 
-.transparent {
-  --background: transparent !important;
-  background-color: transparent !important;
+/* =======================================================
+   ITEM TRANSPARENTE (IONIC RESET)
+   ======================================================= */
+ion-item.transparent {
+  --inner-border-width: 0 !important;
+  --border-width: 0 !important;
+  --highlight-height: 0 !important;
+
+  --background: transparent;
+  --background-focused: transparent;
+  --background-hover: transparent;
+  --background-activated: transparent;
+
+  --ripple-color: transparent;
+
+  background: transparent;
   border: none !important;
-  --border-style: none !important;
-  /* fuerza sin línea */
-  --border-width: 0px !important;
-  --highlight-height: 0px !important;
-  --highlight-color-focused: transparent !important;
   box-shadow: none !important;
-  padding: 0 !important;
+
+  ion-button {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+
+    --box-shadow: none;
+    --border-width: 0;
+    --border-style: none;
+    --background-activated: transparent;
+    --background-focused: transparent;
+    --color: var(--app-texto-contraste);
+
+    &::after {
+      display: none !important;
+    }
+  }
 }
 
-ion-item.transparent ion-button {
-  width: 100% !important;
-  height: 100% !important;
-  /* ocupa todo el ancho del ion-item */
-  display: block !important;
-  /* asegura que no quede inline */
-  margin: 0 !important;
-  /* elimina margenes extra */
+.siguiente {
+  --background: var(--app-secundario);
+  --color: var(--app-texto-contraste);
 }

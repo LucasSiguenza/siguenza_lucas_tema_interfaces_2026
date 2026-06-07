@@ -1,14 +1,15 @@
-@use 'src/theme/variables.scss' as *;
-
 /* =========================
    CONTENEDOR GENERAL
 ========================= */
 
-.detalles-container {
+.detalles-container
+{
   display: flex;
   flex-direction: column;
   align-items: center;
+
   text-align: center;
+
   gap: 3vmin;
   padding: 2vmin;
 }
@@ -18,17 +19,22 @@
    FOTO DEL USUARIO
 ========================= */
 
-.detalle-foto {
+.detalle-foto
+{
   width: 50vmin;
   height: 50vmin;
+
   object-fit: cover;
 
   border-radius: 50vmin;
-  border: 1vmin solid #D4A32F;
 
-  background-color: #7a0f0f;
+  /* Borde destacado */
+  border: 1vmin solid var(--app-secundario);
 
-  box-shadow: 0 1vh 2vh rgba(0,0,0,0.35);
+  /* Fondo de respaldo */
+  background-color: var(--app-principal);
+
+  box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.35);
 
   margin-top: 1vh;
 }
@@ -38,12 +44,17 @@
    LISTA DE DATOS
 ========================= */
 
-.detalles-container ion-list {
+.detalles-container ion-list
+{
   width: 95%;
-  background: $givry;
+
+  /* Fondo secundario de tarjetas/listados */
+  background: var(--app-fondo-secundario);
+
   border-radius: 2vw;
 
   text-align: left;
+
   padding-left: 2rem;
 }
 
@@ -52,17 +63,25 @@
    ITEMS
 ========================= */
 
-.detalles-container ion-item {
+.detalles-container ion-item
+{
   --background: transparent;
-  --color: white;
+
+  /* Texto sobre fondo secundario */
+  --color: var(--app-texto);
 
   font-size: 1rem;
 
   display: flex;
   justify-content: flex-start;
+
   text-align: left;
 
-  border-bottom: 0.15rem solid rgba(212,163,47,0.25);
+  border-bottom: 0.15rem solid color-mix(
+    in srgb,
+    var(--app-secundario) 25%,
+    transparent
+  );
 }
 
 
@@ -70,8 +89,10 @@
    LABELS
 ========================= */
 
-.detalles-container ion-label {
-  color: $bordo;
+.detalles-container ion-label
+{
+  color: var(--app-texto);
+
   font-weight: bold;
   font-size: 1rem;
 }
@@ -81,11 +102,17 @@
    NOMBRE PRINCIPAL
 ========================= */
 
-.detalles-container ion-item h2 {
+.detalles-container ion-item h2
+{
   font-size: 1.8rem;
-  color: white;
 
-  text-shadow: 0px 0px 1rem #7a0f0f;
+  color: var(--app-texto);
+
+  text-shadow: 0 0 1rem color-mix(
+    in srgb,
+    var(--app-principal) 60%,
+    transparent
+  );
 
   margin-bottom: 1vmin;
 }
@@ -95,8 +122,10 @@
    TEXTO DE DATOS
 ========================= */
 
-.detalles-container strong {
-  color: $dorado;
+.detalles-container strong
+{
+  color: var(--app-secundario);
+
   font-weight: bold;
   font-size: 1em;
 
@@ -108,14 +137,23 @@
    HEADER DEL MODAL
 ========================= */
 
-ion-toolbar {
-  --background: #D4A32F;
-  --color: $givry;
+ion-toolbar
+{
+  /* Barra principal */
+  --background: var(--app-principal);
 
-  text-shadow: 0px 0px 1rem #7a0f0f;
+  /* Texto sobre color principal */
+  --color: var(--app-texto-contraste);
+
+  text-shadow: 0 0 1rem color-mix(
+    in srgb,
+    var(--app-principal) 60%,
+    transparent
+  );
 }
 
-ion-title {
+ion-title
+{
   font-size: 0.685rem;
 }
 
@@ -124,13 +162,21 @@ ion-title {
    BOTÓN CERRAR
 ========================= */
 
-ion-header ion-button {
-  --background: $bordo;
-  background-color: $bordo;
+ion-header ion-button
+{
+  /* Acción secundaria */
+  --background: var(--app-secundario);
 
-  color: $givry;
+  background-color: var(--app-secundario);
 
-  text-shadow: 0px 0px 1rem #7a0f0f;
+  /* Texto sobre botón */
+  color: var(--app-texto-contraste);
+
+  text-shadow: 0 0 1rem color-mix(
+    in srgb,
+    var(--app-principal) 60%,
+    transparent
+  );
 
   font-size: 1rem;
 }

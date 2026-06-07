@@ -11,7 +11,7 @@ import { checkmarkOutline } from 'ionicons/icons';
   selector: 'app-lista-chat',
   templateUrl: './lista-chat.component.html',
   styleUrls: ['./lista-chat.component.scss'],
-  imports: [IonCardContent, IonIcon, IonText, IonAvatar, IonLabel, IonItem, IonList, IonCardTitle, IonCardHeader, IonCard],
+  imports: [ IonIcon, IonText, IonAvatar, IonLabel, IonItem, IonList, IonCardTitle, IonCardHeader, IonCard],
 })
 export class ListaChatComponent  implements OnInit, OnDestroy
 {

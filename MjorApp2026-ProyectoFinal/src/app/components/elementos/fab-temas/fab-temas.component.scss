@@ -1,0 +1,88 @@
+:host {
+
+  ion-fab {
+    margin-bottom: 3rem !important;
+    margin-right: 0.7rem !important;
+  }
+
+  /* =========================
+     FAB PRINCIPAL
+  ========================= */
+
+  ion-fab-button {
+    /* 🔶 Acción secundaria del tema */
+    --background: var(--app-secundario);
+
+    border-radius: 50%;
+    /* 🔶 Texto e iconografía contrastada */
+    --color: var(--app-texto);
+
+  }
+
+  ion-fab-button ion-icon {
+    color: var(--app-texto-contraste);
+  }
+}
+
+/* =========================
+   LISTA DE TEMAS
+========================= */
+
+ion-fab-list {
+  gap: 0.5rem;
+}
+
+/* =========================
+   ITEM FAB
+========================= */
+
+.fab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* =========================
+   BOTONES SECUNDARIOS
+========================= */
+
+.fab-item ion-fab-button {
+  /* 🔶 Color secundario del tema */
+  --background: var(--app-secundario);
+
+  /* 🔶 Contraste para iconos */
+  --color: var(--app-texto-contraste);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+}
+
+.fab-item ion-fab-button ion-icon {
+  color: var(--app-texto-contraste);
+  font-size: 1.2rem;
+}
+
+/* =========================
+   ETIQUETAS
+========================= */
+
+.fab-item ion-label {
+
+  /* 🔶 Fondo secundario */
+  background: var(--app-secundario);
+
+  /* 🔶 Texto contrastado */
+  color: var(--app-texto-contraste);
+
+  font-size: 0.75rem;
+  text-align: center;
+
+  padding: 0.25rem 0.5rem;
+
+  border-radius: 0.5rem;
+
+  white-space: nowrap;
+
+  box-shadow: 0 0.15rem 0.4rem rgba(0, 0, 0, 0.15);
+}

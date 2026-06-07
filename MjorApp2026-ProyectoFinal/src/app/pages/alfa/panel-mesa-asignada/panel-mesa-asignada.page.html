@@ -30,13 +30,13 @@
         @if(estadoPedido() === 'en mesa'){
           @if (this.encuestaSvc.isEncuestaEnviada())
           {
-            <ion-button expand="block" fill="outline" color="primary" (click)="this.irA('resultados-encuesta')">Ver encuestas</ion-button>
+            <ion-button expand="block" fill="outline" color="--app-secundario" (click)="this.irA('resultados-encuesta')">Ver encuestas</ion-button>
           }
           @else
           {
-            <ion-button expand="block" fill="outline" color="primary" (click)="this.irA('encuesta')">Realizar encuestas</ion-button>
+            <ion-button expand="block" fill="outline" color="--app-secundario" (click)="this.irA('encuesta')">Realizar encuestas</ion-button>
           }
-            <ion-button expand="block" fill="outline" color="success" (click)="modificarPedido()">Pedir la cuenta</ion-button>
+            <ion-button expand="block" fill="outline" color="--app-secundario" (click)="modificarPedido()">Pedir la cuenta</ion-button>
         }
         @if(estadoPedido() === 'listo para pagar'){
           <ion-button expand="block"  (click)="escanearQr()">

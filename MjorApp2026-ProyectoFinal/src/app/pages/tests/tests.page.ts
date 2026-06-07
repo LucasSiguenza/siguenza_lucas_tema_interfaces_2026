@@ -11,7 +11,7 @@ import { GeocodeService } from 'src/app/services/geocode-service';
   templateUrl: './tests.page.html',
   styleUrls: ['./tests.page.scss'],
   standalone: true,
-  imports: [IonButton, IonContent, CommonModule, FormsModule,  MapaComponent]
+  imports: [ IonContent, CommonModule, FormsModule,  MapaComponent]
 })
 export class TestsPage implements OnInit {
   protected pedidoSvc = inject(PedidoSb);

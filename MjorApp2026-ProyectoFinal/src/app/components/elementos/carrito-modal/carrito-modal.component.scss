@@ -1,60 +1,87 @@
 @use 'src/theme/variables.scss' as *;
 
-/* Layout del modal */
+/* ========================================
+   LAYOUT DEL MODAL
+   ======================================== */
 :host {
   display: flex;
   flex-direction: column;
   height: 100%;
-  color: $bordo;
-  --color: $bordo;
-  background-color: $givry;
-  --background: #{$givry};
+
+  /* 🔶 Tema global */
+  color: var(--app-texto);
+  --color: var(--app-texto);
+
+  background-color: var(--app-fondo);
+  --background: var(--app-fondo);
 }
 
-/* Header */
+/* ========================================
+   HEADER
+   ======================================== */
 ion-header {
   flex: 0 0 auto;
-  background: $givry;
+
+  /* 🔶 Fondo principal del tema */
+  background: var(--app-fondo);
 }
 
-/* Contenedor principal */
+/* ========================================
+   CONTENEDOR PRINCIPAL
+   ======================================== */
 .carrito-container {
   flex: 1 1 auto;
+
   overflow-y: auto;
   padding: 1rem;
-  background: $bordo;
+
+  /* 🔶 Superficie secundaria */
+  background: var(--app-fondo-secundario);
 }
 
-/* Lista */
+/* ========================================
+   LISTA
+   ======================================== */
 ion-list {
   background: transparent;
 }
 
-/* Items del carrito */
+/* ========================================
+   ITEMS DEL CARRITO
+   ======================================== */
 ion-item {
-  --background: #{$dorado};
-  --color: #{$bordo};
+  /* 🔶 Card principal */
+  --background: var(--app-fondo);
+  --color: var(--app-texto);
+
   --padding-start: 0.75rem;
   --inner-padding-end: 0.75rem;
 
   border-radius: 12px;
   margin-bottom: .6rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
 
   ion-label {
+
     h2 {
+      /* 🔶 Título destacado */
       font-weight: 600;
-      color: $bordo;
+      color: var(--app-texto);
     }
 
     p {
-      color: rgba(0,0,0,.6);
+      /* 🔶 Texto secundario */
+      color: var(--app-texto);
+      opacity: .75;
       font-size: .9rem;
     }
   }
 }
 
-/* Controles */
+/* ========================================
+   CONTROLES
+   ======================================== */
 .item-controls {
   display: flex;
   flex-direction: column;
@@ -62,7 +89,9 @@ ion-item {
   gap: .4rem;
 }
 
-/* Cantidad */
+/* ========================================
+   CANTIDAD
+   ======================================== */
 .quantity-controls {
   display: flex;
   align-items: center;
@@ -70,20 +99,30 @@ ion-item {
 
   ion-button {
     margin: 0;
-    --color: #{$bordo};
+
+    /* 🔶 Acción principal */
+    --color: var(--app-principal);
   }
 
   .quantity-badge {
     min-width: 2rem;
+
     text-align: center;
     font-weight: bold;
+
     padding: .25rem .5rem;
-    background: $bordo;
-    color: $givry;
+
+    /* 🔶 Badge del sistema */
+    background: var(--app-fondo-secundario);
+    color: var(--app-texto);
+
+    border-radius: .5rem;
   }
 }
 
-/* Subtotal + eliminar */
+/* ========================================
+   SUBTOTAL + ELIMINAR
+   ======================================== */
 .item-actions {
   display: flex;
   align-items: center;
@@ -92,74 +131,93 @@ ion-item {
   .subtotal {
     font-weight: bold;
     font-size: .95rem;
-    color: $bordo;
+
+    /* 🔶 Texto destacado */
+    color: var(--app-texto-contraste);
   }
 }
 
-/* Footer */
+/* ========================================
+   FOOTER
+   ======================================== */
 ion-footer {
   flex: 0 0 auto;
 }
 
 ion-toolbar {
   padding: .5rem;
-  --background: #{$givry};
-  --color: #{$bordo};
-  background-color: $givry;
-  color: $bordo;
+
+  /* 🔶 Fondo principal */
+  --background: var(--app-fondo);
+  --color: var(--app-texto);
+
+  background-color: var(--app-fondo);
+  color: var(--app-texto);
 }
 
-/* Resumen */
+/* ========================================
+   RESUMEN
+   ======================================== */
 .resumen {
   display: flex;
   justify-content: space-between;
+
   margin-bottom: .5rem;
   padding: 0 .5rem;
-  color: $bordo;
+
+  color: var(--app-texto);
   font-weight: 500;
 }
 
-/* Texto verde */
+/* ========================================
+   TEXTO DESTACADO
+   ======================================== */
 .texto {
-  color: $verde-hover;
-  --color: $verde-hover;
+  color: var(--app-principal);
+  --color: var(--app-principal);
 }
 
-/* Carrito vacío */
+/* ========================================
+   CARRITO VACÍO
+   ======================================== */
 .empty-cart {
   display: flex;
   flex-direction: column;
+
   justify-content: center;
   align-items: center;
+
   gap: 1.2rem;
 
   height: 100%;
   padding: 2rem;
 
   text-align: center;
-  color: $givry;
+
+  color: var(--app-texto);
 
   ion-icon {
     font-size: 3rem;
-    color: $givry;
+
+    /* 🔶 Iconografía principal */
+    color: var(--app-principal);
+
     opacity: .95;
-  }:host{
-    font-size: 3rem;
-    color: $givry;
-    --color: $givry;
-    
   }
 
   h2 {
     font-size: 1.6rem;
     font-weight: 600;
-    color: $givry;
+
+    color: var(--app-texto);
+
     margin: 0;
   }
 
   ion-button {
-    --background: #{$bordo};
-    --color: #{$bordo};
+    /* 🔶 Acción principal */
+    --background: var(--app-secundario);
+    --color: var(--app-texto);
 
     width: 3.5rem;
     height: 3.5rem;
@@ -167,19 +225,19 @@ ion-toolbar {
     display: flex;
     justify-content: center;
     align-items: center;
+
     border-radius: 10000rem !important;
-  --border-radius: 10000px !important;
+    --border-radius: 10000px !important;
 
     ion-icon {
       font-size: 2.6rem;
     }
-  }:host{
-    border-radius: 10000rem !important;
-  --border-radius: 10000px !important;
-    }
+  }
 }
 
-/* Ajuste mobile */
+/* ========================================
+   AJUSTE MOBILE
+   ======================================== */
 @media (max-width: 420px) {
 
   ion-item {
@@ -193,39 +251,77 @@ ion-toolbar {
     justify-content: space-between;
     margin-top: .5rem;
   }
-
 }
 
-// Botón flotante
+/* ========================================
+   BOTÓN FLOTANTE
+   ======================================== */
 .fav-button.flotante {
   position: absolute;
-  margin-top: 4rem; // ubicación vertical
-  margin-right: 1rem;  // ubicación horizontal
+
+  margin-top: 4rem;
+  margin-right: 1rem;
+
   width: var(--fav-button-size);
   height: var(--fav-button-size);
+
   border-radius: 50%;
-  background-color: var(--fav-button-bg);
-  color: var(--fav-icon-color);
+
+  background-color: var(--app-secundario);
+  color: var(--app-texto);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   z-index: var(--fav-button-z);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-// Botón de cerrar modal
+/* ========================================
+   BOTÓN CERRAR MODAL
+   ======================================== */
 .fav-button.cerrar-modal {
   position: absolute;
+
   top: 0.2rem;
   right: 0.5rem;
+
   width: 2.5rem;
   height: 2.5rem;
+
   border-radius: 50%;
-  background-color: $givry; // tu color de fondo
-  color: $bordo; // bordó para la X
+
+  /* 🔶 Botón secundario */
+  background-color: var(--app-principal);
+  color: var(--app-texto);
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   z-index: var(--fav-button-z + 1);
+
   font-size: 1.2rem;
+}
+
+ion-toolbar {
+  --background: var(--app-principal);
+  --color: var(--app-secundario);
+
+  border-bottom: 2px solid var(--app-secundario);
+}
+
+ion-title {
+  color: var(--app-texto-contraste);
+  font-weight: 700;
+}
+
+ion-buttons ion-button {
+  --color: var(--app-secundario);
+}
+
+ion-buttons ion-icon {
+  font-size: 2rem;
 }

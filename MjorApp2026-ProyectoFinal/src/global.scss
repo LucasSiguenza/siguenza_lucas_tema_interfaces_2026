@@ -14,8 +14,6 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/flex-utils.css";
 @import "@ionic/angular/css/core.css";
-@import "@ionic/angular/css/palettes/dark.system.css";
-
 /* =========================
   COLORES
 ========================= */
@@ -290,6 +288,8 @@ ion-card {
 
   background: var(--app-fondo-secundario);
   color: var(--app-texto);
+
+  --backgroud: var(--app-fondo-secundario);
 }
 
 ion-card-content {
@@ -328,7 +328,7 @@ ion-card-content {
 
   .alert-head {
 
-    background: var(--app-principal);
+    background: var(--app-fondo-secundario);
     color: var(--app-texto-contraste);
 
     margin-top: 1rem;
@@ -428,9 +428,9 @@ ion-card-content {
 
 .gm-modal {
 
-  --width: min(92vw, 500px);
+  // --width: min(92vw, 500px);
 
-  --height: auto;
+  // --height: auto;
   --max-height: 90vh;
 
   --border-radius: 20px;
@@ -518,9 +518,9 @@ ion-card-content {
 
 .gm-modal-full {
 
-  --width: fit-content;
+  // --width: fit-content;
 
-  --height: auto;
+  // --height: auto;
 
   --max-width: min(92vw, 900px);
   --max-height: 100vh;
@@ -668,4 +668,77 @@ ion-card-content {
   opacity: 0;
 
   pointer-events: none;
+}
+
+
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('./assets/fuentes/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fuentes/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('./assets/fuentes/Nunito-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fuentes/Poppins-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('./assets/fuentes/JetBrainsMono-Regular.ttf') format('truetype');
+}
+
+body {
+  font-family: var(--app-font-family);
+  font-size: var(--app-font-size);
+}
+ion-content,
+ion-card,
+ion-item,
+ion-label,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: inherit;
+}
+
+ion-content,
+ion-item,
+ion-card,
+ion-card-title,
+ion-card-content,
+ion-label {
+  color: var(--ion-text-color);
+}
+
+ion-button{
+  --color: var(--ion-text-color);
+}
+ion-buttons ion-button {
+  --color: var(--ion-text-color);
+}
+
+ion-fab-button ion-icon {
+  color: var(--app-texto-contraste);
+}
+
+.fab-item ion-label {
+  color: var(--ion-text-color);
+}
+
+ion-content {
+  font-size: var(--app-font-size);
 }

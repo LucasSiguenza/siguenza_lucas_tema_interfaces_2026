@@ -20,6 +20,12 @@ $givry: #F7E7B6; //? Complementario con mejor contraste
   --app-font-family: Arial;
   --app-font-size: 16px;
 
+  --ion-card-background: var(--app-principal);
+  --ion-card-color: var(--app-texto-contraste);
+
+  --ion-background-color: var(--app-fondo);
+  --ion-text-color: var(--app-texto);
+
 }
 
 //? Comentario para seccionar los componentes:

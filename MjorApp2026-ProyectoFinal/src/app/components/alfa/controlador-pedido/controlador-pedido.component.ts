@@ -15,7 +15,7 @@ import { FormatoFechaPipe } from 'src/app/pipes/formato-fecha-pipe';
   templateUrl: './controlador-pedido.component.html',
   styleUrls: ['./controlador-pedido.component.scss'],
   imports: [IonTitle, IonCard, IonCardContent, ListaDetallePedidoComponent,CurrencyPipe, TitleCasePipe,
-     IonText, IonIcon, FormatoFechaPipe, DecimalPipe],
+     IonText, IonIcon, FormatoFechaPipe],
 })
 export class ControladorPedidoComponent {
   //! ======================= Variables y servicios =======================

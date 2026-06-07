@@ -91,12 +91,13 @@ export class ClientePage implements OnInit {
         case 'en camino':
         case 'en proceso':
           return await this.utilSvc.redirigir(`cliente/mesa/${this.mesaSvc.mesaDelUsuario()?.id}`);
+          case 'espera confirmación de pago':
+            return await this.utilSvc.redirigir('/cliente/cuenta')
         case 'espera de aprobación':            
         case 'rechazado':
-        case undefined:
           return await this.utilSvc.redirigir('/carta')
-        case 'espera confirmación de pago':
-          return await this.utilSvc.redirigir('/cliente/cuenta')
+        case undefined:
+          break;
         }
     }
   }
@@ -186,7 +187,12 @@ export class ClientePage implements OnInit {
           case undefined:
             return await this.utilSvc.redirigir('/carta')
           case 'espera confirmación de pago':
-            return await this.utilSvc.redirigir('/cliente/cuenta')
+            let regEx2 = qrValue.search(/^\/cliente\/cuenta/i);
+            if ( regEx2 != -1)
+            {        
+              this.utilSvc.redirigir(qrValue);
+              return;
+            }
           }
         }
       }

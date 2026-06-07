@@ -1,65 +1,89 @@
 @use 'src/theme/variables.scss' as v;
 
-
-
+/* ===============================
+   INPUT WRAPPER
+   Usa fondo principal y borde principal del tema
+   =============================== */
 .custom-input-field {
-  background-color: #7A0F0F;
+  background-color: var(--app-principal); /* fondo principal */
   border-radius: 12px;
-  border: 1px solid #7A0F0F; 
-  margin-bottom: 8px; 
-  overflow: hidden; 
+  border: 1px solid var(--app-principal); /* borde coherente con fondo */
+  margin-bottom: 8px;
+  overflow: hidden;
 
-  /* 🔥 Aplicar padding vertical uniforme aquí 🔥 */
-  padding-top: 10px;    /* Ajusta estos valores */
-  padding-bottom: 10px; /* Asegura que la altura sea la que deseas */
-  
-  display: flex; /* Añadir flex para mejor alineación vertical */
-  align-items: center; 
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  display: flex;
+  align-items: center;
 }
 
+/* ===============================
+   ION-INPUT
+   Se adapta a fondo principal y texto del tema
+   =============================== */
 ion-input {
-  --background: #7A0F0F; 
-  --color: #FFFFFF;
-  --placeholder-color: #CCCCCC; 
+  --background: var(--app-principal); /* fondo input */
+  --color: var(--app-texto-contraste); /* texto legible sobre fondo oscuro */
+  --placeholder-color: var(--app-texto); /* placeholder con menor contraste */
 
-  /* 🔥 ANULAR el padding vertical aquí (dejarlo en 0) 🔥 */
-  --padding-top: 0px; 
+  --padding-top: 0px;
   --padding-bottom: 0px;
-  
-  /* Mantener el padding horizontal */
+
   --padding-start: 12px;
-  --padding-end: 12px; 
-  
+  --padding-end: 12px;
+
   font-size: 16px;
-  width: 100%; /* Asegurar que ocupe todo el espacio horizontal */
+  width: 100%;
 }
 
+/* ===============================
+   VALIDADORES
+   Mantiene color semántico danger de Ionic
+   =============================== */
 .validators {
   font-size: 13px;
   color: var(--ion-color-danger);
   margin: 4px 0 10px 8px;
 }
 
+/* ===============================
+   ION-BUTTON
+   Usa secundario como base visual del sistema
+   =============================== */
 ion-button {
   margin-top: 14px;
   border-radius: 12px;
   font-size: 1rem;
+
   --padding-top: 16px;
   --padding-bottom: 16px;
+
+  --background: var(--app-secundario); /* botón principal de acción */
+  --color: var(--app-principal);       /* contraste con el dorado */
 }
 
-
+/* ===============================
+   CARD CONTENT
+   Fondo secundario del sistema + texto principal
+   =============================== */
 ion-card-content {
   border-radius: 12px;
   overflow: hidden;
-  --background: #D4A32F;
+
+  --background: var(--app-secundario); /* fondo card */
+  --color: var(--app-principal);       /* texto sobre dorado */
+
   padding: 16px;
   width: 80%;
   margin: 0 auto;
   box-sizing: border-box;
-  color: black;
 }
 
+/* ===============================
+   LOGO CONTAINER
+   Sin colores directos, hereda del layout
+   =============================== */
 .logo-container {
   display: flex;
   justify-content: center;
@@ -67,14 +91,19 @@ ion-card-content {
   margin-bottom: 40px;
 }
 
-.icon-btn
-{
+/* ===============================
+   ICON BUTTON
+   Solo layout, sin color fijo
+   =============================== */
+.icon-btn {
   width: 40vw;
   aspect-ratio: auto;
 }
 
-.super-container
-{
+/* ===============================
+   GRID LAYOUT
+   =============================== */
+.super-container {
   display: grid;
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr;
   align-items: center;
@@ -82,30 +111,31 @@ ion-card-content {
   justify-items: center;
 }
 
-
-
-/* ⚔️ BOTÓN GOOGLE ADAPTADO */
+/* ===============================
+   BOTÓN GOOGLE
+   Adaptado al sistema de variables globales
+   =============================== */
 .button.google {
-  width: 100%;              /* MISMO ANCHO QUE ION-BUTTON */
+  width: 100%;
   display: flex;
-  justify-content: center;  /* Centrar ícono + texto */
+  justify-content: center;
   align-items: center;
 
-  padding-top: 8px;        /* MISMA ALTURA QUE ION-BUTTON */
+  padding-top: 8px;
   padding-bottom: 8px;
-
-  padding-left: 1.4rem;     /* Mantener estilo original */
+  padding-left: 1.4rem;
   padding-right: 1.4rem;
 
-  font-size: 0.55rem;          /* Igual que ion-button */
+  font-size: 0.55rem;
   font-weight: 700;
   text-transform: uppercase;
 
-  border-radius: 12px;      /* ⚠️ Igual que tus inputs y botón */
-  border: 1px solid rgba(50, 50, 80, 0.25);
+  border-radius: 12px;
+  border: 1px solid var(--app-texto-contraste);
 
-  background-color: rgb(50, 50, 80);
-  color: #ffffff;
+  background-color: var(--app-principal); /* reemplazo del rgb oscuro */
+  color: var(--app-texto-contraste);
+
   gap: 0.75rem;
 
   cursor: pointer;
@@ -113,29 +143,32 @@ ion-card-content {
   text-decoration: none;
 }
 
-/* Ícono adentro */
 .button.google svg {
   height: 24px;
   width: 24px;
-  fill: #fff;
+  fill: var(--app-texto-contraste);
 }
 
-/* Hover mantenido */
 .button.google:hover {
   transform: scale(1.02);
-  background-color: rgb(90, 90, 120);
-  box-shadow: 0 2px 4px rgba(90, 90, 120, 0.1);
+  background-color: var(--app-fondo-secundario);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .button.google:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 0, 40, 0.3);
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 .button.google:active {
   transform: scale(0.98);
-  opacity: 0.8;
+  opacity: 0.85;
 }
+
+/* ===============================
+   ACCESO RÁPIDO
+   Layout puro
+   =============================== */
 .acceso-rapido {
   display: flex;
   align-items: center;

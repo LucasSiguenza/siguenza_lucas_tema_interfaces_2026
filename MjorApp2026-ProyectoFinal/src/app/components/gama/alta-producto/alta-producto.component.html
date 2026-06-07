@@ -137,7 +137,7 @@
         </div>
         <div class="btn-direccion">
             <ion-button 
-            class="btn-lr btn-naranja"
+            class="btn-lr"
             (click)="this.previouspage()">
               <ion-icon
               name="chevron-back-outline"
@@ -145,7 +145,7 @@
             </ion-button>
             
             <ion-button
-            class="btn-lr btn-naranja"
+            class="btn-lr"
             (click)="this.nextPage()">
               <ion-icon
               name="chevron-forward-outline"
@@ -156,15 +156,12 @@
         <div class="btn-registrar">
 
           <ion-button
-          class="btn-submit btn-naranja"
+          class="btn-submit"
           (click)="this.goBack()"
           >Cancelar</ion-button>
-
-        </div>
-
-        <div class="btn-registrar">
+          
           <ion-button 
-          class="btn-submit btn-naranja"
+          class="btn-submit"
           [disabled]="(this.fotosTomadas[0] == null) || (this.fotosTomadas[1] == null) || (this.fotosTomadas[2] == null) || (!this.altaForm.valid)"
           (click)="this.submit()"
           >Registrar</ion-button>

@@ -6,11 +6,12 @@ import OneSignal from 'onesignal-cordova-plugin';
 import { environment } from 'src/environments/environment';
 import { ChatService } from './services/chat-service';
 import { App } from '@capacitor/app';
+import { FabTemasComponent } from "./components/elementos/fab-temas/fab-temas.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet],
+  imports: [IonApp, IonRouterOutlet, FabTemasComponent],
 })
 export class AppComponent
 {

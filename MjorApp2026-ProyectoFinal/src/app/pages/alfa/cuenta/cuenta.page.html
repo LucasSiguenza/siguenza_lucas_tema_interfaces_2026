@@ -6,7 +6,7 @@
       <ion-card class="alert">
         <h1>Pedido pagado. Aguarde la confirmación del {{this.pedido()?.es_delivery ? 'repartidor': 'mozo'}}</h1>
         <div class="botones-confirmacion">
-          <ion-button color="warning"
+          <ion-button color="secondary"
           class="btn-confirmacion"
           (click)="this.goToCliente()"
           >
@@ -23,13 +23,13 @@
       <ion-card class="alert">
         <h1>¿Confirmar pago?</h1>
         <div class="botones-confirmacion">
-          <ion-button color="warning"
+          <ion-button color="secondary"
           class="btn-confirmacion"
           (click)="this.showConfirmacion.set(false)"
           >NO
         </ion-button>
         
-          <ion-button color="warning"
+          <ion-button color="secondary"
           (click)="pagarCuenta()"
           class="btn-confirmacion"
           >

@@ -3,33 +3,38 @@
 /* =========================
   CARD PRINCIPAL
 ========================= */
-
 .card-full {
   margin-top: 3vh;
 
   border-radius: 1.2rem;
+
+  /* 🔶 superficie base */
+  background: var(--app-fondo);
+  color: var(--app-texto);
 }
 
 /* =========================
   TITULO
 ========================= */
-
 .titulo-carta {
   font-size: 1.8rem;
+  color: var(--app-texto);
 }
 
 /* =========================
   LISTA
 ========================= */
-
 ion-list {
-  background: none;
+  background: transparent;
 
   padding: 1rem;
 }
 
+/* =========================
+  ITEMS CHAT
+========================= */
 ion-item {
-  --background: transparent;
+  --background: var(--app-fondo-secundario);
   --inner-border-width: 0;
 
   margin-bottom: 1rem;
@@ -48,7 +53,6 @@ ion-item:active {
 /* =========================
   AVATAR
 ========================= */
-
 ion-avatar img {
   object-fit: cover;
 }
@@ -56,10 +60,8 @@ ion-avatar img {
 /* =========================
   MENSAJE VACÍO
 ========================= */
-
 .card-foto {
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
@@ -78,27 +80,25 @@ ion-avatar img {
   text-align: center;
 }
 
-/* ICONO */
-
+/* icono estado vacío */
 .mensaje-foto ion-icon {
   font-size: 5rem;
 
-  color: white;
+  color: var(--app-texto-contraste);
 
-  background: #2ecc71;
+  background: var(--app-principal);
 
   border-radius: 50%;
 
   padding: 1.5rem;
 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
-/* TEXO */
-
+/* texto vacío */
 .mensaje-foto ion-text {
-
   font-weight: 600;
-
   font-size: 1rem;
+
+  color: var(--app-texto);
 }

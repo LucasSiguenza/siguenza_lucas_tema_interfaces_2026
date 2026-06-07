@@ -139,7 +139,7 @@ export class PanelMesasComponent  implements OnInit, OnDestroy {
   }
 
   async abrirFormularioNuevo() {
-    await this.mesaSvc.revisarEstadoActualReserva(this.rsvSvc.listaReservas());
+    // await this.mesaSvc.revisarEstadoActualReserva(this.rsvSvc.listaReservas());
     const modal = await this.utilSvc.crearModal(FormularioAltaMesasModalComponent,'md',{},true);
     await modal.present()
   }
